@@ -1,0 +1,103 @@
+---
+import { site, socials, products, footerLinks } from '../data/site';
+import NewsletterForm from './NewsletterForm.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="footer site-footer">
+	<div class="pbmit-footer-widget-area-top pbmit-bg-color-global">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-md-5">
+					<h3 class="pbmit-footer-big-title">Sign Up to Get Latest Updates</h3>
+				</div>
+				<div class="col-md-7">
+					<NewsletterForm />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="pbmit-footer-widget-area">
+		<div class="container">
+			<div class="row">
+				<div class="footer-widget-col-1">
+					<div class="pbmit-first-widget pbmit-widget">
+						<p class="footer-logo">
+							<img src={site.footerLogo} class="img-fluid w-auto" alt={site.name}/>
+						</p>
+						<p class="text">
+							“Radical Polymers” are a leading Manufacturer of a wide range of Rubber Gaskets, Rubber O-Rings, Rubber Seals,
+							etc.
+						</p>
+						<div class="pbmit-free-call-box">
+							<i class="pbmit-base-icon-phone-call"></i>
+							<div class="pbmit-call-text">
+								Talk To Our Support
+								<h3>
+									<a href={site.phoneHref}>{site.phone}</a>
+								</h3>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="footer-widget-col-2">
+					<div class="pbmit-two-widget pbmit-widget">
+						<h2 class="widget-title">Quick Links</h2>
+						<div class="menu-services-menu-container">
+							<ul class="menu">
+								{footerLinks.map((l) => (
+									<li class="menu-item">
+										<a href={l.href}>{l.label}</a>
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="footer-widget-col-3">
+					<div class="pbmit-three-widget pbmit-widget">
+						<h2 class="widget-title">Solutions &amp; Services</h2>
+						<div class="menu-services-menu-container">
+							<ul class="menu">
+								{products.slice(0, 5).map((p) => (
+									<li class="menu-item">
+										<a href="/products">{p}</a>
+									</li>
+								))}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="pbmit-footer-widget-area-bottom">
+		<div class="container">
+			<div class="pbmit-footer-widget-area-bottom-inner">
+				<div class="row align-items-center">
+					<div class="col-md-6">
+						<p>{`Copyright © ${year} ${site.name}. All Rights Reserved.`}</p>
+					</div>
+					<div class="col-md-6">
+						<ul class="pbmit-social-links text-end">
+							{socials.map((s) => (
+								<li class={`pbmit-social-li ${s.cls}`}>
+									<a href={s.href} target="_blank" rel="noopener" aria-label={s.name}>
+										<span>
+											<i class={s.icon}></i>
+										</span>
+									</a>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>

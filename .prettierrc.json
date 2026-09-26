@@ -1,0 +1,12 @@
+{
+  "plugins": ["prettier-plugin-astro"],
+  "useTabs": true,
+  "tabWidth": 4,
+  "printWidth": 140,
+  "singleQuote": true,
+  "htmlWhitespaceSensitivity": "css",
+  "overrides": [
+    { "files": "*.astro", "options": { "parser": "astro" } },
+    { "files": ["*.css"], "options": { "useTabs": false } }
+  ]
+}

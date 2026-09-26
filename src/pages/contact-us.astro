@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TitleBar from '../components/TitleBar.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<BaseLayout title="Contact Us">
+	<TitleBar title="Contact Us" />
+
+	<!-- Page Content -->
+	<div class="page-content pbmit-bg-color-light">
+		<section class="contact-section">
+			<div class="container">
+				<div class="contact-section-bottom-inner">
+					<div class="row">
+						<div class="col-md-5">
+							<div class="contact-section-bottom-inner-left">
+								<div class="pbmit-heading-subheading">
+									<h4 class="pbmit-subtitle">Contact us</h4>
+									<h2 class="pbmit-title">Get in touch</h2>
+								</div>
+								<div class="pbmit-ihbox pbmit-ihbox-style-3">
+									<div class="pbmit-ihbox-box">
+										<div class="pbmit-ihbox-headingicon">
+											<div class="pbmit-ihbox-icon">
+												<div class="pbmit-ihbox-icon-wrapper">
+													<i class="pbmit-colza-icon pbmit-colza-icon-location"></i>
+												</div>
+											</div>
+											<div class="pbmit-ihbox-contents">
+												<h2 class="pbmit-element-title">Our Location​​</h2>
+												<div class="pbmit-heading-desc">Office – 155-A Model Town West Ghaziabad</div>
+												<div class="pbmit-heading-desc">Works- E-1 , E-2 Fancy Enclave Chhaproula G.B. Nagar</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="pbmit-ihbox pbmit-ihbox-style-3">
+									<div class="pbmit-ihbox-box">
+										<div class="pbmit-ihbox-headingicon">
+											<div class="pbmit-ihbox-icon">
+												<div class="pbmit-ihbox-icon-wrapper">
+													<i class="pbmit-colza-icon pbmit-colza-icon-phone"></i>
+												</div>
+											</div>
+											<div class="pbmit-ihbox-contents">
+												<h2 class="pbmit-element-title">Phone Number​​</h2>
+												<div class="pbmit-heading-desc">+91 9711114333</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="pbmit-ihbox pbmit-ihbox-style-3">
+									<div class="pbmit-ihbox-box">
+										<div class="pbmit-ihbox-headingicon">
+											<div class="pbmit-ihbox-icon">
+												<div class="pbmit-ihbox-icon-wrapper">
+													<i class="pbmit-colza-icon pbmit-colza-icon-email"></i>
+												</div>
+											</div>
+											<div class="pbmit-ihbox-contents">
+												<h2 class="pbmit-element-title">Email Address​​</h2>
+												<div class="pbmit-heading-desc">radicalpolymers@gmail.com</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<ul class="pbmit-social-links">
+									<li class="pbmit-social-li pbmit-social-facebook">
+										<a href="/contact-us" target="_blank" rel="noopener">
+											<span>
+												<i class="pbmit-base-icon-facebook-squared"></i>
+											</span>
+										</a>
+									</li>
+									<li class="pbmit-social-li pbmit-social-twitter">
+										<a href="/contact-us" target="_blank" rel="noopener">
+											<span>
+												<i class="pbmit-base-icon-twitter"></i>
+											</span>
+										</a>
+									</li>
+									<li class="pbmit-social-li pbmit-social-instagram">
+										<a href="/contact-us" target="_blank" rel="noopener">
+											<span>
+												<i class="pbmit-base-icon-instagram"></i>
+											</span>
+										</a>
+									</li>
+									<li class="pbmit-social-li pbmit-social-youtube">
+										<a href="/contact-us" target="_blank">
+											<span>
+												<i class="pbmit-base-icon-youtube-play"></i>
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-7 p-0">
+							<ContactForm />
+						</div>
+					</div>
+					<br />
+					<div class="row">
+						<div class="col-md-12">
+							<iframe
+								src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14008.142362195362!2d77.4727458!3d28.6286954!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cede1a1889b13%3A0x26211c357196c3f3!2sRadical%20Polymers!5e0!3m2!1sen!2sin!4v1686983530675!5m2!1sen!2sin"
+								width="100%"
+								height="450"
+								style="border:0;"
+								allowfullscreen=""
+								loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"
+							></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- Page Content End -->
+</BaseLayout>

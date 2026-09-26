@@ -1,0 +1,33 @@
+---
+interface Props {
+	title: string;
+}
+const { title } = Astro.props;
+---
+
+<div class="pbmit-title-bar-wrapper">
+	<div class="container">
+		<div class="pbmit-title-bar-content">
+			<div class="pbmit-title-bar-content-inner">
+				<div class="pbmit-tbar">
+					<div class="pbmit-tbar-inner">
+						<h1 class="pbmit-tbar-title">{title}</h1>
+					</div>
+				</div>
+				<nav class="pbmit-breadcrumb" aria-label="Breadcrumb">
+					<div class="pbmit-breadcrumb-inner">
+						<span>
+							<a href="/" class="home">
+								<span>Home</span>
+							</a>
+						</span>
+						<span class="sep">
+							<i class="pbmit-base-icon-angle-double-right"></i>
+						</span>
+						<span class="post-root post post-post current-item">{title}</span>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>

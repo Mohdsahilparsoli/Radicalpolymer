@@ -1,0 +1,24 @@
+---
+// Footer newsletter sign-up – posts to /api/contact (form_type=newsletter).
+---
+
+<form class="js-ajax-form newsletter-form" method="post" action="/api/contact" novalidate>
+	<input type="hidden" name="form_type" value="newsletter" />
+	<div class="hp-field" aria-hidden="true">
+		<label>
+			Leave this field empty
+			<input type="text" name="company_website" tabindex="-1" autocomplete="off" />
+		</label>
+	</div>
+	<div class="pbmit-footer-newslatter">
+		<input type="email" name="email" placeholder="Your email address.." required autocomplete="email" aria-label="Your email address" />
+		<button type="submit">
+			<span class="btn-label">Submit</span>
+			<span class="btn-loading d-none">
+				<i class="fas fa-circle-notch fa-spin"></i>
+			</span>
+			<i class="pbmit-base-icon-paper-plane"></i>
+		</button>
+	</div>
+	<div class="form-status" role="status" aria-live="polite"></div>
+</form>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TitleBar from '../components/TitleBar.astro';
+---
+
+<BaseLayout title="Page Not Found">
+	<meta slot="head" name="robots" content="noindex" />
+	<TitleBar title="Page Not Found" />
+	<section class="section-lg thank-you-section">
+		<div class="container">
+			<div class="thank-you-card">
+				<div class="thank-you-icon">
+					<i class="fas fa-search"></i>
+				</div>
+				<h2>Sorry, this page does not exist.</h2>
+				<p>The page may have moved. Use the menu above or go back to the home page.</p>
+				<div class="thank-you-actions">
+					<a href="/" class="pbmit-btn pbmit-btn-hover-secondary">
+						<span>Back to Home</span>
+					</a>
+					<a href="/contact-us" class="pbmit-btn">
+						<span>Contact Us</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</BaseLayout>

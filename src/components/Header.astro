@@ -1,0 +1,116 @@
+---
+import { site, socials, mainNav } from '../data/site';
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header header-style-2">
+	<div class="site-header-menu-wrapper">
+		<div class="site-header-menu">
+			<div class="container">
+				<div class="d-flex justify-content-between align-items-center">
+					<div class="site-branding">
+						<div class="site-title">
+							<a href="/" aria-label={`${site.name} – Home`}>
+								<img class="logo-img" src={site.logo} alt={site.name} />
+							</a>
+						</div>
+					</div>
+
+					<div class="site-navigation ml-auto">
+						<nav class="main-menu navbar-expand-xl navbar-light" aria-label="Main menu">
+							<div class="navbar-header">
+								<button class="navbar-toggler" type="button" aria-label="Open menu">
+									<i class="pbmit-base-icon-menu-1"></i>
+								</button>
+							</div>
+							<div class="pbmit-mobile-menu-bg"></div>
+							<div class="collapse navbar-collapse clearfix show" id="pbmit-menu">
+								<div class="pbmit-menu-wrap">
+									<span class="closepanel" role="button" aria-label="Close menu">
+										<i class="pbmit-base-icon-cancel"></i>
+									</span>
+									<ul class="navigation clearfix">
+										{mainNav.map((item) => (
+											<li class:list={[{ dropdown: item.children, active: isActive(item.href) }]}>
+												<a href={item.href}>{item.label}</a>
+												{item.children && (
+													<ul>
+														{item.children.map((child) => (
+															<li>
+																<a href={child.href}>{child.label}</a>
+															</li>
+														))}
+													</ul>
+												)}
+											</li>
+										))}
+									</ul>
+								</div>
+							</div>
+						</nav>
+					</div>
+
+					<div class="pbmit-right-box">
+						<a href="/contact-us" class="pbmit-btn pbmit-btn-hover-secondary">
+							<span>Enquire Now</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="site-header-menu-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="d-flex justify-content-between align-items-center">
+							<div class="pbmit-header-info">
+								<div class="pbmit-header-box pbmit-header-box-1">
+									<span class="pbmit-header-box-icon">
+										<i class="pbmit-colza-icon pbmit-colza-icon-phone"></i>
+									</span>
+									<span class="pbmit-header-box-title">Call Us</span>
+									<span class="pbmit-header-box-content">
+										<a href={site.phoneHref}>{site.phone}</a>
+									</span>
+								</div>
+								<div class="pbmit-header-box pbmit-header-box-2">
+									<span class="pbmit-header-box-icon">
+										<i class="pbmit-colza-icon pbmit-colza-icon-location"></i>
+									</span>
+									<span class="pbmit-header-box-title">Address</span>
+									<span class="pbmit-header-box-content">{site.address}</span>
+								</div>
+								<div class="pbmit-header-box pbmit-header-box-3">
+									<span class="pbmit-header-box-icon">
+										<i class="pbmit-colza-icon pbmit-colza-icon-email"></i>
+									</span>
+									<span class="pbmit-header-box-title">Email Us</span>
+									<span class="pbmit-header-box-content">
+										<a href={`mailto:${site.email}`}>{site.email}</a>
+									</span>
+								</div>
+							</div>
+							<div class="pbmit-right-box ml-auto">
+								<ul class="pbmit-social-links">
+									{socials.map((s) => (
+										<li class={`pbmit-social-li ${s.cls}`}>
+											<a href={s.href} target="_blank" rel="noopener" aria-label={s.name}>
+												<span>
+													<i class={s.icon}></i>
+												</span>
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<slot />
+</header>

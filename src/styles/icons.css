@@ -1,0 +1,76 @@
+/*!
+ * Radical Polymers - Icon fonts
+ * Only the icons used on the site are kept.
+ * Font Awesome 5.15.3 and Themify Icons are loaded from CDN.
+ */
+
+/* PBM base icons */
+@font-face {
+    font-family: "pbminfotech-base-icons";
+    src: url("/fonts/pbminfotech-base-icons.woff2") format("woff2"),
+         url("/fonts/pbminfotech-base-icons.woff") format("woff"),
+         url("/fonts/pbminfotech-base-icons.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+[class^="pbmit-base-icon-"]:before,
+[class*=" pbmit-base-icon-"]:before {
+    display: inline-block;
+    width: 1em;
+    margin-right: 0.2em;
+    margin-left: 0.2em;
+    font-family: "pbminfotech-base-icons";
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 1em;
+    text-align: center;
+    text-decoration: inherit;
+    text-transform: none;
+    speak: never;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.pbmit-base-icon-cancel:before { content: '\e813'; }
+.pbmit-base-icon-arrow-right:before { content: '\e815'; }
+.pbmit-base-icon-menu-1:before { content: '\e829'; }
+.pbmit-base-icon-call:before { content: '\e82b'; }
+.pbmit-base-icon-email:before { content: '\e837'; }
+.pbmit-base-icon-user-1:before { content: '\e838'; }
+.pbmit-base-icon-star:before { content: '\e843'; }
+.pbmit-base-icon-calendar-1:before { content: '\e844'; }
+.pbmit-base-icon-phone-volume-solid:before { content: '\e84b'; }
+.pbmit-base-icon-phone-call:before { content: '\e85b'; }
+.pbmit-base-icon-twitter:before { content: '\f099'; }
+.pbmit-base-icon-comment-empty:before { content: '\f0e5'; }
+.pbmit-base-icon-angle-double-right:before { content: '\f101'; }
+.pbmit-base-icon-youtube-play:before { content: '\f16a'; }
+.pbmit-base-icon-instagram:before { content: '\f16d'; }
+.pbmit-base-icon-paper-plane:before { content: '\f1d8'; }
+.pbmit-base-icon-facebook-squared:before { content: '\f308'; }
+.pbmit-base-icon-linkedin-squared:before { content: '\f30c'; }
+
+/* Flaticon (industry icons) */
+@font-face {
+    font-family: "Flaticon";
+    src: url("/fonts/flaticon.woff2") format("woff2"),
+         url("/fonts/flaticon.woff") format("woff"),
+         url("/fonts/flaticon.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+i[class^="pbmit-colza-icon-"]:before,
+i[class*=" pbmit-colza-icon-"]:before {
+    font-family: "Flaticon" !important;
+    font-style: normal;
+}
+.pbmit-colza-icon-labor-man:before { content: "\f109"; }
+.pbmit-colza-icon-refinery:before { content: "\f132"; }
+.pbmit-colza-icon-location:before { content: "\f13f"; }
+.pbmit-colza-icon-phone:before { content: "\f141"; }
+.pbmit-colza-icon-email:before { content: "\f142"; }
+.pbmit-colza-icon-factory-2:before { content: "\f149"; }
+.pbmit-colza-icon-forklift:before { content: "\f14d"; }
+.pbmit-colza-icon-foreman-1:before { content: "\f177"; }
