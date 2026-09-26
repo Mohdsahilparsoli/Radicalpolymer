@@ -20,7 +20,30 @@ npm run dev               # http://localhost:4321
 3. In `.env`: `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=465`, `SMTP_SECURE=true`,
    `SMTP_USER=<gmail address>`, `SMTP_PASS=<16-letter app password>`.
 
-## Build & run in production
+## Deploy on Vercel (recommended)
+The project detects Vercel automatically (`@astrojs/vercel` adapter): pages are served as static
+files and `/api/contact` runs as a serverless function. `vercel.json` already sets the framework to Astro.
+
+1. Push this folder to GitHub (`package.json` must be at the **root** of the repo –
+   otherwise set **Settings → General → Root Directory** to the folder that contains it).
+2. Vercel → **Add New Project** → import the repo. Framework Preset: **Astro**.
+   Leave Build Command / Output Directory **empty** (do not override them).
+3. **Settings → Environment Variables** → add `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`,
+   `SMTP_USER`, `SMTP_PASS`, `MAIL_FROM`, `MAIL_TO`, `SEND_AUTO_REPLY` (same values as `.env`).
+4. **Deployments → Redeploy** (env variables apply only to new deployments).
+
+### Free (Hobby) plan – already tuned
+- All pages, images, CSS and JS are static files on Vercel's CDN – they use **no function time**.
+- Only `/api/contact` is a function: `maxDuration` 15 s, runs in Mumbai (`bom1`, set in `vercel.json`).
+- SMTP uses one short connection per request with 8–10 s timeouts – a slow mail server returns a
+  friendly error instead of hanging or crashing the function. The auto-reply is sent before the
+  function finishes (serverless functions stop once the response is sent).
+- If the SMTP variables are missing the site still builds and works; the form shows
+  "temporarily unavailable – please call or WhatsApp us" and the reason is in **Vercel → Logs**.
+- Requests larger than 50 KB are rejected; 5 submissions / 10 min per IP.
+- Images are compressed (~5.3 MB → 1.5 MB) to save bandwidth (Hobby includes 100 GB/month).
+
+## Build & run on your own Node server (VPS / Hostinger Node.js app)
 ```bash
 npm run build
 npm start                 # = node --env-file=.env ./dist/server/entry.mjs
@@ -31,8 +54,7 @@ Keep it running with PM2: `pm2 start npm --name radicalpolymer -- start`.
 Behind Nginx/Apache, proxy to the Node port and pass the `Host` header
 (`proxy_set_header Host $host;`) – Astro rejects form posts whose origin does not match.
 
-> The site now needs **Node.js hosting** (VPS, Hostinger/Cloud Node.js app, Render, Railway …).
-> Plain PHP shared hosting cannot run the Nodemailer API.
+> Needs Vercel or any Node.js hosting. Plain PHP shared hosting cannot run the Nodemailer API.
 
 ## Project structure
 ```

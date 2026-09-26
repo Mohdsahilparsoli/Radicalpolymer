@@ -1,23 +1,29 @@
 import type { APIRoute } from 'astro';
 import { SEND_AUTO_REPLY } from 'astro:env/server';
-import { getTransporter, mailFrom, mailTo } from '../../lib/mailer';
+import { isMailConfigured, mailFrom, mailTo, sendMails } from '../../lib/mailer';
 import { enquiryAutoReply, enquiryNotification, newsletterNotification, type Enquiry } from '../../lib/email-templates';
 
-// This route runs on the server (Node) – everything else is static HTML.
+// This route runs as a server / serverless function – everything else is static HTML.
 export const prerender = false;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const PHONE_RE = /^[+()\-\s\d]{7,20}$/;
 
-/* Very small in-memory rate limit: 5 submissions per IP per 10 minutes. */
+const MAX_BODY_BYTES = 50_000; // a real enquiry is < 10 KB
+
+/* Small in-memory rate limit: 5 submissions per IP per 10 minutes (per server instance). */
 const hits = new Map<string, number[]>();
 function rateLimited(ip: string) {
 	const now = Date.now();
+	if (hits.size > 5_000) hits.clear(); // never let memory grow unbounded
 	const recent = (hits.get(ip) ?? []).filter((t) => now - t < 10 * 60_000);
 	recent.push(now);
 	hits.set(ip, recent);
 	return recent.length > 5;
 }
+
+const clientIp = (request: Request, fallback?: string) =>
+	request.headers.get('x-forwarded-for')?.split(',')[0].trim() || request.headers.get('x-real-ip') || fallback || 'unknown';
 
 const json = (body: unknown, status = 200) =>
 	new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -28,6 +34,10 @@ const clean = (v: FormDataEntryValue | null, max: number) =>
 		.slice(0, max);
 
 export const POST: APIRoute = async ({ request, clientAddress }) => {
+	if (Number(request.headers.get('content-length') ?? 0) > MAX_BODY_BYTES) {
+		return json({ ok: false, message: 'Message is too long.' }, 413);
+	}
+
 	let form: FormData;
 	try {
 		form = await request.formData();
@@ -38,14 +48,24 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 	// Honeypot: real visitors never fill this hidden field.
 	if (clean(form.get('company_website'), 200)) return json({ ok: true });
 
-	if (rateLimited(clientAddress ?? 'unknown')) {
+	let ip = 'unknown';
+	try {
+		ip = clientIp(request, clientAddress);
+	} catch {
+		ip = clientIp(request);
+	}
+	if (rateLimited(ip)) {
 		return json({ ok: false, message: 'Too many requests. Please try again in a few minutes.' }, 429);
 	}
 
 	const type = clean(form.get('form_type'), 20) || 'contact';
 	const page = request.headers.get('referer') ?? undefined;
 	const submittedAt = new Date();
-	const transporter = getTransporter();
+
+	if (!isMailConfigured()) {
+		console.error('[contact] SMTP is not configured – add SMTP_HOST, SMTP_USER and SMTP_PASS to the environment.');
+		return json({ ok: false, message: 'Our contact form is temporarily unavailable. Please call or WhatsApp us.' }, 503);
+	}
 
 	try {
 		if (type === 'newsletter') {
@@ -53,7 +73,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 			if (!EMAIL_RE.test(email)) return json({ ok: false, message: 'Please enter a valid email address.' }, 422);
 
 			const mail = newsletterNotification(email, { submittedAt, page });
-			await transporter.sendMail({ from: mailFrom(), to: mailTo(), replyTo: email, ...mail });
+			await sendMails({ from: mailFrom(), to: mailTo(), replyTo: email, ...mail });
 			return json({ ok: true, message: 'Thank you for subscribing!' });
 		}
 
@@ -76,20 +96,18 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 		}
 
 		const notification = enquiryNotification(enquiry, { submittedAt, page });
-		await transporter.sendMail({
-			from: mailFrom(),
-			to: mailTo(),
-			replyTo: `"${enquiry.name.replace(/"/g, '')}" <${enquiry.email}>`,
-			...notification,
-		});
-
-		if (SEND_AUTO_REPLY) {
-			// The enquiry is already delivered – a failed auto-reply must not fail the request.
-			const reply = enquiryAutoReply(enquiry);
-			transporter.sendMail({ from: mailFrom(), to: enquiry.email, ...reply }).catch((err) => {
-				console.error('[contact] auto-reply failed:', err?.message ?? err);
-			});
-		}
+		// Enquiry to the company is required; the customer auto-reply is best-effort.
+		// Both go over one SMTP connection and finish before the function returns
+		// (serverless functions stop running once the response is sent).
+		await sendMails(
+			{
+				from: mailFrom(),
+				to: mailTo(),
+				replyTo: `"${enquiry.name.replace(/"/g, '')}" <${enquiry.email}>`,
+				...notification,
+			},
+			...(SEND_AUTO_REPLY ? [{ from: mailFrom(), to: enquiry.email, ...enquiryAutoReply(enquiry) }] : []),
+		);
 
 		return json({ ok: true, message: 'Thank you! Your message has been sent.' });
 	} catch (err) {
