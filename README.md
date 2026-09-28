@@ -46,7 +46,7 @@ files and `/api/contact` runs as a serverless function. `vercel.json` already se
 ## Build & run on your own Node server (VPS / Hostinger Node.js app)
 ```bash
 npm run build
-npm start                 # = node --env-file=.env ./dist/server/entry.mjs
+npm start                 # = node --env-file-if-exists=.env ./server.mjs
 ```
 Change host/port with `HOST=0.0.0.0 PORT=3000 npm start`.
 Keep it running with PM2: `pm2 start npm --name radicalpolymer -- start`.
@@ -79,4 +79,17 @@ public/
 - Spam protection: hidden honeypot field + 5 submissions / 10 min per IP; all input is validated and HTML-escaped.
 
 ## URLs
-Pages use clean URLs (`/about-us`). Old links such as `/about-us.html` redirect (301) automatically.
+Every page URL ends with `/` (e.g. `/contact-us/`). Other versions redirect permanently:
+
+| Visitor opens | Goes to |
+|---|---|
+| `/contact-us`, `/contact-us.html`, `/contact-us/index.html` | `/contact-us/` (same for every page) |
+| `/index.html` | `/` |
+| `/thankyou.html`, `/thank-you.html` | `/thank-you/` |
+| `/send.php` | `/contact-us/` |
+
+- **`npm run dev` (localhost:4321):** rules in `redirect-rules.mjs`, hooked in via `astro.config.mjs`.
+- **Node server (VPS/Hostinger, `npm start`):** `server.mjs` uses the same `redirect-rules.mjs`.
+- **Vercel:** `trailingSlash: 'always'` + `redirects` in `astro.config.mjs`.
+- `googlef37250733d352937.html` (Google verification) is never redirected.
+- New internal links must end with `/` (e.g. `href="/blog/"`).

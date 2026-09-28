@@ -52,18 +52,18 @@ export const products = [
 
 export const mainNav = [
 	{ label: 'Home', href: '/' },
-	{ label: 'Products', href: '/products', children: products.map((label) => ({ label, href: '/products' })) },
-	{ label: 'About Us', href: '/about-us' },
-	{ label: 'Testimonials', href: '/testimonials' },
-	{ label: 'Contact Us', href: '/contact-us' },
+	{ label: 'Products', href: '/products/', children: products.map((label) => ({ label, href: '/products/' })) },
+	{ label: 'About Us', href: '/about-us/' },
+	{ label: 'Testimonials', href: '/testimonials/' },
+	{ label: 'Contact Us', href: '/contact-us/' },
 ];
 
 export const footerLinks = [
 	{ label: 'Home', href: '/' },
-	{ label: 'About Us', href: '/about-us' },
-	{ label: 'Products', href: '/products' },
-	{ label: 'Contact Us', href: '/contact-us' },
-	{ label: 'Cookies Policy', href: '/cookies-policy' },
-	{ label: 'Privacy Policy', href: '/privacy-policy' },
-	{ label: 'Disclaimer', href: '/disclaimer' },
+	{ label: 'About Us', href: '/about-us/' },
+	{ label: 'Products', href: '/products/' },
+	{ label: 'Contact Us', href: '/contact-us/' },
+	{ label: 'Cookies Policy', href: '/cookies-policy/' },
+	{ label: 'Privacy Policy', href: '/privacy-policy/' },
+	{ label: 'Disclaimer', href: '/disclaimer/' },
 ];
