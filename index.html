@@ -12,7 +12,7 @@
 <style>
 /* ===== HOME 2 · CLEAN CORPORATE (LIGHT) — v2 ===== */
 :root{--ink:#121212;--ink2:#2b2b2b;--mut:#6b6b6b;--bg:#fff;--soft:#f6f4ef;--line:#e9e5dc;--gold:#d39b1f;--gold2:#f2c55c;--grad:linear-gradient(120deg,#f2c55c,#d39b1f);--r:20px;--sh:0 24px 60px -24px rgba(0,0,0,.2)}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:"Plus Jakarta Sans",sans-serif;color:var(--ink2);background:var(--bg);line-height:1.7;overflow-x:clip}
 a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;display:block}
 h1,h2,h3,h4{color:var(--ink);line-height:1.2;font-weight:800}
@@ -30,12 +30,12 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.2;font-weight:800}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 .img{position:relative;overflow:hidden;background:linear-gradient(135deg,#1a1a1a,#3a2c0c)}
 .img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.prog{position:fixed;top:0;left:0;height:3px;background:var(--grad);z-index:200;width:0}
+.prog{position:fixed;top:0;left:0;height:3px;background:var(--grad);z-index:1100;width:0}
 /* 1 TOPBAR */
 .top{background:var(--ink);color:#cfcfcf;font-size:13.5px}.top .wrap{display:flex;justify-content:space-between;padding:10px 0;gap:16px;flex-wrap:wrap}
 .top i{color:var(--gold2);margin-right:7px}.top .l{display:flex;gap:26px;flex-wrap:wrap}.top a:hover{color:var(--gold2)}.top .soc{display:flex;gap:16px}
 /* 2 HEADER */
-.hdr{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);transition:.3s}
+.hdr{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.94);transition:box-shadow .3s}
 .hdr.scrolled{box-shadow:0 8px 30px rgba(0,0,0,.08)}
 .hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:88px;gap:24px}
 .logo{display:flex;align-items:center;gap:12px;flex-shrink:0}.logo img{height:74px;transition:.3s}.hdr.scrolled .logo img{height:62px}
@@ -183,7 +183,7 @@ h1,h2,h3,h4{color:var(--ink);line-height:1.2;font-weight:800}
 .gal .img:hover img{transform:scale(1.08)}
 .gal .lbl{position:absolute;left:20px;bottom:18px;z-index:1;color:#fff}.gal .lbl b{display:block;font-size:18px}.gal .lbl span{font-size:13px;color:#ddd}
 .gal .zoom{position:absolute;top:16px;right:16px;z-index:1;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.9);color:var(--ink);display:grid;place-items:center;opacity:0;transform:scale(.6);transition:.4s}.gal .img:hover .zoom{opacity:1;transform:none}
-.lb{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.9);display:grid;place-items:center;padding:30px;opacity:0;visibility:hidden;transition:.3s}.lb.show{opacity:1;visibility:visible}.lb img{max-height:86vh;border-radius:14px}.lb button{position:absolute;top:20px;right:20px;width:46px;height:46px;border-radius:50%;border:0;background:#fff;cursor:pointer;font-size:18px}
+.lb{position:fixed;inset:0;z-index:2100;background:rgba(0,0,0,.9);display:grid;place-items:center;padding:30px;opacity:0;visibility:hidden;transition:.3s}.lb.show{opacity:1;visibility:visible}.lb img{max-height:86vh;border-radius:14px}.lb button{position:absolute;top:20px;right:20px;width:46px;height:46px;border-radius:50%;border:0;background:#fff;cursor:pointer;font-size:18px}
 /* 13 QUALITY */
 .qual .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .q-list li{display:flex;gap:18px;padding:20px 0;border-bottom:1px dashed var(--line)}
@@ -286,8 +286,8 @@ footer li{margin-bottom:11px}footer li a{transition:.3s;display:inline-flex;gap:
 @media(max-width:1500px){.hcall{display:none}.pg{gap:16px}.ic-card{height:400px}}
 @media(max-width:1280px){.ind-g{grid-template-columns:repeat(6,1fr)}.ic-card{grid-column:span 2}.ic-card:nth-child(n+4){grid-column:span 3}}
 @media(max-width:1280px){
- .nav-wrap{position:fixed;top:0;left:0;bottom:0;width:min(360px,86%);background:#fff;z-index:120;padding:30px 22px;transform:translateX(-105%);transition:.45s;overflow:auto;box-shadow:20px 0 60px rgba(0,0,0,.2);visibility:hidden}
- body.nav-open .nav-wrap{transform:none;visibility:visible}body.nav-open:after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:110}
+ .nav-wrap{position:fixed;top:0;left:0;bottom:0;width:min(400px,88vw);background:#fff;z-index:20;padding:0 22px 30px;transform:translateX(-105%);transition:transform .45s cubic-bezier(.2,.8,.2,1),visibility .45s;overflow-y:auto;overscroll-behavior:contain;box-shadow:20px 0 60px rgba(0,0,0,.25);visibility:hidden}
+ body.nav-open .nav-wrap{transform:none;visibility:visible}body.nav-open{overflow:hidden}body.nav-open:after{content:"";position:fixed;inset:0;background:rgba(18,18,18,.55);z-index:999;animation:fadeIn .3s}
  .nav{flex-direction:column}.nav>li>a{padding:14px 4px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.nav>li>a:after{display:none}
  .mega,.mega.p,.mega.s{position:static;translate:none;width:auto;box-shadow:none;border:0;opacity:1;visibility:visible;transform:none;display:none;padding:8px 0;grid-template-columns:1fr}
  .mega.p .feat{display:none}.has-dd.open .mega{display:grid}.burger{display:grid;place-items:center}.hdr .btn{display:none}
@@ -311,6 +311,27 @@ footer li{margin-bottom:11px}footer li a{transition:.3s;display:inline-flex;gap:
 img{color:transparent;font-size:0}
 .img>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .grid>*,.wrap>*,.about .wrap>div,.faq .wrap>div{min-width:0}.ct a,.cl b,.enq-l b{overflow-wrap:anywhere}
+
+/* ===== HEADER FIX: sticky + mobile menu ===== */
+.hdr{z-index:1000!important}
+.hdr:before{content:"";position:absolute;inset:0;z-index:-1;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);pointer-events:none}
+.pop{z-index:2000!important}
+.m-extra,.m-head{display:none}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@media(max-width:1280px){
+ .m-head{display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;padding:16px 0;margin-bottom:6px;border-bottom:1px solid var(--line);z-index:2}
+ .m-head img{height:58px}
+ .nav-close{width:46px;height:46px;border-radius:12px;border:0;background:var(--ink);color:#fff;font-size:20px;cursor:pointer}
+ .nav>li>a{font-size:17px;padding:16px 4px;align-items:center}
+ .nav .fa-angle-down{font-size:14px;transition:.3s}.has-dd.open>a .fa-angle-down{transform:rotate(180deg)}.has-dd.open>a{color:var(--gold)}
+ .mega a.it{font-size:15.5px;padding:11px 8px}
+ .m-extra{display:grid;gap:12px;margin-top:24px}.hdr .m-extra .btn{display:inline-flex!important}
+ .m-extra .btn{justify-content:center;width:100%;padding:16px}
+ .m-extra a.ln{display:flex;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--soft);font-weight:600;font-size:15px;color:var(--ink)}
+ .m-extra a.ln i{width:36px;height:36px;border-radius:10px;background:#fff;color:var(--gold);display:grid;place-items:center}
+ .burger{width:48px;height:48px;font-size:20px}
+}
+@media(max-width:640px){.hdr .wrap{height:74px}.logo img,.hdr.scrolled .logo img{height:58px}}
 </style>
 </head>
 <body>
@@ -325,7 +346,7 @@ img{color:transparent;font-size:0}
 <!-- 2. HEADER -->
 <header class="hdr"><div class="wrap">
  <a href="index.html" class="logo"><img src="logo.png" alt="Radical Polymers"></a>
- <nav class="nav-wrap"><ul class="nav">
+ <nav class="nav-wrap" aria-label="Main menu"><div class="m-head"><img src="logo.png" alt="Radical Polymers"><button class="nav-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button></div><ul class="nav">
   <li class="act"><a href="index.html">Home</a></li>
   <li><a href="about-us.html">About Us</a></li>
   <li class="has-dd"><a href="products.html">Products <i class="fa-solid fa-angle-down"></i></a>
@@ -345,7 +366,9 @@ img{color:transparent;font-size:0}
   <li><a href="testimonials.html">Testimonials</a></li>
   <li><a href="blog.html">Blog</a></li>
   <li><a href="contact-us.html">Contact Us</a></li>
- </ul></nav>
+ </ul>
+ <div class="m-extra"><a href="#" class="btn btn-d" data-open-enquiry>Enquire Now <i class="fa-solid fa-arrow-right"></i></a><a class="ln" href="tel:+919711114333"><i class="fa-solid fa-phone"></i>+91 9711114333</a><a class="ln" href="mailto:sales@radicalpolymer.com"><i class="fa-regular fa-envelope"></i>sales@radicalpolymer.com</a><a class="ln" href="https://wa.me/919711114333" target="_blank"><i class="fa-brands fa-whatsapp"></i>Chat on WhatsApp</a></div>
+ </nav>
  <div class="hdr-r">
   <div class="hcall"><i class="fa-solid fa-headset"></i><div><small>Need Help? Call Us</small><b>+91 9711114333</b></div></div>
   <a href="#" class="btn btn-d" data-open-enquiry>Enquire Now <i class="fa-solid fa-arrow-right"></i></a>
@@ -649,7 +672,7 @@ addEventListener('scroll',()=>{const y=scrollY;hdr.classList.toggle('scrolled',y
  const r=tl.getBoundingClientRect();fill.style.height=Math.max(0,Math.min(r.height,innerHeight*.6-r.top))+'px';
  $$('.ts').forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.6)s.classList.add('in')})},{passive:true});
 tt.onclick=()=>scrollTo({top:0,behavior:'smooth'});
-$('.burger').onclick=()=>document.body.classList.toggle('nav-open');
+$('.burger').onclick=e=>{e.stopPropagation();document.body.classList.toggle('nav-open')};
 document.addEventListener('click',e=>{if(document.body.classList.contains('nav-open')&&!e.target.closest('.nav-wrap,.burger'))document.body.classList.remove('nav-open')});
 $$('.has-dd>a').forEach(a=>a.addEventListener('click',e=>{if(innerWidth<=1280){e.preventDefault();a.parentElement.classList.toggle('open')}}));
 /* hero slider */
@@ -683,8 +706,15 @@ $$('.fq button').forEach(b=>b.onclick=()=>{const f=b.parentElement,o=f.classList
 /* popup */
 const pop=$('#enqPopup'),openPop=()=>{pop.classList.add('show');document.body.style.overflow='hidden'},closePop=()=>{pop.classList.remove('show');document.body.style.overflow=''};
 addEventListener('load',()=>setTimeout(openPop,1500));
-$$('[data-open-enquiry]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();document.body.classList.remove('nav-open');openPop()}));
+$$('[data-open-enquiry]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();document.body.classList.remove('nav-open');document.dispatchEvent(new Event('navchange'));openPop()}));
 pop.addEventListener('click',e=>{if(e.target===pop||e.target.closest('.pop-x'))closePop()});addEventListener('keydown',e=>{if(e.key==='Escape'){closePop();lb.classList.remove('show')}});
+
+/* header/menu helpers */
+const closeNav=()=>{document.body.classList.remove('nav-open');document.dispatchEvent(new Event('navchange'))};
+$$('.nav a').forEach(a=>a.addEventListener('click',()=>{if(innerWidth<=1280&&!a.parentElement.classList.contains('has-dd'))closeNav()}));
+$$('.nav-close').forEach(b=>b.addEventListener('click',closeNav));
+addEventListener('resize',()=>{if(innerWidth>1280&&document.body.classList.contains('nav-open'))closeNav()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('nav-open'))closeNav()});
 /* forms – connect your backend in the TODO */
 $$('form.enq-f').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();let ok=true;
  $$('[required]',f).forEach(i=>{const v=i.value.trim(),bad=!v||(i.type==='email'&&!/^\S+@\S+\.\S+$/.test(v))||(i.type==='tel'&&!/^[+\d\s-]{10,15}$/.test(v));i.classList.toggle('err',bad);if(bad)ok=false});

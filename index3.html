@@ -12,7 +12,7 @@
 <style>
 /* ===== HOME 3 · INDUSTRIAL BOLD — v2 ===== */
 :root{--dk:#15171a;--dk2:#1d2024;--dk3:#262a2f;--y:#ffb703;--y2:#ffd166;--w:#f4f4f2;--mut:#8e949b;--line:#2f343a}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:hidden}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:Barlow,sans-serif;background:var(--dk);color:var(--w);line-height:1.65;overflow-x:clip}
 a{color:inherit;text-decoration:none}ul{list-style:none}img{display:block;max-width:100%}
 h1,h2,h3,h4{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;line-height:1.02;letter-spacing:.5px}
@@ -30,7 +30,7 @@ h1,h2,h3,h4{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;l
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 .img{position:relative;overflow:hidden;background:linear-gradient(135deg,#262a2f,#3a2f12)}.img>img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.16,1,.3,1)}
 /* loader */
-.loader{position:fixed;inset:0;background:var(--dk);z-index:1000;display:grid;place-items:center;transition:.8s cubic-bezier(.7,0,.2,1)}
+.loader{position:fixed;inset:0;background:var(--dk);z-index:3000;display:grid;place-items:center;transition:.8s cubic-bezier(.7,0,.2,1)}
 .loader img{width:120px;animation:lp 1s ease-in-out infinite alternate}.loader.done{clip-path:inset(0 0 100% 0)}
 @keyframes lp{to{transform:scale(1.1);filter:drop-shadow(0 0 30px rgba(255,183,3,.5))}}
 /* 1 TOP */
@@ -38,8 +38,8 @@ h1,h2,h3,h4{font-family:"Barlow Condensed",sans-serif;text-transform:uppercase;l
 .top .wrap{display:flex;justify-content:space-between;padding:9px 0;gap:16px;flex-wrap:wrap}.top .l{display:flex;gap:26px;flex-wrap:wrap}.top i{margin-right:6px}
 .top .soc{display:flex;gap:16px}
 /* 2 HEADER */
-.hdr{position:sticky;top:0;z-index:90;background:var(--dk);border-bottom:1px solid var(--line);transition:.3s}
-.hdr.scrolled{background:rgba(21,23,26,.96);backdrop-filter:blur(10px)}
+.hdr{position:sticky;top:0;z-index:1000;background:var(--dk);border-bottom:1px solid var(--line);transition:.3s}
+.hdr.scrolled{background:rgba(21,23,26,.97);box-shadow:0 10px 30px rgba(0,0,0,.35)}
 .hdr .wrap{display:flex;align-items:center;height:92px;gap:24px}
 .logo{display:flex;align-items:center;gap:12px;flex-shrink:0}.logo img{height:76px}.logo b{font:800 24px/1 "Barlow Condensed";letter-spacing:1px;display:block}.logo small{font:700 11px "Barlow Condensed";letter-spacing:5px;color:var(--y)}
 .nav-wrap{flex:1;display:flex;justify-content:center;min-width:0}
@@ -256,8 +256,9 @@ footer h4{font-size:22px;margin-bottom:22px;color:var(--y)}footer li{margin-bott
 @media(max-width:1600px){.nav>li>a{padding:0 8px;font-size:16px;letter-spacing:.5px}.logo div{display:none}}
 @media(max-width:1440px){.h-call{display:none}.mat{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:1280px){
- .nav-wrap{position:fixed;inset:0;background:var(--dk);z-index:95;padding:110px 6% 40px;display:block;clip-path:circle(0 at calc(100% - 50px) 50px);transition:.7s cubic-bezier(.7,0,.2,1);overflow:auto}
- body.nav-open .nav-wrap{clip-path:circle(150% at calc(100% - 50px) 50px)}
+ .nav-wrap{position:fixed;inset:var(--hb,92px) 0 0 0;background:var(--dk);z-index:5;padding:20px 6% 40px;display:block;border-top:1px solid var(--line);clip-path:circle(0 at calc(100% - 46px) 0);visibility:hidden;transition:clip-path .7s cubic-bezier(.7,0,.2,1),visibility .7s;overflow-y:auto;overscroll-behavior:contain}
+ body.nav-open .nav-wrap{clip-path:circle(150% at calc(100% - 46px) 0);visibility:visible}body.nav-open{overflow:hidden}
+ .logo{position:relative;z-index:6}
  .nav{flex-direction:column}.nav>li>a{height:auto;padding:14px 0;font-size:28px;border-bottom:1px solid var(--line);justify-content:space-between}.nav>li>a:before{display:none}
  .dd,.dd.wide{position:static;opacity:1;visibility:visible;transform:none;display:none;box-shadow:none;border:0;background:none;min-width:0;grid-template-columns:1fr}.dd.wide .ft{display:none}.has-dd.open .dd{display:block}
  .burger{display:grid;place-items:center;z-index:96;position:relative}.hdr .btn{display:none}.logo div{display:block}
@@ -278,6 +279,23 @@ footer h4{font-size:22px;margin-bottom:22px;color:var(--y)}footer li{margin-bott
 img{color:transparent;font-size:0}
 .img>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .grid>*,.wrap>*,.about .wrap>div,.faq .wrap>div{min-width:0}.ct a,.cl b,.enq-l b,.f-top b{overflow-wrap:anywhere}.f-top div>div{min-width:0}
+
+/* ===== HEADER FIX: sticky + mobile menu ===== */
+.hdr{z-index:1000!important}
+.hdr:before{content:"";position:absolute;inset:0;z-index:-1;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);pointer-events:none}
+.pop{z-index:2000!important}
+.m-extra,.m-head{display:none}
+@media(max-width:1280px){
+ .burger{z-index:6!important;width:52px;height:52px;font-size:22px}
+ .nav>li>a{font-size:clamp(26px,6.4vw,34px)!important;padding:14px 0!important;align-items:center}
+ .nav .fa-plus{font-size:16px;color:var(--y)}.has-dd.open>a{color:var(--y)}.has-dd.open .fa-plus{transform:rotate(45deg)}
+ .dd a.it{font-size:17px;padding:14px 6px;border-color:var(--line)}
+ .m-extra{display:grid;gap:12px;margin-top:30px}.hdr .m-extra .btn{display:inline-flex!important}
+ .m-extra .btn{justify-content:center;width:100%;clip-path:none;padding:18px}
+ .m-extra a.ln{display:flex;gap:14px;align-items:center;padding:14px 16px;background:var(--dk2);border:1px solid var(--line);font:600 17px "Barlow Condensed";letter-spacing:.5px}
+ .m-extra a.ln i{width:38px;height:38px;background:var(--y);color:var(--dk);display:grid;place-items:center}
+}
+@media(max-width:640px){.hdr .wrap{height:76px}.logo img{height:60px}.nav-wrap{padding-top:16px}.top .l span:nth-child(n+3){display:none}.top .wrap{justify-content:center}}
 </style>
 </head>
 <body>
@@ -304,7 +322,9 @@ img{color:transparent;font-size:0}
   <li><a href="testimonials.html">Testimonials</a></li>
   <li><a href="blog.html">Blog</a></li>
   <li><a href="contact-us.html">Contact Us</a></li>
- </ul></nav>
+ </ul>
+ <div class="m-extra"><a href="#" class="btn btn-y" data-open-enquiry><span>Enquire Now</span> <i class="fa-solid fa-arrow-right"></i></a><a class="ln" href="tel:+919711114333"><i class="fa-solid fa-phone"></i>+91 9711114333</a><a class="ln" href="mailto:sales@radicalpolymer.com"><i class="fa-solid fa-envelope"></i>sales@radicalpolymer.com</a><a class="ln" href="https://wa.me/919711114333" target="_blank"><i class="fa-brands fa-whatsapp"></i>Chat on WhatsApp</a></div>
+ </nav>
  <div class="h-call"><i class="fa-solid fa-phone"></i><div><small>Call Anytime</small><b>+91 9711114333</b></div></div>
  <a href="#" class="btn btn-y" data-open-enquiry><span>Enquire Now</span></a>
  <button class="burger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
@@ -562,11 +582,12 @@ $$('img').forEach(i=>i.addEventListener('error',()=>{i.style.opacity=0}));
 const pop=$('#enqPopup'),openPop=()=>{pop.classList.add('show');document.body.style.overflow='hidden'},closePop=()=>{pop.classList.remove('show');document.body.style.overflow=''};
 addEventListener('load',()=>{$('.loader').classList.add('done');setTimeout(openPop,1800)});
 setTimeout(()=>$('.loader').classList.add('done'),3000);
-$$('[data-open-enquiry]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();document.body.classList.remove('nav-open');openPop()}));
+$$('[data-open-enquiry]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();document.body.classList.remove('nav-open');document.dispatchEvent(new Event('navchange'));openPop()}));
 pop.addEventListener('click',e=>{if(e.target===pop||e.target.closest('.pop-x'))closePop()});addEventListener('keydown',e=>{if(e.key==='Escape')closePop()});
 /* header */
 addEventListener('scroll',()=>$('.hdr').classList.toggle('scrolled',scrollY>40),{passive:true});
-$('.burger').onclick=()=>{document.body.classList.toggle('nav-open');$('.burger i').className=document.body.classList.contains('nav-open')?'fa-solid fa-xmark':'fa-solid fa-bars'};
+$('.burger').addEventListener('click',()=>document.documentElement.style.setProperty('--hb',Math.max(0,Math.round($('.hdr').getBoundingClientRect().bottom))+'px'),true);
+const syncBurger=()=>{$('.burger i').className=document.body.classList.contains('nav-open')?'fa-solid fa-xmark':'fa-solid fa-bars'};$('.burger').onclick=()=>{document.body.classList.toggle('nav-open');syncBurger()};document.addEventListener('navchange',syncBurger);
 $$('.has-dd>a').forEach(a=>a.addEventListener('click',e=>{if(innerWidth<=1280){e.preventDefault();a.parentElement.classList.toggle('open')}}));
 /* hero slider */
 const sl=$$('.slide'),nb=$$('.h-ctrl .nums button');let si=0,timer;
@@ -590,6 +611,13 @@ $$('.slider').forEach(root=>{const tr=$('.sl-track',root),ctrl=$(root.dataset.ct
  let t=setInterval(next,5500);root.addEventListener('mouseenter',()=>clearInterval(t));root.addEventListener('mouseleave',()=>{clearInterval(t);t=setInterval(next,5500)})});
 /* FAQ */
 $$('.fq button').forEach(b=>b.onclick=()=>{const f=b.parentElement,o=f.classList.contains('open');$$('.fq').forEach(x=>x.classList.remove('open'));if(!o)f.classList.add('open')});
+
+/* header/menu helpers */
+const closeNav=()=>{document.body.classList.remove('nav-open');document.dispatchEvent(new Event('navchange'))};
+$$('.nav a').forEach(a=>a.addEventListener('click',()=>{if(innerWidth<=1280&&!a.parentElement.classList.contains('has-dd'))closeNav()}));
+$$('.nav-close').forEach(b=>b.addEventListener('click',closeNav));
+addEventListener('resize',()=>{if(innerWidth>1280&&document.body.classList.contains('nav-open'))closeNav()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('nav-open'))closeNav()});
 /* forms – hook your backend in the TODO */
 $$('form.enq-f').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();let ok=true;
  $$('[required]',f).forEach(i=>{const v=i.value.trim(),bad=!v||(i.type==='email'&&!/^\S+@\S+\.\S+$/.test(v))||(i.type==='tel'&&!/^[+\d\s-]{10,15}$/.test(v));i.classList.toggle('err',bad);if(bad)ok=false});
