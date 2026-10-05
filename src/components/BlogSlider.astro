@@ -1,0 +1,11 @@
+---
+import { BLOG } from '../data/content';
+import BlogCard from './BlogCard.astro';
+interface Props { exclude?: string; title?: string; soft?: boolean }
+const { exclude = '', title = 'From Our <em>Knowledge Hub</em>', soft = false } = Astro.props;
+const id = 'b' + Math.random().toString(36).slice(2, 8);
+---
+<section class:list={['sec', 'blog', { 'u-soft': soft }]}><div class="wrap">
+ <div class="sec-head rv"><div><span class="eyebrow"><i class="fa-solid fa-newspaper"></i> Blog &amp; Insights</span><h2 class="h2" style="margin:0" set:html={title} /></div><div class="sl-ctrl" id={id}><a href="/blog/" class="btn btn-l">View All</a><button class="ar prev" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button><button class="ar next" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button></div></div>
+ <div class="slider rv" data-ctrl={`#${id}`}><div class="sl-track">{BLOG.filter((b) => b.slug !== exclude).map((b) => <BlogCard post={b} />)}</div><div class="sl-dots"></div></div>
+</div></section>

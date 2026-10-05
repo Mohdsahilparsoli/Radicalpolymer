@@ -3,7 +3,133 @@
   "framework": "astro",
   "installCommand": "npm install",
   "buildCommand": "astro build",
-  "regions": [
-    "bom1"
-  ]
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/rubber-o-rings.html",
+      "destination": "/products/rubber-o-rings/",
+      "permanent": true
+    },
+    {
+      "source": "/rubber-seals.html",
+      "destination": "/products/rubber-seals/",
+      "permanent": true
+    },
+    {
+      "source": "/rubber-gaskets.html",
+      "destination": "/products/rubber-gaskets/",
+      "permanent": true
+    },
+    {
+      "source": "/rubber-washers.html",
+      "destination": "/products/rubber-washers/",
+      "permanent": true
+    },
+    {
+      "source": "/rubber-sheets.html",
+      "destination": "/products/rubber-sheets/",
+      "permanent": true
+    },
+    {
+      "source": "/rubber-bushes.html",
+      "destination": "/products/rubber-bushes/",
+      "permanent": true
+    },
+    {
+      "source": "/molded-rubber-products.html",
+      "destination": "/products/molded-rubber-products/",
+      "permanent": true
+    },
+    {
+      "source": "/custom-rubber-parts.html",
+      "destination": "/products/custom-rubber-parts/",
+      "permanent": true
+    },
+    {
+      "source": "/rubber-profiles.html",
+      "destination": "/products/rubber-profiles/",
+      "permanent": true
+    },
+    {
+      "source": "/rubber-diaphragms.html",
+      "destination": "/products/rubber-diaphragms/",
+      "permanent": true
+    },
+    {
+      "source": "/automotive.html",
+      "destination": "/industries/automotive/",
+      "permanent": true
+    },
+    {
+      "source": "/engineering.html",
+      "destination": "/industries/engineering/",
+      "permanent": true
+    },
+    {
+      "source": "/industrial.html",
+      "destination": "/industries/industrial/",
+      "permanent": true
+    },
+    {
+      "source": "/electrical.html",
+      "destination": "/industries/electrical/",
+      "permanent": true
+    },
+    {
+      "source": "/machinery.html",
+      "destination": "/industries/machinery/",
+      "permanent": true
+    },
+    {
+      "source": "/blog-how-to-measure-an-o-ring.html",
+      "destination": "/blog/how-to-measure-an-o-ring/",
+      "permanent": true
+    },
+    {
+      "source": "/blog-nbr-vs-epdm-vs-viton.html",
+      "destination": "/blog/nbr-vs-epdm-vs-viton/",
+      "permanent": true
+    },
+    {
+      "source": "/blog-causes-of-gasket-failure.html",
+      "destination": "/blog/causes-of-gasket-failure/",
+      "permanent": true
+    },
+    {
+      "source": "/blog-rubber-parts-in-vehicles.html",
+      "destination": "/blog/rubber-parts-in-vehicles/",
+      "permanent": true
+    },
+    {
+      "source": "/blog-hydraulic-cylinder-seal-selection.html",
+      "destination": "/blog/hydraulic-cylinder-seal-selection/",
+      "permanent": true
+    },
+    {
+      "source": "/blog-ordering-custom-rubber-parts.html",
+      "destination": "/blog/ordering-custom-rubber-parts/",
+      "permanent": true
+    },
+    {
+      "source": "/:path((?!index$|google)[a-z0-9-]+).html",
+      "destination": "/:path/",
+      "permanent": true
+    }
+  ],
+  "trailingSlash": true
 }

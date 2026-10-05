@@ -1,0 +1,12 @@
+---
+const items = [
+  ['fa-solid fa-industry', 'Direct Manufacturer', 'No middlemen pricing'],
+  ['fa-solid fa-ruler-combined', 'Custom Sizes', 'From drawing or sample'],
+  ['fa-solid fa-shield-halved', 'Quality Checked', 'Every lot inspected'],
+  ['fa-solid fa-truck-fast', 'Pan-India Delivery', 'On promised time-frame'],
+  ['fa-solid fa-headset', 'Quick Support', 'Response within 24 hrs'],
+];
+---
+<section class="strip"><div class="wrap">
+ {items.map(([ic, b, s], k) => <div class={`si rv d${k}`}><i class={ic}></i><div><b>{b}</b><span>{s}</span></div></div>)}
+</div></section>

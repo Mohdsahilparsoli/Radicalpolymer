@@ -1,0 +1,19 @@
+---
+// Privacy policy, cookies policy and disclaimer share one template.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Cta from '../components/Cta.astro';
+import { POLICIES } from '../data/content';
+
+export function getStaticPaths() {
+  return Object.entries(POLICIES).map(([policy, data]) => ({ params: { policy }, props: { data } }));
+}
+const { data } = Astro.props as { data: (typeof POLICIES)[keyof typeof POLICIES] };
+---
+<BaseLayout title={`${data.title} | Radical Polymers`} description={`${data.title} of Radical Polymers website.`}>
+ <PageHero crumbs={[{ label: data.title }]} eyebrow="Legal" eyebrowIcon={data.icon} title={data.title} sub={`Please read this ${data.title.toLowerCase()} carefully. It applies to your use of the Radical Polymers website.`} image="paper" card={false} actions={false} />
+ <section class="sec"><div class="wrap"><div class="policy rv"><span class="upd"><i class="fa-regular fa-calendar"></i> Last updated: October 2026</span>
+  {data.sections.map((s) => <><h2><i class={s.icon}></i>{s.heading}</h2><Fragment set:html={s.html} /></>)}
+ </div></div></section>
+ <Cta title="Have a <em>Question</em>?" sub="Our team is happy to help — call or send us an enquiry." />
+</BaseLayout>

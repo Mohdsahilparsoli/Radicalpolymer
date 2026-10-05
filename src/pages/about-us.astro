@@ -1,44 +1,66 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TitleBar from '../components/TitleBar.astro';
+import PageHero from '../components/PageHero.astro';
+import Strip from '../components/Strip.astro';
+import Split from '../components/Split.astro';
+import Stats from '../components/Stats.astro';
+import SecHead from '../components/SecHead.astro';
+import Journey from '../components/Journey.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import TickList from '../components/TickList.astro';
+import IndustriesGrid from '../components/IndustriesGrid.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { GENERAL_FAQS } from '../data/content';
+import { img } from '../data/site';
+
+const journey = [
+  { icon: 'fa-solid fa-flag', title: 'The Beginning', tag: '2013', text: 'Founded as a Proprietor firm in Ghaziabad, Uttar Pradesh.' },
+  { icon: 'fa-solid fa-boxes-stacked', title: 'Wider Range', tag: 'Growth', text: 'Expanded from O-rings and gaskets to seals, bushes, diaphragms and more.' },
+  { icon: 'fa-solid fa-pen-ruler', title: 'Custom Development', tag: 'Capability', text: 'Developing parts from drawings and samples for OEMs and spares.' },
+  { icon: 'fa-solid fa-handshake', title: '350+ Clients', tag: 'Today', text: 'A trusted supplier to clients across automotive, industrial and engineering sectors.' },
+];
+const values = [
+  { icon: 'fa-solid fa-award', title: 'Quality First', text: 'Every part is checked before it leaves our facility.' },
+  { icon: 'fa-solid fa-scale-balanced', title: 'Honest Pricing', text: 'Fair, transparent, factory-direct rates.' },
+  { icon: 'fa-solid fa-clock', title: 'On-Time Delivery', text: 'We commit to timelines and keep them.' },
+  { icon: 'fa-solid fa-lightbulb', title: 'Problem Solving', text: 'We help select the right compound and design.' },
+  { icon: 'fa-solid fa-handshake', title: 'Long-Term Relations', text: 'Most of our business comes from repeat clients.' },
+  { icon: 'fa-solid fa-users-gear', title: 'Skilled People', text: 'An experienced team of 80+ members.' },
+];
 ---
-
-<BaseLayout title="About Us">
-	<TitleBar title="About Us" />
-
-	<!-- Page Content -->
-	<div class="page-content pbmit-bg-color-light">
-		<!-- About start -->
-		<section class="pbmit-bg-color-light overflow-hidden">
-			<div class="container">
-				<div class="row">
-					<div class="col-xl-6 col-lg-12">
-						<div class="about-two-img-box"></div>
-					</div>
-					<div class="col-xl-6 col-lg-12">
-						<div class="about-two-content">
-							<div class="pbmit-heading-subheading text-right">
-								<h4 class="pbmit-subtitle">Who We Are</h4>
-								<h2 class="pbmit-title">Welcome To Radical Polymers</h2>
-							</div>
-							<p>
-								Established as a Proprietor firm in the year 2013, we “Radical Polymers” are a leading Manufacturer of a
-								wide range of Rubber Gaskets, Rubber O-Rings, Rubber Seals, etc. Situated in Ghaziabad (Uttar Pradesh,
-								India), we have constructed a wide and well functional infrastructural unit that plays an important role in
-								the growth of our company.
-							</p>
-							<p>
-								We offer these products at reasonable rates and deliver these within the promised time-frame. Under the
-								headship of “Mr. Sahil Sharma” (Proprietor), we have gained a huge clientele across the nation.
-							</p>
-							<a href="/about-us/" class="pbmit-btn">
-								<span>Read More</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-	</div>
-	<!-- Page Content End -->
+<BaseLayout title="About Us | Radical Polymers – Rubber Products Manufacturer, Ghaziabad" description="Radical Polymers, established 2013 in Ghaziabad, manufactures rubber O-rings, seals, gaskets and custom rubber parts at reasonable rates with on-time delivery." active="about">
+ <PageHero crumbs={[{ label: 'About Us' }]} eyebrow="About Us" eyebrowIcon="fa-solid fa-building" title="Rubber Products Built on <em>Quality &amp; Trust</em>" sub="Since 2013, Radical Polymers has manufactured rubber O-rings, seals, gaskets and custom parts in Ghaziabad — at reasonable rates and on promised timelines." image="engineers" chips={['Established 2013', '350+ Happy Clients', 'Pan-India Delivery']} />
+ <Strip />
+ <Split image="techs" badge={['2013', 'Established in Ghaziabad']} mini="oring2">
+  <span class="eyebrow"><i class="fa-solid fa-building"></i> Who We Are</span>
+  <h2 class="h2">Welcome To <em>Radical Polymers</em></h2>
+  <p>Established as a Proprietor firm in the year 2013, “Radical Polymers” is a leading Manufacturer of a wide range of Rubber Gaskets, Rubber O-Rings, Rubber Seals, etc. Situated in Ghaziabad (Uttar Pradesh, India), we have constructed a wide and well-functional infrastructural unit that plays an important role in the growth of our company.</p>
+  <p>We offer these products at reasonable rates and deliver them within the promised time-frame. Under the headship of <b style="color:var(--ink)">Mr. Sahil Sharma</b> (Proprietor), we have gained a huge clientele across the nation.</p>
+  <div data-tabs><div class="mv-tabs"><button class="on" data-t="m"><i class="fa-solid fa-bullseye"></i>Our Mission</button><button data-t="v"><i class="fa-regular fa-eye"></i>Our Vision</button><button data-t="val"><i class="fa-regular fa-gem"></i>Our Values</button></div>
+   <p class="mv-p on" data-p="m">To supply reliable rubber components at reasonable rates and deliver them within the promised time-frame — every single order.</p>
+   <p class="mv-p" data-p="v">To be the first-choice rubber parts partner for Indian manufacturers, known for quality, flexibility and trust.</p>
+   <p class="mv-p" data-p="val">Honest pricing, consistent quality, quick response and long-term relationships with every client.</p></div>
+  <div class="owner"><div class="av">S</div><div><b>Mr. Sahil Sharma</b><span>Proprietor, Radical Polymers</span></div><a href="#" class="btn btn-g" style="margin-left:auto" data-open-enquiry>Work With Us <i class="fa-solid fa-arrow-right"></i></a></div>
+ </Split>
+ <Stats bg="floor" />
+ <section class="sec"><div class="wrap"><SecHead eyebrow="Our Journey" icon="fa-solid fa-route" title="How We <em>Grew</em>" center /><Journey items={journey} /></div></section>
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="Our Values" icon="fa-solid fa-gem" title="What We <em>Stand For</em>" lead="The principles that guide every order we take on." /><FeatureCards items={values} numbered /></div></section>
+ <section class="sec"><div class="wrap"><div class="leader rv">
+  <div class="img"><img src={img('handshake', 1000)} alt="Client partnership" loading="lazy" /></div>
+  <div class="tx"><span class="q">“</span><blockquote>Our commitment is simple: rubber parts that fit right, perform reliably and arrive when promised — at a price that makes sense for our clients.</blockquote><b>Radical Polymers</b><span>Led by Mr. Sahil Sharma, Proprietor</span></div>
+ </div></div></section>
+ <Split image="floor" badge={['20+', 'Modern machines', true]} rev soft>
+  <span class="eyebrow"><i class="fa-solid fa-warehouse"></i> Infrastructure</span><h2 class="h2">A Well-Equipped <em>Manufacturing Unit</em></h2>
+  <p>Our Ghaziabad unit houses modern moulding presses, finishing and inspection equipment, operated by a skilled team. Every stage — from compound selection to final packing — happens under one roof.</p>
+  <TickList items={['Compression &amp; injection moulding', '20+ modern machines', 'In-house mould development', 'Dimensional &amp; hardness checks', 'Organised packing &amp; dispatch', '80+ skilled team members']} />
+  <a href="/manufacturing-facility/" class="btn btn-d">Explore Our Facility <i class="fa-solid fa-arrow-right"></i></a>
+ </Split>
+ <IndustriesGrid />
+ <Testimonials />
+ <Cta title="Looking for a <em>Reliable Rubber Partner</em>?" sub="Talk to our team about your requirement — standard or custom." />
+ <Faq items={GENERAL_FAQS} image="designteam" />
+ <Enquiry />
 </BaseLayout>

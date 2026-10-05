@@ -1,0 +1,11 @@
+---
+import { SITE, img } from '../data/site';
+interface Props { items: readonly { q: string; a: string }[]; image?: string; title?: string; soft?: boolean; pt0?: boolean }
+const { items, image = 'clipboard', title = 'Frequently Asked <em>Questions</em>', soft = false, pt0 = false } = Astro.props;
+---
+<section class:list={['sec', 'faq', { 'u-soft': soft, 'pt-0': pt0 }]}><div class="wrap">
+ <div class="rv"><span class="eyebrow"><i class="fa-solid fa-circle-question"></i> FAQ</span><h2 class="h2" set:html={title} /><p class="lead">Quick answers to the questions we hear most from our clients.</p>
+  <div class="faq-img img"><img src={img(image, 900)} alt="" loading="lazy" /></div>
+  <div class="faq-help"><i class="fa-solid fa-headset"></i><div><span style="color:var(--mut);font-size:14px">Still have questions?</span><b><a href={SITE.phoneHref}>Call {SITE.phone}</a></b></div></div></div>
+ <div class="rv d1">{items.map((f, k) => <div class:list={['fq', { open: k === 0 }]}><button>{f.q}<span><i class="fa-solid fa-plus"></i></span></button><div class="a"><div><p>{f.a}</p></div></div></div>)}</div>
+</div></section>

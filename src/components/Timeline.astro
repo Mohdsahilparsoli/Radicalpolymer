@@ -1,0 +1,16 @@
+---
+// Zig-zag timeline with images (process / quality stages).
+import { PROCESS } from '../data/content';
+import { img } from '../data/site';
+interface Props { items?: readonly { icon: string; title: string; text: string; img: string }[]; label?: string; soft?: boolean; eyebrow?: string; title?: string; lead?: string }
+const { items = PROCESS, label = 'STEP', soft = false, eyebrow = 'How It Works', title = 'Our Work <em>Process</em>', lead = 'From your first enquiry to final dispatch — a simple, transparent four-step process.' } = Astro.props;
+---
+<section class:list={['sec', { 'u-soft': soft }]}><div class="wrap">
+ <div class="center rv"><span class="eyebrow"><i class="fa-solid fa-diagram-project"></i> {eyebrow}</span><h2 class="h2" set:html={title} />{lead && <p class="lead">{lead}</p>}</div>
+ <div class="tl"><div class="fill"></div>
+  {items.map((s, k) => {
+   const box = <div class="box rv"><div class="img"><img src={img(s.img, 400)} alt="" loading="lazy" /></div><div class="tx"><small>{label} 0{k + 1}</small><h3><i class={s.icon} style="color:var(--gold)"></i>{s.title}</h3><p>{s.text}</p></div></div>;
+   return k % 2 === 0 ? <div class="ts">{box}<div class="dot">0{k + 1}</div></div> : <div class="ts right"><div class="dot">0{k + 1}</div>{box}</div>;
+  })}
+ </div>
+</div></section>

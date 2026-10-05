@@ -1,0 +1,7 @@
+---
+import { PRODUCT_OPTIONS } from '../data/content';
+interface Props { selected?: string }
+const { selected = '' } = Astro.props;
+---
+<option value="">Select…</option>
+{PRODUCT_OPTIONS.map((o) => <option selected={o === selected}>{o}</option>)}

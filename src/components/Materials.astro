@@ -1,0 +1,16 @@
+---
+import { MATERIALS } from '../data/content';
+import { img } from '../data/site';
+import SecHead from './SecHead.astro';
+interface Props { soft?: boolean }
+const { soft = true } = Astro.props;
+---
+<section class:list={['sec', 'mats', { 'u-soft': soft }]}><div class="wrap">
+ <SecHead eyebrow="Material Guide" icon="fa-solid fa-flask" title="Choose The <em>Right Rubber</em>" lead="Not sure which compound fits your application? Here's a quick guide — our team will help you finalise." />
+ <div class="mat-wrap">
+  <div class="tbl-wrap rv"><table class="mat-t"><thead><tr><th>Material</th><th>Best For</th><th>Temp. Range (approx.)</th><th>Oil Resistance</th></tr></thead><tbody>
+   {MATERIALS.map((m) => <tr><td>{m.name}</td><td>{m.bestFor}</td><td>{m.temp}</td><td><div class="bar"><i style={`--w:${m.oil}%`}></i></div></td></tr>)}
+  </tbody></table></div>
+  <div class="mat-side img rv d1"><img src={img('lab', 800)} alt="Material testing laboratory" loading="lazy" /><div><h3>Not sure which material?</h3><p>Share your temperature, media and pressure — we'll recommend the right compound.</p><a href="#" class="btn btn-g" data-open-enquiry>Ask Our Expert <i class="fa-solid fa-comments"></i></a></div></div>
+ </div>
+</div></section>

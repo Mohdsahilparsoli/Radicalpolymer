@@ -1,20 +1,16 @@
 {
   "name": "radical-polymers",
   "type": "module",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "start": "node --env-file-if-exists=.env ./server.mjs",
-    "format": "prettier --write \"src/**/*.{astro,ts}\""
+    "format": "prettier --write \"src/**/*.{astro,ts,js}\""
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.6",
-    "@astrojs/vercel": "^11.0.11",
-    "astro": "^7.3.5",
-    "nodemailer": "^10.0.10"
+    "astro": "^7.3.5"
   },
   "devDependencies": {
     "prettier": "^3.9.9",

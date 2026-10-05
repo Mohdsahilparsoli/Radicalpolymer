@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Strip from '../components/Strip.astro';
+import Split from '../components/Split.astro';
+import TickList from '../components/TickList.astro';
+import SecHead from '../components/SecHead.astro';
+import MfgCards from '../components/MfgCards.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import Stats from '../components/Stats.astro';
+import Timeline from '../components/Timeline.astro';
+import Gallery from '../components/Gallery.astro';
+import Materials from '../components/Materials.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { CAPS, GENERAL_FAQS } from '../data/content';
+const gal = [
+  { img: 'floor', title: 'Production Floor', sub: 'Moulding & finishing' }, { img: 'robot', title: 'Modern Machines', sub: '20+ equipment' },
+  { img: 'caliper', title: 'Precision Checks', sub: 'Dimensional inspection' }, { img: 'assembly', title: 'Skilled Team', sub: '80+ members' },
+  { img: 'warehouse', title: 'Packing & Dispatch', sub: 'Pan-India delivery' },
+];
+---
+<BaseLayout title="Rubber Manufacturing Capabilities | Radical Polymers, Ghaziabad" description="In-house rubber moulding, mould development, inspection and dispatch at Radical Polymers, Ghaziabad. Compression and injection moulded rubber parts." active="manufacturing">
+ <PageHero crumbs={[{ label: 'Manufacturing' }]} eyebrow="Manufacturing" eyebrowIcon="fa-solid fa-industry" title="Made In-House, <em>Made Right</em>" sub="From compound selection to moulding, trimming, inspection and packing — every stage happens under one roof at our Ghaziabad facility." image="machine" chips={['20+ Modern Machines', '80+ Team Members', 'In-House Moulds']} />
+ <Strip />
+ <Split image="operator" badge={['20+', 'Modern machines', true]} mini="caliper">
+  <span class="eyebrow"><i class="fa-solid fa-industry"></i> Our Capability</span><h2 class="h2">Complete Control from <em>Raw Material to Dispatch</em></h2>
+  <p>Because we manufacture in-house, we control quality, cost and timelines at every step. That means consistent parts, fair pricing and dependable delivery.</p>
+  <TickList items={['Compression &amp; injection moulding', 'In-house mould development', 'Compound selection support', 'Lot-wise inspection', 'Small to bulk production', 'Organised packing &amp; dispatch']} />
+  <a href="/manufacturing-facility/" class="btn btn-d">View Our Facility <i class="fa-solid fa-arrow-right"></i></a>
+ </Split>
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="Manufacturing" icon="fa-solid fa-layer-group" title="Explore Our <em>Capabilities</em>" center /><MfgCards /></div></section>
+ <section class="sec"><div class="wrap"><SecHead eyebrow="What We Do" icon="fa-solid fa-gears" title="In-House <em>Processes</em>" lead="Everything needed to take a rubber part from idea to delivery." /><FeatureCards items={CAPS} cols={4} /></div></section>
+ <Stats bg="robot" />
+ <Timeline />
+ <Gallery items={gal} />
+ <Materials />
+ <Cta title="Have a Part to <em>Develop or Manufacture</em>?" sub="Share your drawing or sample — our team will get back with a quote." />
+ <Faq items={GENERAL_FAQS} image="machine2" />
+ <Enquiry />
+</BaseLayout>

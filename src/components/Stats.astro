@@ -1,0 +1,13 @@
+---
+import { img } from '../data/site';
+interface Props { bg?: string }
+const { bg = 'orange' } = Astro.props;
+// Later: from WordPress Site Settings.
+const stats = [
+  ['fa-solid fa-box-open', 20, 'Products'], ['fa-solid fa-user-gear', 80, 'Expert Members'], ['fa-solid fa-clipboard-check', 200, 'Projects Completed'],
+  ['fa-solid fa-gears', 20, 'Modern Equipment'], ['fa-solid fa-face-smile', 350, 'Happy Clients'],
+] as const;
+---
+<section class="stats"><div class="bgi"><img src={img(bg, 1800)} alt="" loading="lazy" /></div><div class="wrap">
+ {stats.map(([ic, n, l], k) => <div class={`sb rv d${k}`}><i class={ic}></i><div class="n" data-count={n}>0</div><span>{l}</span></div>)}
+</div></section>

@@ -1,180 +1,37 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import TitleBar from '../components/TitleBar.astro';
+import PageHero from '../components/PageHero.astro';
+import SecHead from '../components/SecHead.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import Stats from '../components/Stats.astro';
+import Split from '../components/Split.astro';
+import ProductsGrid from '../components/ProductsGrid.astro';
+import Cta from '../components/Cta.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { TESTIMONIALS } from '../data/content';
+import { SITE } from '../data/site';
+const vals = [
+  { icon: 'fa-solid fa-award', title: 'Product Quality', text: '“Quality is as good as the original.”' },
+  { icon: 'fa-solid fa-ruler-combined', title: 'Any Size Developed', text: '“They can develop any size you ask.”' },
+  { icon: 'fa-solid fa-indian-rupee-sign', title: 'Fair Pricing', text: '“One of the best in terms of pricing.”' },
+  { icon: 'fa-solid fa-truck-fast', title: 'Reliable Delivery', text: '“Best in sales, service and delivery.”' },
+];
 ---
-
-<BaseLayout title="Testimonials" swiper>
-	<TitleBar title="Testimonials" />
-
-	<!-- Page Content -->
-	<div class="page-content pbmit-bg-color-light">
-		<section class="overflow-hidden">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-5 col-md-12">
-						<div class="testimonial-bg-one">
-							<div class="pbminfotech-ele-fid-style-5">
-								<div class="pbmit-fld-contents d-flex align-items-center">
-									<div class="pbmit-sbox-icon-wrapper">
-										<i class="pbmit-colza-icon pbmit-colza-icon-labor-man"></i>
-									</div>
-									<div class="pbmit-fld-wrap">
-										<h4 class="pbmit-fid-inner">
-											<span
-												class="pbmit-number-rotate numinate"
-												data-appear-animation="animateDigits"
-												data-from="0"
-												data-to="350"
-												data-interval="5"
-												data-before=""
-												data-before-style=""
-												data-after=""
-												data-after-style=""
-											>
-												350
-											</span>
-											<span class="pbmit-fid">
-												<sup>+</sup>
-											</span>
-										</h4>
-										<div class="pbmit-fid-title">
-											<span>Happy Clients</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-7 col-md-12">
-						<div class="testimonial-box-one">
-							<div class="pbmit-heading-subheading">
-								<h4 class="pbmit-subtitle">Testimonial</h4>
-								<h2 class="pbmit-title">What clients say about</h2>
-							</div>
-							<div
-								class="swiper-slider"
-								data-loop="false"
-								data-autoplay="true"
-								data-dots="true"
-								data-arrows="false"
-								data-columns="1"
-								data-margin="30"
-								data-effect="slide"
-							>
-								<div class="swiper-wrapper">
-									<!-- slide 1 -->
-									<div class="swiper-slide">
-										<article class="pbmit-testimonial-style-2">
-											<div class="pbminfotech-post-item">
-												<div class="pbminfotech-box-content">
-													<div class="pbminfotech-box-star-ratings">
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star"></i>
-													</div>
-													<div class="pbminfotech-testimonial-wrapper">
-														<div class="pbminfotech-box-desc">
-															<blockquote class="pbminfotech-testimonial-text">
-																<p>
-																	“Amazing products satisfied and recommended to use Radical Polymers
-																	👍👍👍👍 … ”
-																</p>
-															</blockquote>
-														</div>
-														<div class="pbminfotech-author-wrapper d-flex">
-															<div class="pbminfotech-box-img">
-																<div class="pbmit-featured-wrapper"></div>
-															</div>
-															<div class="pbminfotech-box-author">
-																<h3 class="pbminfotech-box-title">Mohit</h3>
-																<div class="pbminfotech-testimonial-detail">Customer</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</article>
-									</div>
-									<!-- slide 2 -->
-									<div class="swiper-slide">
-										<article class="pbmit-testimonial-style-2">
-											<div class="pbminfotech-post-item">
-												<div class="pbminfotech-box-content">
-													<div class="pbminfotech-box-star-ratings">
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-													</div>
-													<div class="pbminfotech-testimonial-wrapper">
-														<div class="pbminfotech-box-desc">
-															<blockquote class="pbminfotech-testimonial-text">
-																<p>
-																	“Unmatched purchasing experience, quality is too good same as original,
-																	they can develop any size you ask”
-																</p>
-															</blockquote>
-														</div>
-														<div class="pbminfotech-author-wrapper d-flex">
-															<div class="pbminfotech-box-img">
-																<div class="pbmit-featured-wrapper"></div>
-															</div>
-															<div class="pbminfotech-box-author">
-																<h3 class="pbminfotech-box-title">Rohan</h3>
-																<div class="pbminfotech-testimonial-detail">Customer</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</article>
-									</div>
-									<!-- slide 3 -->
-									<div class="swiper-slide">
-										<article class="pbmit-testimonial-style-2">
-											<div class="pbminfotech-post-item">
-												<div class="pbminfotech-box-content">
-													<div class="pbminfotech-box-star-ratings">
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star"></i>
-													</div>
-													<div class="pbminfotech-testimonial-wrapper">
-														<div class="pbminfotech-box-desc">
-															<blockquote class="pbminfotech-testimonial-text">
-																<p>
-																	“One of the best in terms of sales ,services,pricing and delivery . A
-																	genuine manufacturer,fully recommended! ”
-																</p>
-															</blockquote>
-														</div>
-														<div class="pbminfotech-author-wrapper d-flex">
-															<div class="pbminfotech-box-img">
-																<div class="pbmit-featured-wrapper"></div>
-															</div>
-															<div class="pbminfotech-box-author">
-																<h3 class="pbminfotech-box-title">Aniket</h3>
-																<div class="pbminfotech-testimonial-detail">Customer</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</article>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Testimonial End -->
-	</div>
-	<!-- Page Content End -->
+<BaseLayout title="Client Testimonials | Radical Polymers Reviews" description="Read what clients say about Radical Polymers rubber O-rings, seals, gaskets and custom parts — quality, pricing and delivery." active="testimonials">
+ <PageHero crumbs={[{ label: 'Testimonials' }]} eyebrow="Testimonials" eyebrowIcon="fa-solid fa-comments" title="What Our <em>Clients Say</em>" sub="Real feedback from clients who trust Radical Polymers for their rubber components." image="handshake" chips={['5.0 Rated', '350+ Happy Clients', 'Repeat Business']} />
+ <section class="sec"><div class="wrap"><div class="rate-band rv"><div class="big">5.0</div><div><h3>Rated by our happy clients</h3><p>Clients value our product quality, ability to develop any size, fair pricing and on-time delivery.</p></div><div class="st">★★★★★</div></div></div></section>
+ <section class="sec pt-0"><div class="wrap">
+  <SecHead eyebrow="Reviews" icon="fa-solid fa-star" title="Client <em>Reviews</em>" />
+  <div class="tgrid">{TESTIMONIALS.map((t, k) => <div class={`tbig rv d${k}`}><i class="fa-solid fa-quote-right qm"></i><div class="st">★★★★★</div><p>“{t.quote}”</p><div class="who"><div class="av">{t.initial}</div><div><b>{t.name}</b><span>{t.role}</span></div></div></div>)}</div>
+ </div></section>
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="What Clients Value" icon="fa-solid fa-heart" title="Why Clients <em>Recommend Us</em>" center /><FeatureCards items={vals} cols={4} /></div></section>
+ <Stats bg="assembly" />
+ <Split image="deal" rev sm>
+  <span class="eyebrow"><i class="fa-solid fa-pen"></i> Share Your Feedback</span><h2 class="h2">Worked With Us? <em>Tell Us How We Did</em></h2>
+  <p>Your feedback helps us improve and helps other buyers choose with confidence. Share your experience with our team by email or WhatsApp.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap"><a href={`mailto:${SITE.email}?subject=Feedback`} class="btn btn-d"><i class="fa-regular fa-envelope"></i> Email Feedback</a><a href={SITE.whatsapp} target="_blank" rel="noopener" class="btn btn-l"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i> WhatsApp</a></div>
+ </Split>
+ <ProductsGrid title="Products Our <em>Clients Buy</em>" />
+ <Cta title="Join Our <em>Happy Clients</em>" sub="Get a quote for your rubber parts today." />
+ <Enquiry />
 </BaseLayout>

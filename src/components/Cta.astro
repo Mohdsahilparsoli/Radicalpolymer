@@ -1,0 +1,10 @@
+---
+import { SITE, img } from '../data/site';
+interface Props { title: string; sub: string; image?: string; pad?: string }
+const { title, sub, image = 'sparks', pad = '110px' } = Astro.props;
+---
+<section style={`padding:${pad} 0`}><div class="wrap"><div class="cta-b rv">
+ <div class="img"><img src={img(image, 1800)} alt="" loading="lazy" /></div>
+ <div><h2 set:html={title} /><p>{sub}</p></div>
+ <div class="acts"><a href="#" class="btn btn-g" data-open-enquiry>Get Free Quote <i class="fa-solid fa-arrow-right"></i></a><a href={SITE.phoneHref} class="btn btn-l"><i class="fa-solid fa-phone"></i> {SITE.phone}</a></div>
+</div></div></section>

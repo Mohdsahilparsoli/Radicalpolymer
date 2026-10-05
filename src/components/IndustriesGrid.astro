@@ -1,0 +1,14 @@
+---
+import { INDUSTRIES } from '../data/content';
+import { img, url } from '../data/site';
+import SecHead from './SecHead.astro';
+interface Props { dark?: boolean; title?: string; exclude?: string }
+const { dark = true, title = 'Industries <em>We Serve</em>', exclude = '' } = Astro.props;
+const list = INDUSTRIES.filter((i) => i.slug !== exclude);
+---
+<section class:list={['sec', { ind: dark }]}><div class="wrap">
+ <SecHead eyebrow="Industries" icon="fa-solid fa-city" title={title} lead="Our rubber components keep critical equipment sealed, cushioned and running across five core sectors." />
+ <div class={`ind-g cols-${list.length}`}>
+  {list.map((i, k) => <a href={url.industry(i.slug)} class={`ic-card rv d${k}`}><div class="img"><img src={img(i.img, 700)} alt={i.name} loading="lazy" /></div><span class="ii"><i class={i.icon}></i></span><h3>{i.name}</h3><p>{i.tagline}</p><span class="go">Explore <i class="fa-solid fa-arrow-right"></i></span></a>)}
+ </div>
+</div></section>

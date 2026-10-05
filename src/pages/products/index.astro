@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Strip from '../../components/Strip.astro';
+import SecHead from '../../components/SecHead.astro';
+import Materials from '../../components/Materials.astro';
+import Steps from '../../components/Steps.astro';
+import Stats from '../../components/Stats.astro';
+import IndustriesGrid from '../../components/IndustriesGrid.astro';
+import Cta from '../../components/Cta.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Faq from '../../components/Faq.astro';
+import Enquiry from '../../components/Enquiry.astro';
+import { PRODUCTS, GENERAL_FAQS } from '../../data/content';
+import { img, url } from '../../data/site';
+
+const cats: Record<string, string> = { all: 'All Products', seal: 'Sealing', mount: 'Mounting & Vibration', sheet: 'Sheets & Profiles', custom: 'Custom & Molded' };
+---
+<BaseLayout title="Rubber Products | O-Rings, Seals, Gaskets, Bushes – Radical Polymers" description="Explore Radical Polymers rubber products: O-rings, seals, gaskets, washers, sheets, bushes, profiles, diaphragms, molded and custom rubber parts." active="products">
+ <PageHero crumbs={[{ label: 'Products' }]} eyebrow="Our Products" eyebrowIcon="fa-solid fa-boxes-stacked" title="Rubber Products for <em>Every Application</em>" sub="O-rings, seals, gaskets, washers, sheets, bushes, profiles, diaphragms and custom moulded parts — in NBR, EPDM, Silicone, Viton, Neoprene and Natural Rubber." image="oring2" chips={['10 Product Ranges', 'Custom Sizes', 'Multiple Compounds']} />
+ <Strip />
+ <section class="sec"><div class="wrap">
+  <SecHead eyebrow="Product Range" icon="fa-solid fa-grip" title="Browse Our <em>Products</em>">
+   <div class="filters" slot="side" data-filter="#plist">{Object.entries(cats).map(([c, n], k) => <button class:list={{ on: k === 0 }} data-f={c}>{n}</button>)}</div>
+  </SecHead>
+  <div class="g2" id="plist">
+   {PRODUCTS.map((p) => (
+    <div class="plc rv" data-c={p.cat}><div class="img"><img src={img(p.img, 800)} alt={p.name} loading="lazy" /></div><div class="tx"><span class="tag"><i class={p.icon}></i> {cats[p.cat]}</span><h3>{p.name}</h3><p>{p.tagline}.</p>
+     <ul>{p.features.slice(0, 3).map((f) => <li><i class="fa-solid fa-check"></i>{f.title}</li>)}</ul>
+     <div class="acts"><a href={url.product(p.slug)} class="btn btn-d">View Details <i class="fa-solid fa-arrow-right"></i></a><a href="#" class="btn btn-l" data-open-enquiry data-product={p.name}>Get Quote</a></div></div></div>
+   ))}
+  </div>
+ </div></section>
+ <Materials />
+ <section class="sec"><div class="wrap"><SecHead eyebrow="How We Work" icon="fa-solid fa-diagram-project" title="From Enquiry to <em>Delivery</em>" center /><Steps /></div></section>
+ <Stats bg="line" />
+ <IndustriesGrid dark={false} />
+ <Cta title="Need a <em>Custom Rubber Part</em>? Send Your Drawing or Sample." sub="We develop moulds and deliver precision rubber components that match your exact requirement." />
+ <Testimonials />
+ <Faq items={GENERAL_FAQS} image="caliper" />
+ <Enquiry />
+</BaseLayout>

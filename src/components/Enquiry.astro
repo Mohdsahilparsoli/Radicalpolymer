@@ -1,0 +1,31 @@
+---
+import { SITE, img } from '../data/site';
+import ProductOptions from './ProductOptions.astro';
+interface Props { product?: string; noTopPad?: boolean }
+const { product = '', noTopPad = false } = Astro.props;
+---
+<section class="enq" id="enquiry" style={noTopPad ? 'padding-top:0' : undefined}><div class="wrap">
+ <div class="card rv">
+  <div class="side"><div class="img"><img src={img('machine2', 900)} alt="" loading="lazy" /></div>
+   <div><span class="eyebrow"><i class="fa-solid fa-paper-plane"></i> Get In Touch</span><h2>Have a Requirement? Let's Talk.</h2><p>Share your size, material and quantity — we'll send you the best quote.</p>
+   <ul class="cl">
+    <li><i class="fa-solid fa-phone"></i><div><small>Call Us</small><b><a href={SITE.phoneHref}>{SITE.phone}</a></b></div></li>
+    <li><i class="fa-regular fa-envelope"></i><div><small>Email Us</small><b><a href={`mailto:${SITE.email}`}>{SITE.email}</a></b></div></li>
+    <li><i class="fa-solid fa-location-dot"></i><div><small>Address</small><b>{SITE.address}</b></div></li>
+    <li><i class="fa-regular fa-clock"></i><div><small>Working Hours</small><b>{SITE.hours}</b></div></li>
+   </ul></div>
+   <div class="soc">{SITE.social.slice(0, 3).map((s) => <a href={s.href} aria-label={s.label}><i class={s.icon}></i></a>)}<a href={SITE.whatsapp} aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a></div>
+  </div>
+  <form class="enq-f" novalidate><h3>Send Your Enquiry</h3><p>Fields marked * are required.</p><div class="fg">
+   <div class="f"><i class="fa-regular fa-user"></i><input name="name" required placeholder=" " /><label>Full Name *</label></div>
+   <div class="f"><i class="fa-solid fa-phone"></i><input name="phone" type="tel" required placeholder=" " /><label>Phone Number *</label></div>
+   <div class="f"><i class="fa-regular fa-envelope"></i><input name="email" type="email" required placeholder=" " /><label>Email Address *</label></div>
+   <div class="f"><i class="fa-regular fa-building"></i><input name="company" placeholder=" " /><label>Company Name</label></div>
+   <div class="f"><i class="fa-solid fa-box"></i><select name="product" required><ProductOptions selected={product} /></select><label>Product *</label></div>
+   <div class="f"><i class="fa-solid fa-hashtag"></i><input name="qty" placeholder=" " /><label>Quantity</label></div>
+   <div class="f full"><i class="fa-regular fa-message"></i><textarea name="message" placeholder=" "></textarea><label>Your Requirement (size, material, application)</label></div>
+   <div class="full"><button class="btn btn-d" type="submit">Submit Enquiry <i class="fa-solid fa-paper-plane"></i></button><div class="form-msg"></div></div>
+  </div></form>
+ </div>
+ <div class="map rv"><iframe src={SITE.mapEmbed} loading="lazy" title="Radical Polymers location" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+</div></section>

@@ -1,103 +1,38 @@
 ---
-import { site, socials, products, footerLinks } from '../data/site';
-import NewsletterForm from './NewsletterForm.astro';
-
-const year = new Date().getFullYear();
+import { SITE, img } from '../data/site';
+import { PRODUCTS } from '../data/content';
+import ProductOptions from './ProductOptions.astro';
+interface Props { product?: string }
+const { product = '' } = Astro.props;
+const quick = [['Home', '/'], ['About Us', '/about-us/'], ['Products', '/products/'], ['Industries', '/industries/'], ['Manufacturing', '/manufacturing/'], ['Why Choose Us', '/why-choose-us/'], ['Blog', '/blog/'], ['Contact Us', '/contact-us/']];
+const gal = ['floor', 'oring', 'operator', 'caliper', 'molded', 'warehouse'];
+const footProducts = PRODUCTS.filter((p) => ['rubber-o-rings', 'rubber-seals', 'rubber-gaskets', 'rubber-washers', 'rubber-bushes', 'rubber-diaphragms', 'custom-rubber-parts'].includes(p.slug));
 ---
+<footer><div class="wrap">
+ <div class="f-news"><div><h3>Sign Up to Get Latest Updates</h3><p>Product news &amp; offers, no spam.</p></div><form class="enq-f" novalidate><input type="email" name="email" required placeholder="Your email address" /><button class="btn btn-g" type="submit">Subscribe <i class="fa-solid fa-paper-plane"></i></button><div class="form-msg" style="width:100%"></div></form></div>
+ <div class="fgd">
+  <div><a href="/" class="flogo"><img src="/logo.png" alt="Radical Polymers" /></a><p style="margin-top:18px">{SITE.about}</p><div class="fsoc">{SITE.social.map((s) => <a href={s.href} aria-label={s.label}><i class={s.icon}></i></a>)}</div></div>
+  <div><h4>Quick Links</h4><ul>{quick.map(([l, h]) => <li><a href={h}><i class="fa-solid fa-chevron-right"></i>{l}</a></li>)}</ul></div>
+  <div><h4>Our Products</h4><ul>{footProducts.map((p) => <li><a href={`/products/${p.slug}/`}><i class="fa-solid fa-chevron-right"></i>{p.name}</a></li>)}</ul></div>
+  <div><h4>Facility Gallery</h4><div class="fins">{gal.map((g) => <a href="/manufacturing-facility/"><img src={img(g, 200, 60)} alt="" loading="lazy" /></a>)}</div></div>
+  <div class="fct"><h4>Talk To Our Support</h4><ul><li><i class="fa-solid fa-phone"></i><a href={SITE.phoneHref}>{SITE.phone}</a></li><li><i class="fa-regular fa-envelope"></i><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li><li><i class="fa-solid fa-location-dot"></i>{SITE.address}</li><li><i class="fa-regular fa-clock"></i>{SITE.hours}</li></ul></div>
+ </div>
+ <div class="fb"><span>Copyright © {new Date().getFullYear()} Radical Polymers. All Rights Reserved.</span><div><a href="/cookies-policy/">Cookies Policy</a><a href="/privacy-policy/">Privacy Policy</a><a href="/disclaimer/">Disclaimer</a></div></div>
+</div></footer>
 
-<footer class="footer site-footer">
-	<div class="pbmit-footer-widget-area-top pbmit-bg-color-global">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-md-5">
-					<h3 class="pbmit-footer-big-title">Sign Up to Get Latest Updates</h3>
-				</div>
-				<div class="col-md-7">
-					<NewsletterForm />
-				</div>
-			</div>
-		</div>
-	</div>
+<a class="wa" href={SITE.whatsapp} target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="totop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<div class="lb"><button aria-label="Close"><i class="fa-solid fa-xmark"></i></button><img src="" alt="" /></div>
 
-	<div class="pbmit-footer-widget-area">
-		<div class="container">
-			<div class="row">
-				<div class="footer-widget-col-1">
-					<div class="pbmit-first-widget pbmit-widget">
-						<p class="footer-logo">
-							<img src={site.footerLogo} class="img-fluid w-auto" alt={site.name}/>
-						</p>
-						<p class="text">
-							“Radical Polymers” are a leading Manufacturer of a wide range of Rubber Gaskets, Rubber O-Rings, Rubber Seals,
-							etc.
-						</p>
-						<div class="pbmit-free-call-box">
-							<i class="pbmit-base-icon-phone-call"></i>
-							<div class="pbmit-call-text">
-								Talk To Our Support
-								<h3>
-									<a href={site.phoneHref}>{site.phone}</a>
-								</h3>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="footer-widget-col-2">
-					<div class="pbmit-two-widget pbmit-widget">
-						<h2 class="widget-title">Quick Links</h2>
-						<div class="menu-services-menu-container">
-							<ul class="menu">
-								{footerLinks.map((l) => (
-									<li class="menu-item">
-										<a href={l.href}>{l.label}</a>
-									</li>
-								))}
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="footer-widget-col-3">
-					<div class="pbmit-three-widget pbmit-widget">
-						<h2 class="widget-title">Solutions &amp; Services</h2>
-						<div class="menu-services-menu-container">
-							<ul class="menu">
-								{products.slice(0, 5).map((p) => (
-									<li class="menu-item">
-										<a href="/products/">{p}</a>
-									</li>
-								))}
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="pbmit-footer-widget-area-bottom">
-		<div class="container">
-			<div class="pbmit-footer-widget-area-bottom-inner">
-				<div class="row align-items-center">
-					<div class="col-md-6">
-						<p>{`Copyright © ${year} ${site.name}. All Rights Reserved.`}</p>
-					</div>
-					<div class="col-md-6">
-						<ul class="pbmit-social-links text-end">
-							{socials.map((s) => (
-								<li class={`pbmit-social-li ${s.cls}`}>
-									<a href={s.href} target="_blank" rel="noopener" aria-label={s.name}>
-										<span>
-											<i class={s.icon}></i>
-										</span>
-									</a>
-								</li>
-							))}
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</footer>
+<div class="pop" id="enqPopup"><div class="pop-in">
+ <button class="pop-x" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+ <div class="pop-side"><div class="img"><img src={img('oring2', 700)} alt="" loading="lazy" /></div><img class="lg" src="/logo.png" alt="" /><div><h3>Get a Free Quote</h3><ul><li><i class="fa-solid fa-circle-check"></i>Response within 24 hours</li><li><i class="fa-solid fa-circle-check"></i>Custom sizes developed</li><li><i class="fa-solid fa-circle-check"></i>Factory-direct pricing</li></ul></div></div>
+ <form class="enq-f" novalidate><h3>Quick Enquiry</h3><p>Share your requirement — we'll call you back.</p><div class="fg">
+  <div class="f full"><i class="fa-regular fa-user"></i><input name="name" required placeholder=" " /><label>Full Name *</label></div>
+  <div class="f"><i class="fa-solid fa-phone"></i><input name="phone" type="tel" required placeholder=" " /><label>Phone *</label></div>
+  <div class="f"><i class="fa-regular fa-envelope"></i><input name="email" type="email" required placeholder=" " /><label>Email *</label></div>
+  <div class="f full"><i class="fa-solid fa-box"></i><select name="product" required><ProductOptions selected={product} /></select><label>Product *</label></div>
+  <div class="f full"><i class="fa-regular fa-message"></i><textarea name="message" placeholder=" " style="min-height:90px"></textarea><label>Requirement</label></div>
+  <div class="full"><button class="btn btn-g" type="submit" style="width:100%;justify-content:center">Send Enquiry <i class="fa-solid fa-paper-plane"></i></button><div class="form-msg"></div></div>
+ </div></form>
+</div></div>

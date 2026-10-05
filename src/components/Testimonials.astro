@@ -1,0 +1,13 @@
+---
+import { TESTIMONIALS } from '../data/content';
+interface Props { soft?: boolean }
+const { soft = true } = Astro.props;
+const id = 't' + Math.random().toString(36).slice(2, 8);
+---
+<section class:list={['sec', 'testi', { 'u-soft': soft }]}><div class="wrap">
+ <div class="sec-head rv"><div><span class="eyebrow"><i class="fa-solid fa-comments"></i> Testimonials</span><h2 class="h2" style="margin:0">What Clients <em>Say About Us</em></h2></div>
+  <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div class="t-sum"><b>5.0</b><div><span class="st">★★★★★</span><small>from our happy clients</small></div></div><div class="sl-ctrl" id={id}><button class="ar prev" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button><button class="ar next" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button></div></div></div>
+ <div class="slider rv" data-ctrl={`#${id}`}><div class="sl-track">
+  {TESTIMONIALS.map((t) => <div class="tc"><div class="av">{t.initial}</div><div><div class="st">★★★★★</div><p>“{t.quote}”</p><b>{t.name}</b><span>{t.role}</span></div><i class="fa-solid fa-quote-right qm"></i></div>)}
+ </div><div class="sl-dots"></div></div>
+</div></section>

@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Strip from '../components/Strip.astro';
+import Split from '../components/Split.astro';
+import TickList from '../components/TickList.astro';
+import SecHead from '../components/SecHead.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import Stats from '../components/Stats.astro';
+import Timeline from '../components/Timeline.astro';
+import IndustriesGrid from '../components/IndustriesGrid.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { WHY8, GENERAL_FAQS } from '../data/content';
+const cmp = [
+  ['Custom size development', 'Any size, from drawing or sample', 'Limited to stock sizes'], ['Pricing', 'Factory-direct, reasonable rates', 'Extra margin added'],
+  ['Material choice', 'NBR, EPDM, Silicone, Viton & more', 'Whatever is available'], ['Quality control', 'In-house inspection every lot', 'No process control'],
+  ['Delivery commitment', 'Promised time-frame', 'Depends on supplier'], ['Technical support', 'Direct access to the manufacturer', 'Limited product knowledge'],
+];
+---
+<BaseLayout title="Why Choose Us | Radical Polymers – Genuine Rubber Manufacturer" description="Why choose Radical Polymers: direct manufacturer pricing, any size developed, right compound, inspected quality and on-time delivery across India." active="why">
+ <PageHero crumbs={[{ label: 'Why Choose Us' }]} eyebrow="Why Choose Us" eyebrowIcon="fa-solid fa-star" title="The <em>Radical</em> Advantage" sub="A genuine manufacturer — not a trader. That means better control over quality, pricing and delivery for every order, big or small." image="techs" chips={['Direct Manufacturer', 'Custom Sizes', 'On-Time Delivery']} />
+ <Strip />
+ <Split image="handshake2" badge={['350+', 'Clients trust our parts', true]} mini="oring">
+  <span class="eyebrow"><i class="fa-solid fa-handshake"></i> Our Promise</span><h2 class="h2">Reliable Parts, <em>Honest Partnership</em></h2>
+  <p>Clients choose Radical Polymers because we make it easy to get the right rubber part — at a fair price, on time, with a team that responds quickly.</p>
+  <p>As the manufacturer, we take responsibility for the part from compound selection to dispatch.</p>
+  <TickList items={['Factory-direct pricing', 'Develop any size', 'Right compound advice', 'Lot-wise inspection']} />
+  <a href="#" class="btn btn-d" data-open-enquiry>Get a Quote <i class="fa-solid fa-arrow-right"></i></a>
+ </Split>
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="8 Reasons" icon="fa-solid fa-star" title="Why Clients <em>Choose Us</em>" center /><FeatureCards items={WHY8} cols={4} numbered /></div></section>
+ <section class="sec"><div class="wrap">
+  <SecHead eyebrow="Compare" icon="fa-solid fa-scale-balanced" title="Manufacturer vs <em>Trader</em>" lead="Buying directly from a manufacturer makes a real difference." />
+  <div class="tbl-wrap rv"><table class="mat-t"><thead><tr><th>What You Get</th><th style="background:var(--gold);color:var(--ink)">Radical Polymers</th><th>Typical Trader</th></tr></thead><tbody>
+   {cmp.map(([a, b, c]) => <tr><td>{a}</td><td style="background:#fdf8ec;font-weight:600"><i class="fa-solid fa-circle-check" style="color:#1f9d55"></i> {b}</td><td><i class="fa-solid fa-circle-xmark" style="color:#e5484d"></i> {c}</td></tr>)}
+  </tbody></table></div>
+ </div></section>
+ <Stats bg="techs" />
+ <Timeline />
+ <IndustriesGrid />
+ <Testimonials />
+ <Cta title="Experience the <em>Radical Difference</em>" sub="Send your requirement and see why clients keep coming back." />
+ <Faq items={GENERAL_FAQS} image="deal" />
+ <Enquiry />
+</BaseLayout>

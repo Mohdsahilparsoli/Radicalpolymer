@@ -1,0 +1,5 @@
+---
+interface Props { items: readonly string[]; cols?: 1 | 2 }
+const { items, cols = 2 } = Astro.props;
+---
+<ul class:list={['tk', { c2: cols === 2 }]}>{items.map((x) => <li><i class="fa-solid fa-circle-check"></i><span set:html={x} /></li>)}</ul>

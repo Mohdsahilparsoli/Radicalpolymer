@@ -1,0 +1,11 @@
+---
+// Section heading. Use slot "side" for buttons/filters on the right.
+interface Props { eyebrow: string; icon?: string; title: string; lead?: string; center?: boolean }
+const { eyebrow, icon = 'fa-solid fa-circle', title, lead = '', center = false } = Astro.props;
+const hasSide = Astro.slots.has('side');
+---
+{center ? (
+ <div class="center rv" style="margin-bottom:50px"><span class="eyebrow"><i class={icon}></i> {eyebrow}</span><h2 class="h2" set:html={title} />{lead && <p class="lead">{lead}</p>}</div>
+) : (
+ <div class="sec-head rv"><div><span class="eyebrow"><i class={icon}></i> {eyebrow}</span><h2 class="h2" style="margin:0" set:html={title} /></div>{hasSide ? <slot name="side" /> : lead && <p class="lead">{lead}</p>}</div>
+)}

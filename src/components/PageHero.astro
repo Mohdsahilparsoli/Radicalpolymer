@@ -1,0 +1,30 @@
+---
+import { SITE, img } from '../data/site';
+interface Props {
+  crumbs: { label: string; href?: string }[];
+  eyebrow: string; eyebrowIcon?: string; title: string; sub: string; image: string;
+  chips?: string[]; card?: boolean; actions?: boolean;
+}
+const { crumbs, eyebrow, eyebrowIcon = 'fa-solid fa-circle', title, sub, image, chips = [], card = true, actions = true } = Astro.props;
+---
+<section class="phero"><div class="bg"><img src={img(image, 1900)} alt="" /></div><div class="wrap">
+ <div>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="/"><i class="fa-solid fa-house" style="font-size:12px;color:var(--gold2)"></i> Home</a>
+   {crumbs.map((c) => <><i class="fa-solid fa-chevron-right"></i>{c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}</>)}
+  </nav>
+  <span class="eyebrow"><i class={eyebrowIcon}></i> {eyebrow}</span>
+  <h1 set:html={title} />
+  <p class="sub">{sub}</p>
+  <slot />
+  {actions && <div class="acts"><a href="#" class="btn btn-g" data-open-enquiry>Get a Free Quote <i class="fa-solid fa-arrow-right"></i></a><a href={SITE.phoneHref} class="btn btn-l"><i class="fa-solid fa-phone"></i> {SITE.phone}</a></div>}
+  {chips.length > 0 && <div class="chips">{chips.map((c) => <span><i class="fa-solid fa-circle-check"></i>{c}</span>)}</div>}
+ </div>
+ {card && (
+  <div class="ph-card">
+   <div class="row"><i class="fa-solid fa-phone"></i><div><small>Call Us</small><b><a href={SITE.phoneHref}>{SITE.phone}</a></b></div></div>
+   <div class="row"><i class="fa-regular fa-envelope"></i><div><small>Email Us</small><b><a href={`mailto:${SITE.email}`}>{SITE.email}</a></b></div></div>
+   <div class="row"><i class="fa-regular fa-clock"></i><div><small>Working Hours</small><b>{SITE.hours}</b></div></div>
+   <a href="#" class="btn btn-g" data-open-enquiry>Request a Quote <i class="fa-solid fa-paper-plane"></i></a>
+  </div>
+ )}
+</div></section>

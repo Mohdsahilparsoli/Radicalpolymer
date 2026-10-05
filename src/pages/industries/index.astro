@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Split from '../../components/Split.astro';
+import TickList from '../../components/TickList.astro';
+import Stats from '../../components/Stats.astro';
+import ProductsGrid from '../../components/ProductsGrid.astro';
+import Cta from '../../components/Cta.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Faq from '../../components/Faq.astro';
+import Enquiry from '../../components/Enquiry.astro';
+import { INDUSTRIES, GENERAL_FAQS, P } from '../../data/content';
+import { url } from '../../data/site';
+---
+<BaseLayout title="Industries We Serve | Automotive, Industrial, Electrical – Radical Polymers" description="Rubber components for automotive, engineering, industrial, electrical and machinery applications from Radical Polymers, Ghaziabad." active="industries">
+ <PageHero crumbs={[{ label: 'Industries' }]} eyebrow="Industries" eyebrowIcon="fa-solid fa-city" title="Rubber Solutions for <em>Every Industry</em>" sub="From automotive and engineering to process plants, electrical equipment and heavy machinery — our components keep critical equipment sealed and running." image="pipes" chips={['Automotive', 'Industrial', 'Electrical', 'Machinery']} />
+ <Split image="engineers" badge={['5', 'Core industries served']} mini="caliper">
+  <span class="eyebrow"><i class="fa-solid fa-handshake"></i> Industry Expertise</span><h2 class="h2">Parts Built Around <em>Your Application</em></h2>
+  <p>Every industry places different demands on rubber — oil and fuel in automotive, steam and chemicals in process plants, insulation in electrical equipment, and heavy vibration in machinery.</p>
+  <p>We start by understanding where and how the part will be used, then select the right compound, hardness and design.</p>
+  <TickList items={['Application-specific compounds', 'Drawing-accurate parts', 'OEM &amp; replacement supply', 'Small to bulk quantities']} />
+  <a href="#" class="btn btn-d" data-open-enquiry>Discuss Your Requirement <i class="fa-solid fa-arrow-right"></i></a>
+ </Split>
+ {INDUSTRIES.map((ind, k) => (
+  <Split image={ind.img} rev={k % 2 === 1} soft={k % 2 === 0} sm>
+   <span class="eyebrow"><i class={ind.icon}></i> 0{k + 1} · {ind.name}</span><h2 class="h2">{ind.name} <em>Industry</em></h2><p>{ind.intro[0]}</p>
+   <ul class="tk c2">{ind.products.slice(0, 4).map((s) => <li><i class="fa-solid fa-circle-check"></i><a href={url.product(s)}>{P[s].name}</a></li>)}</ul>
+   <a href={url.industry(ind.slug)} class="btn btn-d">Explore {ind.name} <i class="fa-solid fa-arrow-right"></i></a>
+  </Split>
+ ))}
+ <Stats bg="pipes2" />
+ <ProductsGrid title="Products Used <em>Across Industries</em>" soft={false} />
+ <Cta title="Have an <em>Industry-Specific</em> Requirement?" sub="Our team will recommend the right compound and design for your application." />
+ <Testimonials />
+ <Faq items={GENERAL_FAQS} image="valves2" />
+ <Enquiry />
+</BaseLayout>

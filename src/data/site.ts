@@ -1,69 +1,55 @@
-// Central place for business details, navigation and product names.
-// Change a value here and it updates everywhere on the site.
+// Global site settings (later: WordPress "Site Settings" options page).
+import { IMG, PRODUCTS, INDUSTRIES } from './content';
 
-export const site = {
-	name: 'Radical Polymers',
-	url: 'https://www.radicalpolymer.com',
-	description:
-		'Radical Polymers, Ghaziabad – manufacturer of rubber O-rings, gaskets, seals, diaphragms, bushes, grommets, cutless rubber bearings and rubber sheets & strips.',
-	phone: '+91 9711114333',
-	phoneHref: 'tel:+919711114333',
-	whatsappHref: 'https://wa.me/919711114333',
-	email: 'sales@radicalpolymer.com',
-	address: '155-A Model Town West, Ghaziabad',
-	logo: '/images/logo.png',
-	footerLogo: '/images/logo.png',
-	googleAdsId: 'AW-1037076678',
-	gtmId: 'GTM-52ZK657V',
+/** Staging switch: true = whole site is noindex (meta robots + robots.txt + X-Robots-Tag header). */
+export const NOINDEX = true;
+
+export const SITE = {
+  name: 'Radical Polymers',
+  url: 'https://www.radicalpolymer.com',
+  phone: '+91 9711114333',
+  phoneHref: 'tel:+919711114333',
+  whatsapp: 'https://wa.me/919711114333',
+  email: 'sales@radicalpolymer.com',
+  address: '155-A Model Town West, Ghaziabad, Uttar Pradesh',
+  addressShort: '155-A Model Town West, Ghaziabad',
+  hours: 'Mon – Sat: 9:30 AM – 7:00 PM',
+  mapEmbed: 'https://www.google.com/maps?q=155-A+Model+Town+West,+Ghaziabad,+Uttar+Pradesh&output=embed',
+  social: [
+    { icon: 'fa-brands fa-facebook-f', label: 'Facebook', href: '#' },
+    { icon: 'fa-brands fa-instagram', label: 'Instagram', href: '#' },
+    { icon: 'fa-brands fa-linkedin-in', label: 'LinkedIn', href: '#' },
+    { icon: 'fa-brands fa-youtube', label: 'YouTube', href: '#' },
+  ],
+  about: '“Radical Polymers” are a leading Manufacturer of a wide range of Rubber Gaskets, Rubber O-Rings, Rubber Seals, etc.',
 };
 
-export const socials = [
-	{
-		name: 'Facebook',
-		icon: 'pbmit-base-icon-facebook-squared',
-		cls: 'pbmit-social-facebook',
-		href: 'https://www.facebook.com/profile.php?id=61550014208559',
-	},
-	{ name: 'Twitter', icon: 'pbmit-base-icon-twitter', cls: 'pbmit-social-twitter', href: 'https://twitter.com/radicalpol67559' },
-	{
-		name: 'Instagram',
-		icon: 'pbmit-base-icon-instagram',
-		cls: 'pbmit-social-instagram',
-		href: 'https://instagram.com/radi.calpolymers?utm_source=qr&igshid=NGExMmI2YTkyZg%3D%3D',
-	},
-	{
-		name: 'LinkedIn',
-		icon: 'pbmit-base-icon-linkedin-squared',
-		cls: 'pbmit-social-youtube',
-		href: 'https://www.linkedin.com/in/sahil-sharma-bb3196241/',
-	},
-];
+/** Unsplash image URL from a key in IMG (or a raw photo id). */
+export const img = (key: string, w = 1200, q = 75) =>
+  `https://images.unsplash.com/photo-${IMG[key] ?? key}?auto=format&fit=crop&w=${w}&q=${q}`;
 
-export const products = [
-	'Rubber O-Rings',
-	'Rubber Gaskets',
-	'Rubber Seals',
-	'Rubber Diaphragm',
-	'Rubber Bush',
-	'Rubber Grommets',
-	'Cutless Rubber Bearing',
-	'Rubber Sheet And Strips',
-];
+export const url = {
+  product: (slug: string) => `/products/${slug}/`,
+  industry: (slug: string) => `/industries/${slug}/`,
+  post: (slug: string) => `/blog/${slug}/`,
+};
 
-export const mainNav = [
-	{ label: 'Home', href: '/' },
-	{ label: 'Products', href: '/products/', children: products.map((label) => ({ label, href: '/products/' })) },
-	{ label: 'About Us', href: '/about-us/' },
-	{ label: 'Testimonials', href: '/testimonials/' },
-	{ label: 'Contact Us', href: '/contact-us/' },
-];
+export type NavItem = { label: string; href: string; key: string; children?: { label: string; href: string; icon: string }[] };
 
-export const footerLinks = [
-	{ label: 'Home', href: '/' },
-	{ label: 'About Us', href: '/about-us/' },
-	{ label: 'Products', href: '/products/' },
-	{ label: 'Contact Us', href: '/contact-us/' },
-	{ label: 'Cookies Policy', href: '/cookies-policy/' },
-	{ label: 'Privacy Policy', href: '/privacy-policy/' },
-	{ label: 'Disclaimer', href: '/disclaimer/' },
+export const NAV: NavItem[] = [
+  { label: 'Home', href: '/', key: 'home' },
+  { label: 'About Us', href: '/about-us/', key: 'about' },
+  { label: 'Products', href: '/products/', key: 'products', children: PRODUCTS.map((p) => ({ label: p.name, href: url.product(p.slug), icon: p.icon })) },
+  { label: 'Industries', href: '/industries/', key: 'industries', children: INDUSTRIES.map((i) => ({ label: i.name, href: url.industry(i.slug), icon: i.icon })) },
+  {
+    label: 'Manufacturing', href: '/manufacturing/', key: 'manufacturing', children: [
+      { label: 'Manufacturing Facility', href: '/manufacturing-facility/', icon: 'fa-solid fa-warehouse' },
+      { label: 'Quality & Testing', href: '/quality-testing/', icon: 'fa-solid fa-microscope' },
+      { label: 'Custom Manufacturing', href: '/custom-manufacturing/', icon: 'fa-solid fa-pen-ruler' },
+    ],
+  },
+  { label: 'Why Choose Us', href: '/why-choose-us/', key: 'why' },
+  { label: 'Testimonials', href: '/testimonials/', key: 'testimonials' },
+  { label: 'Blog', href: '/blog/', key: 'blog' },
+  { label: 'Contact Us', href: '/contact-us/', key: 'contact' },
 ];

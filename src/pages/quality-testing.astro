@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Split from '../components/Split.astro';
+import TickList from '../components/TickList.astro';
+import SecHead from '../components/SecHead.astro';
+import Timeline from '../components/Timeline.astro';
+import Stats from '../components/Stats.astro';
+import MfgCards from '../components/MfgCards.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { GENERAL_FAQS } from '../data/content';
+import { img } from '../data/site';
+const stages = [
+  { icon: 'fa-solid fa-flask-vial', title: 'Raw Material Check', text: 'Compound verified before production begins.', img: 'lab' },
+  { icon: 'fa-solid fa-ruler', title: 'Dimensional Accuracy', text: 'Sizes checked against drawing tolerances.', img: 'caliper' },
+  { icon: 'fa-solid fa-gauge-high', title: 'Hardness Testing', text: 'Shore A hardness verified for consistency.', img: 'measure' },
+  { icon: 'fa-solid fa-eye', title: 'Final Visual Inspection', text: 'Flash, finish and defects checked before packing.', img: 'clipboard' },
+];
+const tests = [
+  ['Dimensional check', 'Vernier caliper / gauges', 'ID, OD, cross-section, thickness as per drawing'], ['Hardness', 'Shore A durometer', 'Within agreed hardness range'],
+  ['Visual inspection', 'Trained inspectors', 'No flash, cuts, voids or surface defects'], ['Material verification', 'Compound records', 'Correct compound for the order'],
+  ['Fit check', 'Sample / mating part', 'Fit verified where samples are provided'], ['Count & packing', 'Lot-wise', 'Correct quantity and labelling'],
+];
+const meters = [['Product Quality', 98], ['On-Time Delivery', 95], ['Custom Development', 92]] as const;
+---
+<BaseLayout title="Quality & Testing | Radical Polymers Rubber Products" description="Quality control at Radical Polymers: raw material checks, dimensional inspection, Shore A hardness testing and visual inspection on every lot." active="manufacturing">
+ <PageHero crumbs={[{ label: 'Manufacturing', href: '/manufacturing/' }, { label: 'Quality & Testing' }]} eyebrow="Quality & Testing" eyebrowIcon="fa-solid fa-microscope" title="Quality That <em>Doesn’t Leak</em>" sub="Every batch is checked at multiple stages — from raw material to final packing — before it leaves our facility." image="caliper" chips={['Raw Material Checks', 'Dimensional Inspection', 'Hardness Testing']} />
+ <Split image="measure" badge={['98%', 'Product quality rating', true]} mini="lab">
+  <span class="eyebrow"><i class="fa-solid fa-shield-halved"></i> Our Approach</span><h2 class="h2">Quality Built Into <em>Every Step</em></h2>
+  <p>Quality is not a single check at the end. We control it from compound selection through moulding, finishing and packing — so issues are caught early and parts are consistent from batch to batch.</p>
+  <TickList items={['Compound verified before production', 'In-process checks during moulding', 'Dimensions checked against drawing', 'Hardness (Shore A) verified', 'Visual inspection for flash &amp; defects', 'Lot-wise packing &amp; labelling']} />
+ </Split>
+ <Timeline items={stages} label="STAGE" soft eyebrow="Inspection Stages" title="Our <em>Quality Process</em>" lead="" />
+ <section class="sec"><div class="wrap">
+  <SecHead eyebrow="Checks" icon="fa-solid fa-table-list" title="What We <em>Check</em>" lead="Typical checks performed on our rubber components." />
+  <div class="tbl-wrap rv"><table class="mat-t"><thead><tr><th>Check</th><th>Method</th><th>Acceptance</th></tr></thead><tbody>{tests.map(([a, b, c]) => <tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>)}</tbody></table></div>
+ </div></section>
+ <section class="sec qual pt-0"><div class="wrap">
+  <div class="rv"><span class="eyebrow"><i class="fa-solid fa-heart"></i> Results</span><h2 class="h2">Why Clients <em>Stay With Us</em></h2><p class="lead">Consistent quality is the reason most of our business comes from repeat clients.</p>
+   <ul class="q-list"><li><div class="qi"><i class="fa-solid fa-rotate"></i></div><div><b>Repeatable Batches</b><span>Same quality order after order.</span></div></li><li><div class="qi"><i class="fa-solid fa-circle-check"></i></div><div><b>Fewer Rejections</b><span>Problems caught before dispatch.</span></div></li><li><div class="qi"><i class="fa-solid fa-handshake"></i></div><div><b>Transparent Communication</b><span>We share issues and solutions openly.</span></div></li></ul></div>
+  <div class="q-vis img rv d1"><img src={img('clipboard', 1100)} alt="" loading="lazy" /><div class="q-card"><h3>Client satisfaction</h3>
+   {meters.map(([l, v]) => <div class="meter"><div><span>{l}</span><span>{v}%</span></div><div class="tr"><i style={`--w:${v}%`}></i></div></div>)}</div></div>
+ </div></section>
+ <Stats bg="lab" />
+ <section class="sec"><div class="wrap"><SecHead eyebrow="Manufacturing" icon="fa-solid fa-layer-group" title="More About <em>How We Work</em>" center /><MfgCards exclude="quality-testing" /></div></section>
+ <Testimonials />
+ <Cta title="Quality Parts, <em>Every Batch</em>" sub="Tell us your requirement and quality expectations — we will meet them." />
+ <Faq items={GENERAL_FAQS} image="measure" />
+ <Enquiry />
+</BaseLayout>

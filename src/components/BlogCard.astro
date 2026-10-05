@@ -1,0 +1,7 @@
+---
+import type { Post } from '../data/content';
+import { img, url } from '../data/site';
+interface Props { post: Post }
+const { post: b } = Astro.props;
+---
+<a href={url.post(b.slug)} class="bc" data-c={b.cat.toLowerCase().replace(/ /g, '-')}><div class="img"><img src={img(b.img, 800)} alt="" loading="lazy" /><span class="cat">{b.cat}</span></div><div class="bb"><div class="meta"><span><i class="fa-regular fa-calendar"></i>{b.date}</span><span><i class="fa-regular fa-clock"></i>{b.mins} min read</span></div><h3>{b.title}</h3><p>{b.excerpt}</p><span class="rm">Read Article <i class="fa-solid fa-arrow-right"></i></span></div></a>

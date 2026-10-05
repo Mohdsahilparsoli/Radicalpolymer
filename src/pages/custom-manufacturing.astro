@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Split from '../components/Split.astro';
+import TickList from '../components/TickList.astro';
+import SecHead from '../components/SecHead.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import Journey from '../components/Journey.astro';
+import Materials from '../components/Materials.astro';
+import Stats from '../components/Stats.astro';
+import MfgCards from '../components/MfgCards.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { P, GENERAL_FAQS } from '../data/content';
+import { img } from '../data/site';
+const share = [
+  { icon: 'fa-solid fa-file-pen', title: 'Drawing or Sample', text: 'A dimensioned drawing or a good-condition sample.' },
+  { icon: 'fa-solid fa-location-crosshairs', title: 'Application', text: 'What the part does and where it is fitted.' },
+  { icon: 'fa-solid fa-temperature-half', title: 'Operating Conditions', text: 'Temperature, media in contact and pressure.' },
+  { icon: 'fa-solid fa-gauge', title: 'Hardness & Colour', text: 'If known — otherwise we will recommend.' },
+  { icon: 'fa-solid fa-hashtag', title: 'Quantity', text: 'Expected order and annual volume.' },
+  { icon: 'fa-solid fa-calendar-check', title: 'Timeline', text: 'When you need samples and supply.' },
+];
+const steps = [
+  { icon: 'fa-solid fa-comments', title: 'Requirement Review', tag: 'Step 1', text: 'We study your drawing/sample and application.' },
+  { icon: 'fa-solid fa-flask', title: 'Compound Selection', tag: 'Step 2', text: 'Right material and hardness chosen.' },
+  { icon: 'fa-solid fa-cube', title: 'Mould & Sample', tag: 'Step 3', text: 'Mould developed and samples made for approval.' },
+  { icon: 'fa-solid fa-truck-fast', title: 'Bulk Production', tag: 'Step 4', text: 'Production, inspection and dispatch.' },
+];
+const examples = [
+  ['fa-regular fa-circle', 'Non-Standard O-Rings', 'Special ID / cross-section sizes', 'oring'], ['fa-regular fa-square', 'Special Gaskets', 'Custom shapes & hole patterns', 'gasket'],
+  ['fa-solid fa-screwdriver-wrench', 'Replacement Spares', 'Parts for older machines', 'engine_mech'], ['fa-solid fa-cubes', 'Moulded Components', 'Boots, caps, buffers & more', 'molded'],
+];
+const faqs = [...P['custom-rubber-parts'].faqs, ...GENERAL_FAQS.slice(2, 4)];
+---
+<BaseLayout title="Custom Rubber Parts Manufacturing | From Drawing or Sample – Radical Polymers" description="Custom rubber parts developed from your drawing or sample: compound selection, mould development, sampling and bulk production by Radical Polymers." active="manufacturing" product="Custom Rubber Parts">
+ <PageHero crumbs={[{ label: 'Manufacturing', href: '/manufacturing/' }, { label: 'Custom Manufacturing' }]} eyebrow="Custom Manufacturing" eyebrowIcon="fa-solid fa-pen-ruler" title="Any Size. Any Shape. <em>Any Compound.</em>" sub="Send us a drawing or a sample — we develop the mould and deliver precision rubber parts that match exactly." image="blueprint" chips={['From Drawing', 'From Sample', 'Small to Bulk']} />
+ <Split image="custom" badge={['200+', 'Projects completed', true]} mini="cad">
+  <span class="eyebrow"><i class="fa-solid fa-pen-ruler"></i> Custom Development</span><h2 class="h2">When Standard Parts <em>Won’t Do</em></h2>
+  <p>Many applications need rubber parts that are not available off the shelf — a non-standard O-ring size, a special gasket shape, or a spare part for older machinery.</p>
+  <p>Our team develops these parts end-to-end: compound selection, mould development, sampling and production.</p>
+  <TickList items={['Develop from 2D/3D drawings', 'Reverse-engineer from samples', 'Compound &amp; hardness selection', 'Sample approval before bulk', 'OEM &amp; replacement parts', 'Flexible quantities']} />
+  <a href="#" class="btn btn-d" data-open-enquiry data-product="Custom Rubber Parts">Start Your Project <i class="fa-solid fa-arrow-right"></i></a>
+ </Split>
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="What to Share" icon="fa-solid fa-clipboard-list" title="Information That <em>Speeds Up Development</em>" center /><FeatureCards items={share} numbered /></div></section>
+ <section class="sec"><div class="wrap"><SecHead eyebrow="Our Process" icon="fa-solid fa-route" title="From Idea to <em>Approved Part</em>" center /><Journey items={steps} /></div></section>
+ <section class="sec ind"><div class="wrap">
+  <SecHead eyebrow="Examples" icon="fa-solid fa-shapes" title="Custom Parts <em>We Develop</em>" />
+  <div class="g4">{examples.map(([ic, t, d, im], k) => <div class={`ac rv d${k}`} style="height:360px"><img src={img(im, 700)} alt={t} loading="lazy" /><span class="ii"><i class={ic}></i></span><h3>{t}</h3><p>{d}</p></div>)}</div>
+ </div></section>
+ <Materials soft={false} />
+ <Stats bg="cad" />
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="Manufacturing" icon="fa-solid fa-layer-group" title="More About <em>How We Work</em>" center /><MfgCards exclude="custom-manufacturing" /></div></section>
+ <Cta title="Have a Drawing or Sample? <em>Let’s Develop It.</em>" sub="Share it with us on WhatsApp or email and get a quick quotation." image="drafting" />
+ <Faq items={faqs} image="blueprint" />
+ <Enquiry product="Custom Rubber Parts" />
+</BaseLayout>

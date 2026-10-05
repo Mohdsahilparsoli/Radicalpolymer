@@ -1,116 +1,37 @@
 ---
-import { site, socials, mainNav } from '../data/site';
-
-const path = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+import { NAV, SITE } from '../data/site';
+interface Props { active?: string }
+const { active = '' } = Astro.props;
+const products = NAV.find((n) => n.key === 'products')!;
 ---
+<div class="top"><div class="wrap">
+ <div class="l"><span><i class="fa-solid fa-phone-volume"></i><a href={SITE.phoneHref}>{SITE.phone}</a></span><span><i class="fa-regular fa-envelope"></i><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span><span><i class="fa-solid fa-location-dot"></i>{SITE.addressShort}</span></div>
+ <div class="l"><span><i class="fa-regular fa-clock"></i>{SITE.hours}</span><div class="soc">{SITE.social.map((s) => <a href={s.href} aria-label={s.label}><i class={s.icon}></i></a>)}</div></div>
+</div></div>
 
-<header class="site-header header-style-2">
-	<div class="site-header-menu-wrapper">
-		<div class="site-header-menu">
-			<div class="container">
-				<div class="d-flex justify-content-between align-items-center">
-					<div class="site-branding">
-						<div class="site-title">
-							<a href="/" aria-label={`${site.name} – Home`}>
-								<img class="logo-img" src={site.logo} alt={site.name} />
-							</a>
-						</div>
-					</div>
-
-					<div class="site-navigation ml-auto">
-						<nav class="main-menu navbar-expand-xl navbar-light" aria-label="Main menu">
-							<div class="navbar-header">
-								<button class="navbar-toggler" type="button" aria-label="Open menu">
-									<i class="pbmit-base-icon-menu-1"></i>
-								</button>
-							</div>
-							<div class="pbmit-mobile-menu-bg"></div>
-							<div class="collapse navbar-collapse clearfix show" id="pbmit-menu">
-								<div class="pbmit-menu-wrap">
-									<span class="closepanel" role="button" aria-label="Close menu">
-										<i class="pbmit-base-icon-cancel"></i>
-									</span>
-									<ul class="navigation clearfix">
-										{mainNav.map((item) => (
-											<li class:list={[{ dropdown: item.children, active: isActive(item.href) }]}>
-												<a href={item.href}>{item.label}</a>
-												{item.children && (
-													<ul>
-														{item.children.map((child) => (
-															<li>
-																<a href={child.href}>{child.label}</a>
-															</li>
-														))}
-													</ul>
-												)}
-											</li>
-										))}
-									</ul>
-								</div>
-							</div>
-						</nav>
-					</div>
-
-					<div class="pbmit-right-box">
-						<a href="/contact-us/" class="pbmit-btn pbmit-btn-hover-secondary">
-							<span>Enquire Now</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="site-header-menu-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12">
-						<div class="d-flex justify-content-between align-items-center">
-							<div class="pbmit-header-info">
-								<div class="pbmit-header-box pbmit-header-box-1">
-									<span class="pbmit-header-box-icon">
-										<i class="pbmit-colza-icon pbmit-colza-icon-phone"></i>
-									</span>
-									<span class="pbmit-header-box-title">Call Us</span>
-									<span class="pbmit-header-box-content">
-										<a href={site.phoneHref}>{site.phone}</a>
-									</span>
-								</div>
-								<div class="pbmit-header-box pbmit-header-box-2">
-									<span class="pbmit-header-box-icon">
-										<i class="pbmit-colza-icon pbmit-colza-icon-location"></i>
-									</span>
-									<span class="pbmit-header-box-title">Address</span>
-									<span class="pbmit-header-box-content">{site.address}</span>
-								</div>
-								<div class="pbmit-header-box pbmit-header-box-3">
-									<span class="pbmit-header-box-icon">
-										<i class="pbmit-colza-icon pbmit-colza-icon-email"></i>
-									</span>
-									<span class="pbmit-header-box-title">Email Us</span>
-									<span class="pbmit-header-box-content">
-										<a href={`mailto:${site.email}`}>{site.email}</a>
-									</span>
-								</div>
-							</div>
-							<div class="pbmit-right-box ml-auto">
-								<ul class="pbmit-social-links">
-									{socials.map((s) => (
-										<li class={`pbmit-social-li ${s.cls}`}>
-											<a href={s.href} target="_blank" rel="noopener" aria-label={s.name}>
-												<span>
-													<i class={s.icon}></i>
-												</span>
-											</a>
-										</li>
-									))}
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<slot />
-</header>
+<header class="hdr"><div class="wrap">
+ <a href="/" class="logo"><img src="/logo.png" alt="Radical Polymers" /></a>
+ <nav class="nav-wrap" aria-label="Main menu"><div class="m-head"><img src="/logo.png" alt="Radical Polymers" /><button class="nav-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button></div><ul class="nav">
+  {NAV.map((n) => (
+   <li class:list={[{ 'has-dd': n.children, act: n.key === active }]}>
+    <a href={n.href}>{n.label}{n.children && <i class="fa-solid fa-angle-down"></i>}</a>
+    {n.children && n.key === 'products' && (
+     <div class="mega p">
+      {products.children!.map((c) => <a class="it" href={c.href}><i class={c.icon}></i>{c.label}</a>)}
+      <a class="feat" href="/products/custom-rubber-parts/"><img src="https://images.unsplash.com/photo-1769147339214-076740872485?auto=format&fit=crop&w=600&q=80" alt="Custom rubber parts" loading="lazy" /><div><b>Need a Custom Part?</b><span>Developed from your drawing or sample →</span></div></a>
+     </div>
+    )}
+    {n.children && n.key !== 'products' && (
+     <div class="mega s">{n.children.map((c) => <a class="it" href={c.href}><i class={c.icon}></i>{c.label}</a>)}</div>
+    )}
+   </li>
+  ))}
+ </ul>
+ <div class="m-extra"><a href="#" class="btn btn-d" data-open-enquiry>Enquire Now <i class="fa-solid fa-arrow-right"></i></a><a class="ln" href={SITE.phoneHref}><i class="fa-solid fa-phone"></i>{SITE.phone}</a><a class="ln" href={`mailto:${SITE.email}`}><i class="fa-regular fa-envelope"></i>{SITE.email}</a><a class="ln" href={SITE.whatsapp} target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i>Chat on WhatsApp</a></div>
+ </nav>
+ <div class="hdr-r">
+  <div class="hcall"><i class="fa-solid fa-headset"></i><div><small>Need Help? Call Us</small><b>{SITE.phone}</b></div></div>
+  <a href="#" class="btn btn-d" data-open-enquiry>Enquire Now <i class="fa-solid fa-arrow-right"></i></a>
+  <button class="burger" aria-label="Menu"><i class="fa-solid fa-bars-staggered"></i></button>
+ </div>
+</div></header>

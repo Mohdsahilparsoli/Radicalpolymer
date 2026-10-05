@@ -1,0 +1,52 @@
+---
+// One template for every industry. Later: getStaticPaths() pulls industries from WordPress.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Split from '../../components/Split.astro';
+import SecHead from '../../components/SecHead.astro';
+import FeatureCards from '../../components/FeatureCards.astro';
+import ProductsGrid from '../../components/ProductsGrid.astro';
+import Stats from '../../components/Stats.astro';
+import Gallery from '../../components/Gallery.astro';
+import Timeline from '../../components/Timeline.astro';
+import IndustriesGrid from '../../components/IndustriesGrid.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Cta from '../../components/Cta.astro';
+import Faq from '../../components/Faq.astro';
+import Enquiry from '../../components/Enquiry.astro';
+import { INDUSTRIES, GENERAL_FAQS, type Industry } from '../../data/content';
+
+export function getStaticPaths() {
+  return INDUSTRIES.map((i) => ({ params: { slug: i.slug }, props: { ind: i } }));
+}
+const { ind } = Astro.props as { ind: Industry };
+const gal = [
+  { img: ind.img, title: ind.name, sub: 'Application' },
+  { img: ind.gal[0], title: 'Field Use', sub: ind.name },
+  { img: ind.gal[1], title: 'Components', sub: 'In service' },
+  { img: ind.gal[2], title: 'Equipment', sub: ind.name },
+  { img: 'floor', title: 'Production', sub: 'Our facility' },
+];
+---
+<BaseLayout title={`Rubber Parts for ${ind.name} Industry | Radical Polymers`} description={`Rubber O-rings, seals, gaskets and custom parts for the ${ind.name.toLowerCase()} industry. ${ind.tagline}. Radical Polymers, Ghaziabad.`} active="industries">
+ <PageHero crumbs={[{ label: 'Industries', href: '/industries/' }, { label: ind.name }]} eyebrow={`${ind.name} Industry`} eyebrowIcon={ind.icon} title={`Rubber Components for <em>${ind.name}</em>`} sub={`${ind.tagline}.`} image={ind.img} chips={['Custom Development', 'Right Compound', 'On-Time Supply']} />
+ <Split image={ind.gal[0]} badge={['350+', 'Happy clients across India', true]} mini={ind.gal[1]}>
+  <span class="eyebrow"><i class={ind.icon}></i> Overview</span><h2 class="h2">Serving the <em>{ind.name}</em> Sector</h2>
+  {ind.intro.map((x) => <p>{x}</p>)}
+  <a href="#" class="btn btn-d" data-open-enquiry>Send Your Requirement <i class="fa-solid fa-arrow-right"></i></a>
+ </Split>
+ <section class="sec u-soft"><div class="wrap">
+  <SecHead eyebrow="Challenges We Solve" icon="fa-solid fa-lightbulb" title={`What ${ind.name} <em>Applications Demand</em>`} lead="We design and select materials around these real-world conditions." />
+  <div class="chk-g rv">{ind.challenges.map((c) => <div><i class="fa-solid fa-triangle-exclamation"></i><div><b>{c}</b><span>Handled through the right compound, design and quality checks.</span></div></div>)}</div>
+ </div></section>
+ <section class="sec"><div class="wrap"><SecHead eyebrow="Applications" icon="fa-solid fa-screwdriver-wrench" title={`Where We Support <em>${ind.name}</em>`} center /><FeatureCards items={ind.uses} /></div></section>
+ <ProductsGrid slugs={ind.products} title={`Products for <em>${ind.name}</em>`} eyebrow="Recommended Products" />
+ <Stats bg={ind.gal[2]} />
+ <Gallery items={gal} title={`${ind.name} <em>Gallery</em>`} />
+ <Timeline soft />
+ <IndustriesGrid title="Other Industries <em>We Serve</em>" exclude={ind.slug} />
+ <Testimonials soft={false} />
+ <Cta title={`Rubber Parts for <em>${ind.name}</em> — Developed to Fit`} sub="Share your drawing or sample and get a quick quotation." />
+ <Faq items={GENERAL_FAQS} image={ind.gal[1]} soft />
+ <Enquiry />
+</BaseLayout>

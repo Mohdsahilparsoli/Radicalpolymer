@@ -1,613 +1,167 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSlider from '../components/HeroSlider.astro';
+import Strip from '../components/Strip.astro';
+import ProductsGrid from '../components/ProductsGrid.astro';
+import Stats from '../components/Stats.astro';
+import Materials from '../components/Materials.astro';
+import Timeline from '../components/Timeline.astro';
+import IndustriesGrid from '../components/IndustriesGrid.astro';
+import Testimonials from '../components/Testimonials.astro';
+import BlogSlider from '../components/BlogSlider.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+
+const homeFaqs = [
+ {
+  "q": "Can you manufacture custom-size O-rings and gaskets?",
+  "a": "Yes. We develop any size from your drawing or sample, including non-standard dimensions and special profiles."
+ },
+ {
+  "q": "Which rubber materials do you work with?",
+  "a": "We work with NBR (Nitrile), EPDM, Silicone, Viton (FKM), Neoprene and Natural Rubber, selected according to temperature, oil and chemical exposure."
+ },
+ {
+  "q": "What is the minimum order quantity (MOQ)?",
+  "a": "MOQ depends on the part and whether a new mould is needed. Share your requirement and we'll suggest the most economical option."
+ },
+ {
+  "q": "How long does it take to develop a new part?",
+  "a": "Timelines depend on part complexity and mould requirements. We confirm a clear delivery schedule with every quotation."
+ },
+ {
+  "q": "Do you deliver across India?",
+  "a": "Yes, we dispatch pan-India from our Ghaziabad facility within the promised time-frame."
+ },
+ {
+  "q": "Can I get samples before placing a bulk order?",
+  "a": "Please contact our team with your requirement — we'll discuss sample availability for your specific part."
+ },
+ {
+  "q": "How do I get a quotation?",
+  "a": "Fill the enquiry form below, email sales@radicalpolymer.com or call +91 9711114333 — we usually respond within one working day."
+ }
+];
 ---
+<BaseLayout title="Radical Polymers | Rubber O-Rings, Seals, Gaskets Manufacturer in Ghaziabad" description="Radical Polymers, Ghaziabad – manufacturer of Rubber O-Rings, Seals, Gaskets, Washers, Sheets, Bushes, Profiles, Diaphragms and custom molded rubber parts since 2013." active="home">
 
-<BaseLayout swiper revSlider>
-	<HeroSlider slot="hero" />
+<!-- 3. HERO -->
+<section class="hero"><div class="wrap">
+ <div class="rv in">
+  <span class="eyebrow"><i class="fa-solid fa-industry"></i> Rubber Products Manufacturer · Since 2013</span>
+  <h1>Rubber Parts That <span class="hl">Perform<svg viewBox="0 0 300 16" preserveAspectRatio="none"><path d="M3 12C80 2 200 2 297 10" stroke="#d39b1f" stroke-width="5" fill="none" stroke-linecap="round"/></svg></span> Under Pressure.</h1>
+  <p>O-Rings, Seals, Gaskets, Bushes, Diaphragms and custom molded rubber components — manufactured in Ghaziabad and delivered across India at reasonable rates.</p>
+  <ul class="ticks"><li><i class="fa-solid fa-circle-check"></i>Custom sizes developed</li><li><i class="fa-solid fa-circle-check"></i>NBR, EPDM, Silicone, Viton</li><li><i class="fa-solid fa-circle-check"></i>Factory-direct pricing</li><li><i class="fa-solid fa-circle-check"></i>On-time pan-India delivery</li></ul>
+  <div class="cta"><a href="#" class="btn btn-d" data-open-enquiry>Request a Quote <i class="fa-solid fa-arrow-right"></i></a><a href="#products" class="btn btn-l"><i class="fa-solid fa-grip"></i> View Products</a></div>
+  <div class="trust"><div class="avs"><span>M</span><span>R</span><span>A</span><span>+</span></div><div><span class="st">★★★★★</span><b>350+ Happy Clients</b><small>across automotive &amp; industrial sectors</small></div></div>
+ </div>
+ <div class="h-vis rv zoom in">
+  <div class="h-main img">
+   <div class="sl on"><img src="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?auto=format&fit=crop&w=1400&q=80" alt="Rubber products manufacturing facility"></div>
+   <div class="sl"><img src="https://images.unsplash.com/photo-1598299803204-b73796f43289?auto=format&fit=crop&w=1400&q=80" alt="Operator running moulding machine" loading="lazy"></div>
+   <div class="sl"><img src="https://images.unsplash.com/photo-1717386255773-1e3037c81788?auto=format&fit=crop&w=1400&q=80" alt="Industrial machine in factory" loading="lazy"></div>
+  </div>
+  <div class="h-dots"><button class="on" aria-label="Slide 1"></button><button aria-label="Slide 2"></button><button aria-label="Slide 3"></button></div>
+  <div class="h-sub img"><img src="https://images.unsplash.com/photo-1759790475932-ac8c04b17727?auto=format&fit=crop&w=600&q=80" alt="Black rubber O-rings"></div>
+  <div class="h-badge"><img src="/logo.png" alt=""><div><b>Radical Polymers</b><small>Ghaziabad, U.P.</small></div></div>
+  <div class="h-exp"><b>13+</b><span>Years of rubber<br>manufacturing</span></div>
+ </div>
+</div>
+<svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 40c240 40 480 40 720 20s480-40 720 0v20H0z" fill="#fff"/></svg>
+</section>
 
-	<!-- page content -->
-	<div class="page-content">
-		<!-- About Start -->
-		<section class="pbmit-bg-color-light overflow-hidden">
-			<div class="container">
-				<div class="row">
-					<div class="col-xl-6 col-lg-12">
-						<div class="about-two-img-box"></div>
-					</div>
-					<div class="col-xl-6 col-lg-12">
-						<div class="about-two-content">
-							<div class="pbmit-heading-subheading text-right">
-								<h4 class="pbmit-subtitle">Who We Are</h4>
-								<h2 class="pbmit-title">Welcome To Radical Polymers</h2>
-							</div>
-							<p>
-								Established as a Proprietor firm in the year 2013, we “Radical Polymers” are a leading Manufacturer of a
-								wide range of Rubber Gaskets, Rubber O-Rings, Rubber Seals, etc. Situated in Ghaziabad (Uttar Pradesh,
-								India), we have constructed a wide and well functional infrastructural unit that plays an important role in
-								the growth of our company.
-							</p>
-							<p>
-								We offer these products at reasonable rates and deliver these within the promised time-frame. Under the
-								headship of “Mr. Sahil Sharma” (Proprietor), we have gained a huge clientele across the nation.
-							</p>
-							<a href="/about-us/" class="pbmit-btn">
-								<span>Read More</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- About End -->
+<Strip />
 
-		<section class="section-lg">
-			<div class="container">
-				<div class="pbmit-heading-subheading text-center">
-					<h4 class="pbmit-subtitle">Products</h4>
-					<h2 class="pbmit-title">Explore Our Products</h2>
-				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<article class="pbmit-blog-style-1" style="box-shadow: 2px 2px 2px 2px #000;">
-							<div class="post-item">
-								<div class="pbmit-featured-container">
-									<div class="pbmit-featured-wrapper">
-										<img src="/images/r.jpg" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbminfotech-box-content">
-									<div class="pbminfotech-box-container">
-										<h3 class="pbmit-post-title">
-											<a href="/products/">Rubber O-Rings</a>
-										</h3>
-										<div class="pbminfotech-box-desc">
-											<div class="pbminfotech-box-desc-text">
-												In order to cater the variegated demands of our clients, we are offering an excellent
-												quality range of Black Rubber O Rings.
-											</div>
-										</div>
-										<div class="pbmit-service-btn">
-											<a class="btn-arrow" href="/products/">
-												Read More
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
+<!-- 5. ABOUT -->
+<section class="sec about"><div class="wrap">
+ <div class="ab-pics rv">
+  <div class="p1 img"><img src="https://images.unsplash.com/photo-1581091212991-8891c7d4bd9b?auto=format&fit=crop&w=1000&q=80" alt="Engineers in manufacturing unit" loading="lazy"></div>
+  <a href="/manufacturing-facility/" class="play" aria-label="Facility tour"><i class="fa-solid fa-play"></i></a>
+  <div class="p2 img"><img src="https://images.unsplash.com/photo-1699466622736-36c7b7893745?auto=format&fit=crop&w=800&q=80" alt="Box of rubber rings" loading="lazy"></div>
+  <div class="yr"><b>2013</b><span>Established in Ghaziabad</span></div>
+ </div>
+ <div class="rv d1" data-tabs>
+  <span class="eyebrow"><i class="fa-solid fa-building"></i> Who We Are</span>
+  <h2 class="h2">Welcome To <em>Radical Polymers</em></h2>
+  <p>Established as a Proprietor firm in the year 2013, “Radical Polymers” is a leading Manufacturer of a wide range of Rubber Gaskets, Rubber O-Rings, Rubber Seals, etc. Situated in Ghaziabad (Uttar Pradesh, India), we have constructed a wide and well-functional infrastructural unit that plays an important role in the growth of our company. We offer these products at reasonable rates and deliver them within the promised time-frame.</p>
+  <div class="mv-tabs"><button class="on" data-t="0"><i class="fa-solid fa-bullseye"></i>Our Mission</button><button data-t="1"><i class="fa-regular fa-eye"></i>Our Vision</button><button data-t="2"><i class="fa-regular fa-gem"></i>Our Values</button></div>
+  <p class="mv-p on" data-p="0">To supply reliable rubber components at reasonable rates and deliver them within the promised time-frame — every single order.</p>
+  <p class="mv-p" data-p="1">To be the first-choice rubber parts partner for Indian manufacturers, known for quality, flexibility and trust.</p>
+  <p class="mv-p" data-p="2">Honest pricing, consistent quality, quick response and long-term relationships with every client.</p>
+  <div class="ab-feat"><div><i class="fa-solid fa-award"></i><div><b>Quality Products</b><span>Consistent, inspected output</span></div></div><div><i class="fa-solid fa-hand-holding-dollar"></i><div><b>Reasonable Rates</b><span>Factory-direct pricing</span></div></div><div><i class="fa-solid fa-users-gear"></i><div><b>Expert Team</b><span>80+ skilled members</span></div></div><div><i class="fa-solid fa-clock"></i><div><b>Timely Delivery</b><span>Within promised time-frame</span></div></div></div>
+  <div class="owner"><div class="av">S</div><div><b>Mr. Sahil Sharma</b><span>Proprietor, Radical Polymers</span></div><a href="/about-us/" class="btn btn-g" style="margin-left:auto">Read More <i class="fa-solid fa-arrow-right"></i></a></div>
+ </div>
+</div></section>
 
-					<div class="col-md-4">
-						<article class="pbmit-blog-style-1" style="box-shadow: 2px 2px 2px 2px #000;">
-							<div class="post-item">
-								<div class="pbmit-featured-container">
-									<div class="pbmit-featured-wrapper">
-										<img src="/images/r1.jpg" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbminfotech-box-content">
-									<div class="pbminfotech-box-container">
-										<h3 class="pbmit-post-title">
-											<a href="/products/">Rubber Gasket</a>
-										</h3>
-										<div class="pbminfotech-box-desc">
-											<div class="pbminfotech-box-desc-text">
-												With an objective to fulfill the ever-evolving demands of our clients, we are engaged in
-												offering a wide assortment ...
-											</div>
-										</div>
-										<div class="pbmit-service-btn">
-											<a class="btn-arrow" href="/products/">
-												Read More
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
+<ProductsGrid filters />
 
-					<div class="col-md-4">
-						<article class="pbmit-blog-style-1" style="box-shadow: 2px 2px 2px 2px #000;">
-							<div class="post-item">
-								<div class="pbmit-featured-container">
-									<div class="pbmit-featured-wrapper">
-										<img src="/images/p.jpg" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbminfotech-box-content">
-									<div class="pbminfotech-box-container">
-										<h3 class="pbmit-post-title">
-											<a href="/products/">Rubber Seals</a>
-										</h3>
-										<div class="pbminfotech-box-desc">
-											<div class="pbminfotech-box-desc-text">
-												Keeping in mind ever-evolving requirements of our respected clients, we are offering a
-												premium quality...
-											</div>
-										</div>
-										<div class="pbmit-service-btn">
-											<a class="btn-arrow" href="/products/">
-												Read More
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
+<Stats />
 
-					<div class="col-md-4">
-						<article class="pbmit-blog-style-1" style="box-shadow: 2px 2px 2px 2px #000;">
-							<div class="post-item">
-								<div class="pbmit-featured-container">
-									<div class="pbmit-featured-wrapper">
-										<img src="/images/p1.jpg" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbminfotech-box-content">
-									<div class="pbminfotech-box-container">
-										<h3 class="pbmit-post-title">
-											<a href="/products/">Rubber Diaphragm</a>
-										</h3>
-										<div class="pbminfotech-box-desc">
-											<div class="pbminfotech-box-desc-text">
-												Riding on unfathomable volumes of industrial expertise, we are providing a broad array of
-												Nitrile Rubber Diaphragm.
-											</div>
-										</div>
-										<div class="pbmit-service-btn">
-											<a class="btn-arrow" href="/products/">
-												Read More
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
-					<div class="col-md-4">
-						<article class="pbmit-blog-style-1" style="box-shadow: 2px 2px 2px 2px #000;">
-							<div class="post-item">
-								<div class="pbmit-featured-container">
-									<div class="pbmit-featured-wrapper">
-										<img src="/images/p2.jpg" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbminfotech-box-content">
-									<div class="pbminfotech-box-container">
-										<h3 class="pbmit-post-title">
-											<a href="/products/">Rubber Bush</a>
-										</h3>
-										<div class="pbminfotech-box-desc">
-											<div class="pbminfotech-box-desc-text">
-												With sincerity and hard work of our professionals, we have carved a niche for ourselves in
-												this domain...
-											</div>
-										</div>
-										<div class="pbmit-service-btn">
-											<a class="btn-arrow" href="/products/">
-												Read More
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
-					<div class="col-md-4">
-						<article class="pbmit-blog-style-1" style="box-shadow: 2px 2px 2px 2px #000;">
-							<div class="post-item">
-								<div class="pbmit-featured-container">
-									<div class="pbmit-featured-wrapper">
-										<img src="/images/p3.jpg" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbminfotech-box-content">
-									<div class="pbminfotech-box-container">
-										<h3 class="pbmit-post-title">
-											<a href="/products/">Rubber Grommets</a>
-										</h3>
-										<div class="pbminfotech-box-desc">
-											<div class="pbminfotech-box-desc-text">
-												We are successfully meeting the varied needs of our patrons by offering a wide gamut of
-												Silicon Rubber Grommet ...
-											</div>
-										</div>
-										<div class="pbmit-service-btn">
-											<a class="btn-arrow" href="/products/">
-												Read More
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</article>
-					</div>
-				</div>
-			</div>
-		</section>
+<!-- 8. WHY CHOOSE US -->
+<section class="sec why"><div class="wrap">
+ <div class="why-img img rv"><img src="https://images.unsplash.com/photo-1695603414685-af28aff0f9d2?auto=format&fit=crop&w=1100&q=80" alt="Technicians working on machine" loading="lazy"><div class="cap"><i class="fa-solid fa-handshake"></i><div><b>A Genuine Manufacturer</b><span>Trusted by 350+ clients since 2013</span></div></div></div>
+ <div class="rv d1">
+  <span class="eyebrow"><i class="fa-solid fa-star"></i> Why Choose Us</span>
+  <h2 class="h2">The <em>Radical</em> Advantage</h2>
+  <p class="lead">We are a genuine manufacturer, not a trader — which means better control over quality, pricing and delivery for every order, big or small.</p>
+  <div class="wg">
+   <div class="wc"><i class="fa-solid fa-industry"></i><h3>Direct Manufacturer</h3><p>Factory-direct pricing with full process control.</p></div>
+   <div class="wc"><i class="fa-solid fa-ruler-combined"></i><h3>Any Size Developed</h3><p>We develop any size or profile from your drawing or sample.</p></div>
+   <div class="wc"><i class="fa-solid fa-flask-vial"></i><h3>Right Compound</h3><p>NBR, EPDM, Silicone, Viton, Neoprene — matched to your application.</p></div>
+   <div class="wc"><i class="fa-solid fa-truck-fast"></i><h3>On-Time Delivery</h3><p>Committed timelines and dispatch across India.</p></div>
+  </div>
+ </div>
+</div></section>
 
-		<section class="section-lg_tb">
-			<div class="container">
-				<div class="counter-three-bg">
-					<div class="pbmit-heading-subheading text-center">
-						<h4 class="pbmit-subtitle">What we have</h4>
-						<h2 class="pbmit-title">Our Stats</h2>
-					</div>
-					<div class="row">
-						<div class="col-lg-3 col-md-6">
-							<div class="pbminfotech-ele-fid-style-7">
-								<div class="pbmit-fld-contents">
-									<div class="pbmit-sbox-icon-wrapper">
-										<i class="pbmit-colza-icon pbmit-colza-icon-refinery"></i>
-									</div>
-									<div class="pbmit-fld-wrap">
-										<h4 class="pbmit-fid-inner">
-											<span
-												class="pbmit-number-rotate numinate"
-												data-appear-animation="animateDigits"
-												data-from="0"
-												data-to="20"
-												data-interval="5"
-												data-before=""
-												data-before-style=""
-												data-after=""
-												data-after-style=""
-											>
-												20
-											</span>
-											<span class="pbmit-fid">
-												<sup>+</sup>
-											</span>
-										</h4>
-										<div class="pbmit-fid-title">
-											<span>Products</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="pbminfotech-ele-fid-style-7">
-								<div class="pbmit-fld-contents">
-									<div class="pbmit-sbox-icon-wrapper">
-										<i class="pbmit-colza-icon pbmit-colza-icon-foreman-1"></i>
-									</div>
-									<div class="pbmit-fld-wrap">
-										<h4 class="pbmit-fid-inner">
-											<span
-												class="pbmit-number-rotate numinate"
-												data-appear-animation="animateDigits"
-												data-from="0"
-												data-to="80"
-												data-interval="5"
-												data-before=""
-												data-before-style=""
-												data-after=""
-												data-after-style=""
-											>
-												80
-											</span>
-											<span class="pbmit-fid">
-												<sup>+</sup>
-											</span>
-										</h4>
-										<div class="pbmit-fid-title">
-											<span>Expert Member</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="pbminfotech-ele-fid-style-7">
-								<div class="pbmit-fld-contents">
-									<div class="pbmit-sbox-icon-wrapper">
-										<i class="pbmit-colza-icon pbmit-colza-icon-factory-2"></i>
-									</div>
-									<div class="pbmit-fld-wrap">
-										<h4 class="pbmit-fid-inner">
-											<span
-												class="pbmit-number-rotate numinate"
-												data-appear-animation="animateDigits"
-												data-from="0"
-												data-to="200"
-												data-interval="5"
-												data-before=""
-												data-before-style=""
-												data-after=""
-												data-after-style=""
-											>
-												200
-											</span>
-											<span class="pbmit-fid">
-												<sup>+</sup>
-											</span>
-										</h4>
-										<div class="pbmit-fid-title">
-											<span>Products Completed</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="pbminfotech-ele-fid-style-7">
-								<div class="pbmit-fld-contents">
-									<div class="pbmit-sbox-icon-wrapper">
-										<i class="pbmit-colza-icon pbmit-colza-icon-forklift"></i>
-									</div>
-									<div class="pbmit-fld-wrap">
-										<h4 class="pbmit-fid-inner">
-											<span
-												class="pbmit-number-rotate numinate"
-												data-appear-animation="animateDigits"
-												data-from="0"
-												data-to="20"
-												data-interval="5"
-												data-before=""
-												data-before-style=""
-												data-after=""
-												data-after-style=""
-											>
-												20
-											</span>
-											<span class="pbmit-fid">
-												<sup>+</sup>
-											</span>
-										</h4>
-										<div class="pbmit-fid-title">
-											<span>Modern Equipment</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
+<Materials />
 
-		<!-- Work process Start -->
-		<section class="section-lg">
-			<div class="container">
-				<div class="pbmit-heading-subheading text-center">
-					<h4 class="pbmit-subtitle">How it Work</h4>
-					<h2 class="pbmit-title">Our Work Process</h2>
-				</div>
-				<div class="row pbmit-element-miconheading-style-5">
-					<article class="pbmit-miconheading-style-5 col-lg-3 col-md-6">
-						<div class="pbmit-ihbox pbmit-ihbox-style-5">
-							<div class="pbmit-ihbox-box">
-								<div class="pbmit-ihbox-icon">
-									<div class="pbmit-ihbox-icon-wrapper pbmit-ihbox-icon-type-image">
-										<img src="/images/homepage-2/icon/big-inc-01.png" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbmit-ihbox-contents">
-									<h2 class="pbmit-element-title">Explore</h2>
-								</div>
-							</div>
-						</div>
-					</article>
-					<article class="pbmit-miconheading-style-5 col-lg-3 col-md-6">
-						<div class="pbmit-ihbox pbmit-ihbox-style-5">
-							<div class="pbmit-ihbox-box">
-								<div class="pbmit-ihbox-icon">
-									<div class="pbmit-ihbox-icon-wrapper pbmit-ihbox-icon-type-image">
-										<img src="/images/homepage-2/icon/big-inc-02.png" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbmit-ihbox-contents">
-									<h2 class="pbmit-element-title">Design</h2>
-								</div>
-							</div>
-						</div>
-					</article>
-					<article class="pbmit-miconheading-style-5 col-lg-3 col-md-6">
-						<div class="pbmit-ihbox pbmit-ihbox-style-5">
-							<div class="pbmit-ihbox-box">
-								<div class="pbmit-ihbox-icon">
-									<div class="pbmit-ihbox-icon-wrapper pbmit-ihbox-icon-type-image">
-										<img src="/images/homepage-1/icon/big-inc-03.png" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbmit-ihbox-contents">
-									<h2 class="pbmit-element-title">Production</h2>
-								</div>
-							</div>
-						</div>
-					</article>
-					<article class="pbmit-miconheading-style-5 col-lg-3 col-md-6">
-						<div class="pbmit-ihbox pbmit-ihbox-style-5">
-							<div class="pbmit-ihbox-box">
-								<div class="pbmit-ihbox-icon">
-									<div class="pbmit-ihbox-icon-wrapper pbmit-ihbox-icon-type-image">
-										<img src="/images/homepage-1/icon/big-inc-04.png" class="img-fluid" alt="" />
-									</div>
-								</div>
-								<div class="pbmit-ihbox-contents">
-									<h2 class="pbmit-element-title">Finished</h2>
-								</div>
-							</div>
-						</div>
-					</article>
-				</div>
-			</div>
-		</section>
-		<!-- Work process End -->
+<Timeline />
 
-		<section class="overflow-hidden">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-5 col-md-12">
-						<div class="testimonial-bg-one">
-							<div class="pbminfotech-ele-fid-style-5">
-								<div class="pbmit-fld-contents d-flex align-items-center">
-									<div class="pbmit-sbox-icon-wrapper">
-										<i class="pbmit-colza-icon pbmit-colza-icon-labor-man"></i>
-									</div>
-									<div class="pbmit-fld-wrap">
-										<h4 class="pbmit-fid-inner">
-											<span
-												class="pbmit-number-rotate numinate"
-												data-appear-animation="animateDigits"
-												data-from="0"
-												data-to="350"
-												data-interval="5"
-												data-before=""
-												data-before-style=""
-												data-after=""
-												data-after-style=""
-											>
-												350
-											</span>
-											<span class="pbmit-fid">
-												<sup>+</sup>
-											</span>
-										</h4>
-										<div class="pbmit-fid-title">
-											<span>Happy Clients</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-7 col-md-12">
-						<div class="testimonial-box-one">
-							<div class="pbmit-heading-subheading">
-								<h4 class="pbmit-subtitle">Testimonial</h4>
-								<h2 class="pbmit-title">What clients say about</h2>
-							</div>
-							<div
-								class="swiper-slider"
-								data-loop="false"
-								data-autoplay="true"
-								data-dots="true"
-								data-arrows="false"
-								data-columns="1"
-								data-margin="30"
-								data-effect="slide"
-							>
-								<div class="swiper-wrapper">
-									<!-- slide 1 -->
-									<div class="swiper-slide">
-										<article class="pbmit-testimonial-style-2">
-											<div class="pbminfotech-post-item">
-												<div class="pbminfotech-box-content">
-													<div class="pbminfotech-box-star-ratings">
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star"></i>
-													</div>
-													<div class="pbminfotech-testimonial-wrapper">
-														<div class="pbminfotech-box-desc">
-															<blockquote class="pbminfotech-testimonial-text">
-																<p>
-																	“Amazing products satisfied and recommended to use Radical Polymers
-																	👍👍👍👍 … ”
-																</p>
-															</blockquote>
-														</div>
-														<div class="pbminfotech-author-wrapper d-flex">
-															<div class="pbminfotech-box-img">
-																<div class="pbmit-featured-wrapper"></div>
-															</div>
-															<div class="pbminfotech-box-author">
-																<h3 class="pbminfotech-box-title">Mohit</h3>
-																<div class="pbminfotech-testimonial-detail">Customer</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</article>
-									</div>
-									<!-- slide 2 -->
-									<div class="swiper-slide">
-										<article class="pbmit-testimonial-style-2">
-											<div class="pbminfotech-post-item">
-												<div class="pbminfotech-box-content">
-													<div class="pbminfotech-box-star-ratings">
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-													</div>
-													<div class="pbminfotech-testimonial-wrapper">
-														<div class="pbminfotech-box-desc">
-															<blockquote class="pbminfotech-testimonial-text">
-																<p>
-																	“Unmatched purchasing experience, quality is too good same as original,
-																	they can develop any size you ask”
-																</p>
-															</blockquote>
-														</div>
-														<div class="pbminfotech-author-wrapper d-flex">
-															<div class="pbminfotech-box-img">
-																<div class="pbmit-featured-wrapper"></div>
-															</div>
-															<div class="pbminfotech-box-author">
-																<h3 class="pbminfotech-box-title">Rohan</h3>
-																<div class="pbminfotech-testimonial-detail">Customer</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</article>
-									</div>
-									<!-- slide 3 -->
-									<div class="swiper-slide">
-										<article class="pbmit-testimonial-style-2">
-											<div class="pbminfotech-post-item">
-												<div class="pbminfotech-box-content">
-													<div class="pbminfotech-box-star-ratings">
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star pbmit-active"></i>
-														<i class="pbmit-base-icon-star"></i>
-													</div>
-													<div class="pbminfotech-testimonial-wrapper">
-														<div class="pbminfotech-box-desc">
-															<blockquote class="pbminfotech-testimonial-text">
-																<p>
-																	“One of the best in terms of sales ,services,pricing and delivery . A
-																	genuine manufacturer,fully recommended! ”
-																</p>
-															</blockquote>
-														</div>
-														<div class="pbminfotech-author-wrapper d-flex">
-															<div class="pbminfotech-box-img">
-																<div class="pbmit-featured-wrapper"></div>
-															</div>
-															<div class="pbminfotech-box-author">
-																<h3 class="pbminfotech-box-title">Aniket</h3>
-																<div class="pbminfotech-testimonial-detail">Customer</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</article>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Testimonial End -->
+<IndustriesGrid />
 
-		<!-- Blog End -->
-	</div>
-	<!-- page content End -->
+<!-- 12. FACILITY GALLERY -->
+<section class="sec"><div class="wrap">
+ <div class="sec-head rv"><div><span class="eyebrow"><i class="fa-solid fa-warehouse"></i> Manufacturing Facility</span><h2 class="h2" style="margin:0">Inside Our <em>Facility</em></h2></div><a href="/manufacturing-facility/" class="btn btn-l">Explore Facility <i class="fa-solid fa-arrow-right"></i></a></div>
+ <div class="gal rv">
+  <div class="img" data-lb><img src="https://images.unsplash.com/photo-1496247749665-49cf5b1022e9?auto=format&fit=crop&w=1200&q=80" alt="Production floor" loading="lazy"><span class="zoom"><i class="fa-solid fa-expand"></i></span><div class="lbl"><b>Production Floor</b><span>Moulding &amp; finishing</span></div></div>
+  <div class="img" data-lb><img src="https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?auto=format&fit=crop&w=800&q=80" alt="Automation" loading="lazy"><span class="zoom"><i class="fa-solid fa-expand"></i></span><div class="lbl"><b>Modern Machines</b><span>20+ equipment</span></div></div>
+  <div class="img" data-lb><img src="https://images.unsplash.com/photo-1758873263563-5ba4aa330799?auto=format&fit=crop&w=800&q=80" alt="Measurement" loading="lazy"><span class="zoom"><i class="fa-solid fa-expand"></i></span><div class="lbl"><b>Precision Checks</b><span>Dimensional inspection</span></div></div>
+  <div class="img" data-lb><img src="https://images.unsplash.com/photo-1589793463357-5fb813435467?auto=format&fit=crop&w=800&q=80" alt="Team at work" loading="lazy"><span class="zoom"><i class="fa-solid fa-expand"></i></span><div class="lbl"><b>Skilled Team</b><span>80+ members</span></div></div>
+  <div class="img" data-lb><img src="https://images.unsplash.com/photo-1721937127582-ed331de95a04?auto=format&fit=crop&w=800&q=80" alt="Warehouse" loading="lazy"><span class="zoom"><i class="fa-solid fa-expand"></i></span><div class="lbl"><b>Packing &amp; Dispatch</b><span>Pan-India delivery</span></div></div>
+ </div>
+</div></section>
+
+<!-- 13. QUALITY -->
+<section class="sec qual" style="padding-top:0"><div class="wrap">
+ <div class="rv"><span class="eyebrow"><i class="fa-solid fa-microscope"></i> Quality &amp; Testing</span><h2 class="h2">Quality That <em>Doesn't Leak</em></h2>
+  <p class="lead">Every batch is checked at multiple stages before it leaves our Ghaziabad facility.</p>
+  <ul class="q-list">
+   <li><div class="qi"><i class="fa-solid fa-flask-vial"></i></div><div><b>Raw Material Check</b><span>Compound verified before production begins.</span></div></li>
+   <li><div class="qi"><i class="fa-solid fa-ruler"></i></div><div><b>Dimensional Accuracy</b><span>Sizes checked against drawing tolerances.</span></div></li>
+   <li><div class="qi"><i class="fa-solid fa-gauge-high"></i></div><div><b>Hardness Testing</b><span>Shore A hardness verified for consistency.</span></div></li>
+   <li><div class="qi"><i class="fa-solid fa-eye"></i></div><div><b>Final Visual Inspection</b><span>Flash, finish &amp; defects checked before packing.</span></div></li>
+  </ul></div>
+ <div class="q-vis img rv d1"><img src="https://images.unsplash.com/photo-1747999827332-163aa33cd597?auto=format&fit=crop&w=1100&q=80" alt="Quality inspection of component" loading="lazy">
+  <div class="q-card"><h3>Why clients stay with us</h3>
+   <div class="meter"><div><span>Product Quality</span><span>98%</span></div><div class="tr"><i style="--w:98%"></i></div></div>
+   <div class="meter"><div><span>On-Time Delivery</span><span>95%</span></div><div class="tr"><i style="--w:95%"></i></div></div>
+   <div class="meter"><div><span>Custom Development</span><span>92%</span></div><div class="tr"><i style="--w:92%"></i></div></div>
+  </div>
+ </div>
+</div></section>
+
+<!-- 14. CTA BANNER -->
+<section style="padding-bottom:110px"><div class="wrap"><div class="cta-b rv">
+ <div class="img"><img src="https://images.unsplash.com/photo-1735494033576-9c882e80504c?auto=format&fit=crop&w=1800&q=75" alt="" loading="lazy"></div>
+ <div><h2>Need a <em>Custom Rubber Part</em>? Send Your Drawing or Sample.</h2><p>We develop moulds and deliver precision rubber components that match your exact requirement.</p></div>
+ <div class="acts"><a href="#" class="btn btn-g" data-open-enquiry>Get Free Quote <i class="fa-solid fa-arrow-right"></i></a><a href="tel:+919711114333" class="btn btn-l"><i class="fa-solid fa-phone"></i> +91 9711114333</a></div>
+</div></div></section>
+
+<Testimonials />
+
+<BlogSlider />
+
+<Faq items={homeFaqs} image="clipboard" pt0 />
+
+<Enquiry />
+
 </BaseLayout>

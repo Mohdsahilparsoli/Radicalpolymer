@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Split from '../components/Split.astro';
+import TickList from '../components/TickList.astro';
+import SecHead from '../components/SecHead.astro';
+import Steps from '../components/Steps.astro';
+import FeatureCards from '../components/FeatureCards.astro';
+import Stats from '../components/Stats.astro';
+import Gallery from '../components/Gallery.astro';
+import MfgCards from '../components/MfgCards.astro';
+import Cta from '../components/Cta.astro';
+import Faq from '../components/Faq.astro';
+import Enquiry from '../components/Enquiry.astro';
+import { CAPS, GENERAL_FAQS } from '../data/content';
+const areas = [
+  { icon: 'fa-solid fa-flask', title: 'Compound Preparation', text: 'Raw compound is checked and prepared for the selected material grade.' },
+  { icon: 'fa-solid fa-compress', title: 'Moulding', text: 'Compression and injection moulding presses for a wide range of parts.' },
+  { icon: 'fa-solid fa-scissors', title: 'Finishing', text: 'Parts are trimmed and de-flashed for a clean finish.' },
+  { icon: 'fa-solid fa-microscope', title: 'Inspection', text: 'Lot-wise dimensional, hardness and visual checks.' },
+];
+const gal = [
+  { img: 'floor', title: 'Production Floor', sub: 'Moulding & finishing' }, { img: 'operator', title: 'Moulding Press', sub: 'In operation' },
+  { img: 'robot', title: 'Equipment', sub: 'Modern machines' }, { img: 'assembly', title: 'Team at Work', sub: 'Skilled members' },
+  { img: 'boxes', title: 'Ready for Dispatch', sub: 'Packed goods' },
+];
+---
+<BaseLayout title="Manufacturing Facility | Radical Polymers, Ghaziabad" description="Radical Polymers manufacturing facility in Ghaziabad: rubber compound preparation, compression and injection moulding, finishing, inspection and dispatch." active="manufacturing">
+ <PageHero crumbs={[{ label: 'Manufacturing', href: '/manufacturing/' }, { label: 'Manufacturing Facility' }]} eyebrow="Manufacturing Facility" eyebrowIcon="fa-solid fa-warehouse" title="Our <em>Manufacturing</em> Facility" sub="A wide and well-functional infrastructural unit in Ghaziabad, equipped with modern moulding presses and run by a skilled team." image="floor" chips={['Ghaziabad, Uttar Pradesh', '20+ Machines', '80+ Members']} />
+ <Split image="machine2" badge={['2013', 'Operating since']} mini="robot">
+  <span class="eyebrow"><i class="fa-solid fa-warehouse"></i> Infrastructure</span><h2 class="h2">Built for <em>Consistent Output</em></h2>
+  <p>Our infrastructure plays an important role in the growth of our company. The facility is organised into dedicated areas for compound preparation, moulding, finishing, inspection and dispatch.</p>
+  <p>This layout keeps material flow smooth and makes it easier to maintain quality and meet delivery commitments.</p>
+  <TickList items={['Compound preparation area', 'Moulding section', 'Trimming &amp; finishing', 'Inspection area', 'Finished goods store', 'Packing &amp; dispatch']} />
+ </Split>
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="Production Flow" icon="fa-solid fa-route" title="How Parts Move Through <em>Our Facility</em>" center /><Steps items={areas} /></div></section>
+ <section class="sec"><div class="wrap"><SecHead eyebrow="Capabilities" icon="fa-solid fa-gears" title="What Our Facility <em>Can Do</em>" /><FeatureCards items={CAPS} cols={4} /></div></section>
+ <Stats bg="line" />
+ <Gallery items={gal} title="Facility <em>Gallery</em>" />
+ <Split image="warehouse" badge={['350+', 'Clients served', true]} rev soft>
+  <span class="eyebrow"><i class="fa-solid fa-truck-fast"></i> Packing &amp; Dispatch</span><h2 class="h2">Safe Packing, <em>On-Time Delivery</em></h2>
+  <p>Finished parts are counted, packed in poly bags and cartons (or as you require) and dispatched across India within the promised time-frame.</p>
+  <TickList items={['Lot-wise packing &amp; labelling', 'Custom packing on request', 'Pan-India dispatch', 'Regular schedule supply']} />
+  <a href="#" class="btn btn-d" data-open-enquiry>Plan Your Order <i class="fa-solid fa-arrow-right"></i></a>
+ </Split>
+ <section class="sec"><div class="wrap"><SecHead eyebrow="Manufacturing" icon="fa-solid fa-layer-group" title="More About <em>How We Work</em>" center /><MfgCards exclude="manufacturing-facility" /></div></section>
+ <Cta title="Visit or <em>Talk to Our Team</em>" sub="Call us to discuss your requirement or plan a visit to our Ghaziabad facility." />
+ <Faq items={GENERAL_FAQS} image="assembly" soft />
+ <Enquiry />
+</BaseLayout>

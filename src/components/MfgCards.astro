@@ -1,0 +1,7 @@
+---
+import { MFG3 } from '../data/content';
+import { img } from '../data/site';
+interface Props { exclude?: string }
+const { exclude = '' } = Astro.props;
+---
+<div class="g3">{MFG3.filter((m) => m.slug !== exclude).map((m, k) => <a href={`/${m.slug}/`} class={`ac rv d${k}`} style="height:380px"><img src={img(m.img, 800)} alt={m.name} loading="lazy" /><span class="ii"><i class={m.icon}></i></span><h3>{m.name}</h3><p>{m.text}</p></a>)}</div>

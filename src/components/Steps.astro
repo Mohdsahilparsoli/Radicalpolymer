@@ -1,0 +1,6 @@
+---
+import { PROCESS } from '../data/content';
+interface Props { items?: readonly { icon: string; title: string; text: string }[] }
+const { items = PROCESS } = Astro.props;
+---
+<div class="steps4">{items.map((s, k) => <div class={`st4 rv d${k}`}><span class="n">0{k + 1}</span><i class={s.icon}></i><h3>{s.title}</h3><p>{s.text}</p></div>)}</div>

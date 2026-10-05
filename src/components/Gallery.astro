@@ -1,0 +1,10 @@
+---
+import { img } from '../data/site';
+import SecHead from './SecHead.astro';
+interface Props { items: { img: string; title: string; sub: string }[]; title?: string; eyebrow?: string; icon?: string }
+const { items, title = 'Inside Our <em>Facility</em>', eyebrow = 'Gallery', icon = 'fa-solid fa-images' } = Astro.props;
+---
+<section class="sec"><div class="wrap">
+ <SecHead eyebrow={eyebrow} icon={icon} title={title}><a slot="side" href="/manufacturing-facility/" class="btn btn-l">Explore Facility <i class="fa-solid fa-arrow-right"></i></a></SecHead>
+ <div class="gal rv">{items.map((g, n) => <div class="img" data-lb><img src={img(g.img, n === 0 ? 1200 : 800)} alt={g.title} loading="lazy" /><span class="zoom"><i class="fa-solid fa-expand"></i></span><div class="lbl"><b>{g.title}</b><span>{g.sub}</span></div></div>)}</div>
+</div></section>

@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import SecHead from '../../components/SecHead.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import Cta from '../../components/Cta.astro';
+import Enquiry from '../../components/Enquiry.astro';
+import { BLOG } from '../../data/content';
+import { img, url } from '../../data/site';
+// Later: replace BLOG with a WPGraphQL `posts` query.
+const f = BLOG[0];
+const cats = ['all', ...[...new Set(BLOG.map((b) => b.cat))].sort()];
+---
+<BaseLayout title="Blog | Rubber O-Ring, Seal & Gasket Guides – Radical Polymers" description="Guides on measuring O-rings, choosing NBR vs EPDM vs Viton, preventing gasket failure and ordering custom rubber parts." active="blog">
+ <PageHero crumbs={[{ label: 'Blog' }]} eyebrow="Blog & Insights" eyebrowIcon="fa-solid fa-newspaper" title="Rubber <em>Knowledge Hub</em>" sub="Guides, tips and material advice to help you choose, measure and maintain rubber components." image="paper" chips={['Guides', 'Materials', 'Maintenance Tips']} actions={false} />
+ <section class="sec"><div class="wrap">
+  <a href={url.post(f.slug)} class="feat-post rv"><div class="img"><img src={img(f.img, 1100)} alt={f.title} loading="lazy" /></div><div class="tx"><span class="cat">Featured · {f.cat}</span><div class="meta"><span><i class="fa-regular fa-calendar"></i>{f.date}</span><span><i class="fa-regular fa-clock"></i>{f.mins} min read</span></div><h2>{f.title}</h2><p>{f.excerpt}</p><span class="btn btn-d" style="align-self:flex-start">Read Article <i class="fa-solid fa-arrow-right"></i></span></div></a>
+  <SecHead eyebrow="All Articles" icon="fa-solid fa-book-open" title="Latest <em>Articles</em>">
+   <div slot="side" class="filters" data-filter="#bgrid">{cats.map((c, k) => <button class:list={{ on: k === 0 }} data-f={c.toLowerCase().replace(/ /g, '-')}>{c === 'all' ? 'All Articles' : c}</button>)}</div>
+  </SecHead>
+  <div class="bgrid" id="bgrid">{BLOG.map((b) => <BlogCard post={b} />)}</div>
+ </div></section>
+ <Cta title="Have a Technical <em>Question</em>?" sub="Our team is happy to help you choose the right rubber part or material." image="lab" />
+ <Enquiry />
+</BaseLayout>

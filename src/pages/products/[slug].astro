@@ -1,0 +1,72 @@
+---
+// One template for every product. Later: getStaticPaths() pulls products from WordPress.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import FeatureCards from '../../components/FeatureCards.astro';
+import SecHead from '../../components/SecHead.astro';
+import Steps from '../../components/Steps.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import Cta from '../../components/Cta.astro';
+import Faq from '../../components/Faq.astro';
+import Enquiry from '../../components/Enquiry.astro';
+import { PRODUCTS, COMMON_SPECS, WHY8, I, type Product } from '../../data/content';
+import { SITE, img, url } from '../../data/site';
+
+export function getStaticPaths() {
+  return PRODUCTS.map((p) => ({ params: { slug: p.slug }, props: { p } }));
+}
+const { p } = Astro.props as { p: Product };
+const others = PRODUCTS.filter((x) => x.slug !== p.slug);
+const gallery = [p.img, ...p.gal].slice(0, 3);
+const specs = [...p.specs, ...COMMON_SPECS];
+const relId = 'rel-' + p.slug;
+const iconBox = 'width:40px;height:40px;border-radius:10px;background:var(--soft);color:var(--gold);display:grid;place-items:center;flex-shrink:0';
+---
+<BaseLayout title={`${p.name} Manufacturer in Ghaziabad | Radical Polymers`} description={`${p.name} manufacturer in Ghaziabad – ${p.tagline.toLowerCase()}. Custom sizes in ${p.mats.slice(0, 4).join(', ')}. Get a quote from Radical Polymers.`} active="products" product={p.name}>
+ <PageHero crumbs={[{ label: 'Products', href: '/products/' }, { label: p.name }]} eyebrow={p.name} eyebrowIcon={p.icon} title={`${p.name} <em>Manufacturer</em>`} sub={`${p.tagline} — made in Ghaziabad, supplied across India.`} image={p.img} chips={['Custom Sizes', p.mats.slice(0, 3).join(', '), 'Bulk & Small Orders']} />
+
+ <section class="sec"><div class="wrap pd">
+  <div class="pd-main">
+   <div class="blk rv">
+    <div class="blk-h"><span class="eyebrow"><i class="fa-solid fa-circle-info"></i> Overview</span><h2>About Our <em>{p.name}</em></h2></div>
+    <div class="pd-gal">{gallery.map((g, n) => <div class="img" data-lb><img src={img(g, n === 0 ? 1100 : 700)} alt={p.name} loading="lazy" /><span class="zoom"><i class="fa-solid fa-expand"></i></span></div>)}</div>
+    <div class="prose" style="margin-top:30px">{p.intro.map((x) => <p>{x}</p>)}</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="#" class="btn btn-d" data-open-enquiry data-product={p.name}>Request a Quote <i class="fa-solid fa-arrow-right"></i></a><a href={SITE.whatsapp} target="_blank" rel="noopener" class="btn btn-l"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i> WhatsApp Us</a></div>
+   </div>
+   <div class="blk"><div class="blk-h rv"><span class="eyebrow"><i class="fa-solid fa-star"></i> Key Features</span><h2>Why Choose Our <em>{p.short}</em></h2></div><FeatureCards items={p.features} /></div>
+   <div class="blk rv">
+    <div class="blk-h"><span class="eyebrow"><i class="fa-solid fa-table-list"></i> Specifications</span><h2>Technical <em>Details</em></h2><p>Typical specifications — final values are confirmed as per your drawing or application.</p></div>
+    <div class="tbl-wrap"><table class="mat-t"><thead><tr><th>Parameter</th><th>Details</th></tr></thead><tbody>{specs.map((s) => <tr><td>{s.label}</td><td>{s.value}</td></tr>)}</tbody></table></div>
+   </div>
+   <div class="blk rv"><div class="blk-h"><span class="eyebrow"><i class="fa-solid fa-flask"></i> Materials</span><h2>Available <em>Compounds</em></h2><p>Selected according to temperature, oil, water and chemical exposure.</p></div><div class="mchips">{p.mats.map((m) => <span><i class="fa-solid fa-flask"></i>{m}</span>)}</div></div>
+   <div class="blk"><div class="blk-h rv"><span class="eyebrow"><i class="fa-solid fa-screwdriver-wrench"></i> Applications</span><h2>Where Our <em>{p.short}</em> Are Used</h2></div>
+    <div class="g2">{p.apps.map((a, k) => <div class={`ac rv d${k}`}><img src={img(a.img, 700)} alt={a.title} loading="lazy" /><span class="ii"><i class={a.icon}></i></span><h3>{a.title}</h3><p>{a.text}</p></div>)}</div></div>
+   <div class="blk rv"><div class="blk-h"><span class="eyebrow"><i class="fa-solid fa-thumbs-up"></i> Our Advantage</span><h2>Why Buy From <em>Radical Polymers</em></h2></div>
+    <div class="chk-g">{WHY8.slice(0, 6).map((w) => <div><i class={w.icon}></i><div><b>{w.title}</b><span>{w.text}</span></div></div>)}</div></div>
+  </div>
+  <aside class="pd-side">
+   <div class="sb-box sb-links"><h4>Our Products</h4>{PRODUCTS.map((x) => <a href={url.product(x.slug)} class:list={{ on: x.slug === p.slug }}>{x.name}<i class="fa-solid fa-chevron-right"></i></a>)}</div>
+   <div class="sb-cta"><div class="img"><img src={img('operator', 600)} alt="" loading="lazy" /></div><h4>Need {p.short} in a Custom Size?</h4><p>Share your drawing, sample or dimensions — we'll send a quote within 24 hours.</p><a class="ph" href={SITE.phoneHref}><i class="fa-solid fa-phone"></i>{SITE.phone}</a><a href="#" class="btn btn-g" data-open-enquiry data-product={p.name}>Get a Free Quote</a></div>
+   <div class="sb-box"><h4>Quick Contact</h4><ul class="cl" style="color:var(--ink2)">
+    <li style="margin-bottom:14px"><i class="fa-regular fa-envelope" style={iconBox}></i><div><small style="color:var(--mut)">Email</small><b><a href={`mailto:${SITE.email}`} style="color:var(--ink);font-size:14px">{SITE.email}</a></b></div></li>
+    <li><i class="fa-solid fa-location-dot" style={iconBox}></i><div><small style="color:var(--mut)">Address</small><b style="color:var(--ink);font-size:14px">{SITE.addressShort}</b></div></li>
+   </ul></div>
+  </aside>
+ </div></section>
+
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="How We Work" icon="fa-solid fa-diagram-project" title="From Enquiry to <em>Delivery</em>" center /><Steps /></div></section>
+
+ <section class="sec"><div class="wrap">
+  <SecHead eyebrow="Industries" icon="fa-solid fa-city" title="Industries <em>Served</em>" lead={`Our ${p.short.toLowerCase()} are trusted across these sectors.`} />
+  <div class="g3">{p.ind.map((s, k) => <a href={url.industry(s)} class={`ac rv d${k}`} style="height:300px"><img src={img(I[s].img, 700)} alt={I[s].name} loading="lazy" /><span class="ii"><i class={I[s].icon}></i></span><h3>{I[s].name}</h3><p>{I[s].tagline}</p></a>)}</div>
+ </div></section>
+
+ <section class="sec u-soft"><div class="wrap">
+  <div class="sec-head rv"><div><span class="eyebrow"><i class="fa-solid fa-boxes-stacked"></i> More Products</span><h2 class="h2" style="margin:0">Related <em>Products</em></h2></div><div class="sl-ctrl" id={relId}><a href="/products/" class="btn btn-l">All Products</a><button class="ar prev" aria-label="Previous"><i class="fa-solid fa-arrow-left"></i></button><button class="ar next" aria-label="Next"><i class="fa-solid fa-arrow-right"></i></button></div></div>
+  <div class="slider rv" data-ctrl={`#${relId}`}><div class="sl-track rel">{others.map((x) => <ProductCard product={x} />)}</div><div class="sl-dots"></div></div>
+ </div></section>
+
+ <Cta title={`Get a Quote for <em>${p.name}</em>`} sub="Standard or custom — tell us the size, material and quantity you need." />
+ <Faq items={p.faqs} image="measure" title={`${p.short} — <em>FAQs</em>`} />
+ <Enquiry product={p.name} />
+</BaseLayout>

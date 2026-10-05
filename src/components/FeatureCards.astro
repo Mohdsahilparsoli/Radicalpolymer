@@ -1,0 +1,5 @@
+---
+interface Props { items: readonly { icon: string; title: string; text: string }[]; cols?: number; numbered?: boolean }
+const { items, cols = 3, numbered = false } = Astro.props;
+---
+<div class={`g${cols}`}>{items.map((f, k) => <div class={`fc rv d${k % 4}`}>{numbered && <span class="num">0{k + 1}</span>}<div class="ic"><i class={f.icon}></i></div><h3>{f.title}</h3><p>{f.text}</p></div>)}</div>

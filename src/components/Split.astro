@@ -1,0 +1,13 @@
+---
+// Two-column image + content section. Content goes in the default slot.
+import { img } from '../data/site';
+interface Props { image: string; badge?: [string, string, boolean?]; mini?: string; rev?: boolean; sm?: boolean; soft?: boolean }
+const { image, badge, mini, rev = false, sm = false, soft = false } = Astro.props;
+---
+<section class:list={['sec', { 'u-soft': soft }]}><div class:list={['wrap', 'split', { rev }]}>
+ <div class="pic-wrap rv"><div class:list={['pic', 'img', { sm }]}><img src={img(image, 1100)} alt="" loading="lazy" /></div>
+  {mini && <div class="pic-mini img"><img src={img(mini, 500)} alt="" loading="lazy" /></div>}
+  {badge && <div class:list={['pic-badge', { dark: badge[2] }]}><b>{badge[0]}</b><span>{badge[1]}</span></div>}
+ </div>
+ <div class="rv d1"><slot /></div>
+</div></section>

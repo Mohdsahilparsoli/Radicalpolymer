@@ -1,0 +1,7 @@
+---
+import type { Product } from '../data/content';
+import { img, url } from '../data/site';
+interface Props { product: Product; k?: number }
+const { product: p, k = 0 } = Astro.props;
+---
+<a href={url.product(p.slug)} class={`pc rv d${k % 5}`} data-c={p.cat}><div class="img"><img src={img(p.img, 700)} alt={p.name} loading="lazy" />{p.tag && <span class="tagp">{p.tag}</span>}<span class="ico"><i class={p.icon}></i></span></div><div class="pb"><h3>{p.name}</h3><p>{p.card}</p><span class="lk">Read More <i class="fa-solid fa-arrow-right"></i></span></div></a>
