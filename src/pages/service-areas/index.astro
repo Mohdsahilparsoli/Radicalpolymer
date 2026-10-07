@@ -1,0 +1,68 @@
+---
+// Service areas listing. Later: AREAS comes from WordPress via WPGraphQL.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import Strip from '../../components/Strip.astro';
+import Split from '../../components/Split.astro';
+import TickList from '../../components/TickList.astro';
+import SecHead from '../../components/SecHead.astro';
+import AreaCard from '../../components/AreaCard.astro';
+import Journey from '../../components/Journey.astro';
+import Stats from '../../components/Stats.astro';
+import ProductsGrid from '../../components/ProductsGrid.astro';
+import IndustriesGrid from '../../components/IndustriesGrid.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Cta from '../../components/Cta.astro';
+import Faq from '../../components/Faq.astro';
+import Enquiry from '../../components/Enquiry.astro';
+import { AREAS, REGIONS, areaUrl, regionSlug } from '../../data/areas';
+import { SITE } from '../../data/site';
+
+const steps = [
+  { icon: 'fa-solid fa-paper-plane', title: 'Share Your Requirement', tag: 'Step 1', text: 'Send product, size, material and quantity — or a drawing/sample — by phone, email or WhatsApp.' },
+  { icon: 'fa-solid fa-file-invoice', title: 'Quote & Approval', tag: 'Step 2', text: 'We confirm the compound, price and lead time. Custom parts get samples for approval.' },
+  { icon: 'fa-solid fa-industry', title: 'Manufacture & Inspect', tag: 'Step 3', text: 'Parts are moulded and checked lot-wise at our Ghaziabad facility.' },
+  { icon: 'fa-solid fa-truck-fast', title: 'Pack & Dispatch', tag: 'Step 4', text: 'Direct delivery in Delhi NCR; transport or courier to the rest of India.' },
+];
+const faqs = [
+  { q: 'Which cities do you supply rubber products to?', a: `We supply across India. Our main service areas include ${AREAS.slice(0, 8).map((a) => a.name).join(', ')} and other industrial cities listed on this page.` },
+  { q: 'My city is not listed. Can you still deliver?', a: 'Yes. The list shows the areas we serve most often, but we dispatch anywhere in India through transport and courier partners. Share your location with your enquiry.' },
+  { q: 'How do you deliver in Delhi NCR?', a: 'Our unit is in Ghaziabad, so for Delhi, Noida, Greater Noida, Gurugram, Faridabad, Sonipat and Meerut we can deliver directly by road. Local clients can also collect from our facility.' },
+  { q: 'How are outstation orders packed?', a: 'Parts are counted, packed in poly bags and cartons, and labelled lot-wise. Custom packing is available on request.' },
+  { q: 'Can I send a sample from another city for a custom part?', a: 'Yes. Courier a good-condition sample or send a dimensioned drawing. We develop the mould, share samples for approval and then start bulk production.' },
+  { q: 'Do you supply small quantities outside NCR?', a: 'Standard sizes can be supplied in small quantities. For custom parts a minimum quantity applies to cover mould and setup — ask us for details.' },
+];
+---
+<BaseLayout title="Service Areas | Rubber Products Supplier Across India – Radical Polymers" description={`Radical Polymers supplies rubber O-rings, seals, gaskets and custom moulded parts across India — Delhi NCR, ${AREAS.filter((a) => a.region !== 'Delhi NCR').slice(0, 6).map((a) => a.name).join(', ')} and more.`} active="areas">
+ <PageHero crumbs={[{ label: 'Service Areas' }]} eyebrow="Service Areas" eyebrowIcon="fa-solid fa-map-location-dot" title="Rubber Products Supplied <em>Across India</em>" sub="From our manufacturing unit in Ghaziabad, we supply O-rings, seals, gaskets and custom rubber parts to industrial clients in Delhi NCR and cities all over India." image="truck" chips={[`${AREAS.length}+ Cities Served`, 'Pan-India Dispatch', 'Direct From Manufacturer']} />
+ <Strip />
+ <Split image="truck2" badge={[`${AREAS.length}+`, 'Cities & industrial hubs', true]} mini="warehouse">
+  <span class="eyebrow"><i class="fa-solid fa-route"></i> Where We Deliver</span><h2 class="h2">One Manufacturer, <em>Supplying Nationwide</em></h2>
+  <p>Radical Polymers is based at 155-A Model Town West, Ghaziabad — right at the heart of Delhi NCR. That makes direct delivery across the NCR quick and simple.</p>
+  <p>Beyond NCR, we dispatch to industrial cities in North, West, South and East India through trusted transport and courier partners. Wherever you are, you deal directly with the manufacturer.</p>
+  <TickList items={['Direct road delivery in Delhi NCR', 'Pan-India transport &amp; courier', 'Lot-wise packing &amp; labelling', 'Samples accepted by courier', 'Standard &amp; custom parts', 'One point of contact']} />
+  <a href="#areas" class="btn btn-d">Find Your City <i class="fa-solid fa-arrow-down"></i></a>
+ </Split>
+ <section class="sec u-soft" id="areas"><div class="wrap">
+  <SecHead eyebrow="Our Service Areas" icon="fa-solid fa-location-dot" title="Cities <em>We Serve</em>">
+   <div slot="side" class="filters" data-filter="#sagrid"><button class="on" data-f="all">All Areas</button>{REGIONS.map((r) => <button data-f={regionSlug(r.name)}>{r.name}</button>)}</div>
+  </SecHead>
+  <div class="sa-g" id="sagrid">{AREAS.map((a, k) => <AreaCard area={a} k={k} />)}</div>
+ </div></section>
+ <section class="sec"><div class="wrap">
+  <SecHead eyebrow="Coverage" icon="fa-solid fa-earth-asia" title="Region-Wise <em>Coverage</em>" lead="Distances are approximate road distances from our Ghaziabad unit." />
+  <div class="reg-g">{REGIONS.map((r, k) => (
+   <div class={`reg rv d${k % 4}`}><div class="ri"><i class={r.icon}></i></div><h3>{r.name}</h3><p>{r.text}</p>
+    <ul>{AREAS.filter((a) => a.region === r.name).map((a) => <li><a href={areaUrl(a.slug)}>{a.name}<small>{a.km === 0 ? 'Home base' : `~${a.km.toLocaleString('en-IN')} km`}</small></a></li>)}</ul>
+   </div>
+  ))}</div>
+ </div></section>
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="How It Works" icon="fa-solid fa-truck-ramp-box" title="From Enquiry to <em>Your Doorstep</em>" center /><Journey items={steps} /></div></section>
+ <Stats bg="truck" />
+ <ProductsGrid title="Products We Supply <em>Across India</em>" soft={false} />
+ <IndustriesGrid />
+ <Testimonials />
+ <Cta title="Don’t See Your City? <em>We Still Deliver.</em>" sub="Send your requirement and location — we dispatch rubber parts anywhere in India." image="truck2" />
+ <Faq items={faqs} image="warehouse" />
+ <Enquiry />
+</BaseLayout>

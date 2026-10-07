@@ -1,0 +1,14 @@
+---
+import { type Area, areaUrl, regionSlug, delivery } from '../data/areas';
+import { img } from '../data/site';
+interface Props { area: Area; k?: number }
+const { area: a, k = 0 } = Astro.props;
+---
+<a href={areaUrl(a.slug)} class={`sa-card rv d${k % 4}`} data-c={regionSlug(a.region)}>
+ <div class="img"><img src={img(a.img, 700)} alt={a.name} loading="lazy" /><span class="tag"><i class="fa-solid fa-location-dot"></i>{a.region}</span></div>
+ <div class="bd">
+  <h3>{a.name}</h3><span class="st">{a.state}</span>
+  <div class="sa-meta"><span><i class="fa-solid fa-industry"></i>{a.hubs.length} industrial hubs</span><span><i class={delivery(a).icon}></i>{a.km === 0 ? 'Our home base' : `~${a.km.toLocaleString('en-IN')} km`}</span></div>
+  <span class="go">View Area <i class="fa-solid fa-arrow-right"></i></span>
+ </div>
+</a>

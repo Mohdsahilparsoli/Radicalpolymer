@@ -512,3 +512,47 @@ img{color:transparent;font-size:0}
 @media(max-width:1280px){.pg.cols-5,.pg.cols-4{grid-template-columns:repeat(3,1fr)}.ind-g[class*=cols-]{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))!important}.ind-g[class*=cols-] .ic-card{grid-column:auto!important}.sl-track.rel>*{flex-basis:calc((100% - 48px)/3)}}
 @media(max-width:1000px){.pg[class*=cols-]{grid-template-columns:repeat(2,1fr)}.sl-track.rel>*{flex-basis:calc((100% - 24px)/2)}}
 @media(max-width:640px){.pg[class*=cols-]{grid-template-columns:1fr}.ind-g[class*=cols-]{grid-template-columns:1fr!important}.sl-track.rel>*{flex-basis:88%}}
+
+/* ===== Service areas ===== */
+.sa-g{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.sa-card{border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;transition:.4s}
+.sa-card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(0,0,0,.3);border-color:var(--gold)}
+.sa-card .img{position:relative;height:200px;overflow:hidden}
+.sa-card .img img{width:100%;height:100%;object-fit:cover;transition:1s}
+.sa-card:hover .img img{transform:scale(1.08)}
+.sa-card .tag{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.95);color:var(--ink);font-size:12px;font-weight:700;padding:6px 12px;border-radius:30px;display:flex;gap:6px;align-items:center}
+.sa-card .tag i{color:var(--gold)}
+.sa-card .bd{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.sa-card h3{font-size:21px;margin:0}
+.sa-card .st{font-size:14px;color:var(--mut)}
+.sa-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink2);font-weight:600}
+.sa-meta i{color:var(--gold);margin-right:5px}
+.sa-card .go{margin-top:auto;padding-top:8px;font-weight:700;font-size:14px;color:var(--ink);display:flex;gap:8px;align-items:center}
+.sa-card:hover .go{color:var(--gold)}
+.reg-g{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.reg{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+.reg .ri{width:48px;height:48px;border-radius:14px;background:var(--grad);color:var(--ink);display:grid;place-items:center;font-size:19px;margin-bottom:14px}
+.reg h3{font-size:19px;margin-bottom:4px}
+.reg p{font-size:13px;color:var(--mut);margin-bottom:12px}
+.reg ul{list-style:none;padding:0;margin:0;display:grid;gap:2px}
+.reg li a{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:14px;font-weight:600;color:var(--ink2)}
+.reg li a:hover{color:var(--gold)}
+.reg li small{color:var(--mut);font-weight:500}
+.facts{background:#fff;border:1px solid var(--line);border-radius:22px;padding:8px 24px;box-shadow:0 20px 50px -30px rgba(0,0,0,.25)}
+.facts div{display:flex;gap:14px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.facts div:last-child{border:0}
+.facts i{width:42px;height:42px;border-radius:12px;background:#fdf3dc;color:var(--gold);display:grid;place-items:center;flex-shrink:0}
+.facts small{display:block;color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.facts b{color:var(--ink);font-size:15px}
+.sa-intro{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:start}
+.hub-g{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.hub-g>div{display:flex;gap:14px;align-items:center;padding:18px;border-radius:16px;border:1px solid var(--line);background:#fff;transition:.3s}
+.hub-g>div:hover{border-color:var(--gold);background:#fffaf0}
+.hub-g i{width:42px;height:42px;border-radius:12px;background:#fdf3dc;color:var(--gold);display:grid;place-items:center;flex-shrink:0}
+.hub-g b{color:var(--ink);display:block}
+.hub-g span{font-size:13px;color:var(--mut)}
+@media(min-width:1281px){.mega.p.ar{grid-template-columns:1fr 1fr 260px;width:820px;left:auto;right:-240px;translate:none}}
+@media(max-width:1280px){.sa-g{grid-template-columns:repeat(3,1fr)}.reg-g{grid-template-columns:repeat(3,1fr)}.hub-g{grid-template-columns:1fr 1fr}}
+@media(max-width:1000px){.sa-g,.reg-g{grid-template-columns:1fr 1fr}.sa-intro{grid-template-columns:1fr;gap:36px}}
+@media(max-width:640px){.sa-g,.reg-g,.hub-g{grid-template-columns:1fr}.facts{padding:4px 18px}}
+.sa-intro p{margin-bottom:14px}.sa-intro .acts{align-items:center;animation:none}

@@ -18,9 +18,10 @@ Node.js 22.12 or newer.
 src/
   data/site.ts        NOINDEX flag, phone/email/address, menu, image helper, URL helpers
   data/content.ts     products, industries, blog posts, FAQs, testimonials, policies …
+  data/areas.ts       service areas (cities, hubs, distance, region) + area FAQs
   layouts/BaseLayout.astro   <head>, header, footer, popup, shared script
   components/         reusable sections (PageHero, Split, Faq, Testimonials, Cta, Enquiry …)
-  pages/              one file per page; products/, industries/ and blog/ use [slug] templates
+  pages/              one file per page; products/, industries/, blog/ and service-areas/ use [slug] templates
   styles/style.css    all site CSS
   scripts/main.js     menu, sliders, tabs, filters, FAQ, lightbox, enquiry popup, forms
 public/               logo, robots.txt, images, Google verification file
@@ -33,6 +34,7 @@ vercel.json           redirects from the old *.html URLs + X-Robots-Tag header
 | Product | `/products/{slug}/` |
 | Industry | `/industries/{slug}/` |
 | Blog post | `/blog/{slug}/` |
+| Service area | `/service-areas/{slug}/` (listing: `/service-areas/`) |
 | Other pages | `/{name}/` e.g. `/about-us/`, `/contact-us/` |
 
 Old links such as `/rubber-o-rings.html` or `/blog-nbr-vs-epdm-vs-viton.html`
@@ -55,3 +57,8 @@ don't need to change.
 The enquiry and popup forms validate and show a success message, but nothing is
 sent yet. See the `TODO` in `src/scripts/main.js`, and connect it to a form backend
 (WordPress / Contact Form 7 REST, an API route, or a form service).
+
+## Adding a service area
+Add one object to `AREAS` in `src/data/areas.ts` (slug, name, state, region, km, images,
+hubs, industries, note). The city page, listing card, region list and menu (when
+`featured: true`) update automatically on the next build.

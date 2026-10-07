@@ -1,8 +1,7 @@
 ---
-import { NAV, SITE } from '../data/site';
+import { NAV, SITE, img } from '../data/site';
 interface Props { active?: string }
 const { active = '' } = Astro.props;
-const products = NAV.find((n) => n.key === 'products')!;
 ---
 <div class="top"><div class="wrap">
  <div class="l"><span><i class="fa-solid fa-phone-volume"></i><a href={SITE.phoneHref}>{SITE.phone}</a></span><span><i class="fa-regular fa-envelope"></i><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span><span><i class="fa-solid fa-location-dot"></i>{SITE.addressShort}</span></div>
@@ -15,13 +14,14 @@ const products = NAV.find((n) => n.key === 'products')!;
   {NAV.map((n) => (
    <li class:list={[{ 'has-dd': n.children, act: n.key === active }]}>
     <a href={n.href}>{n.label}{n.children && <i class="fa-solid fa-angle-down"></i>}</a>
-    {n.children && n.key === 'products' && (
-     <div class="mega p">
-      {products.children!.map((c) => <a class="it" href={c.href}><i class={c.icon}></i>{c.label}</a>)}
-      <a class="feat" href="/products/custom-rubber-parts/"><img src="https://images.unsplash.com/photo-1769147339214-076740872485?auto=format&fit=crop&w=600&q=80" alt="Custom rubber parts" loading="lazy" /><div><b>Need a Custom Part?</b><span>Developed from your drawing or sample →</span></div></a>
+    {n.children && n.feat && (
+     <div class:list={['mega', 'p', { ar: n.key === 'areas' }]}>
+      {n.children.map((c) => <a class="it" href={c.href}><i class={c.icon}></i>{c.label}</a>)}
+      {n.key === 'areas' && <a class="it" href={n.href} style="color:var(--gold)"><i class="fa-solid fa-map-location-dot"></i>All Service Areas</a>}
+      <a class="feat" href={n.feat.href}><img src={img(n.feat.img, 600, 80)} alt="" loading="lazy" /><div><b>{n.feat.title}</b><span>{n.feat.sub}</span></div></a>
      </div>
     )}
-    {n.children && n.key !== 'products' && (
+    {n.children && !n.feat && (
      <div class="mega s">{n.children.map((c) => <a class="it" href={c.href}><i class={c.icon}></i>{c.label}</a>)}</div>
     )}
    </li>

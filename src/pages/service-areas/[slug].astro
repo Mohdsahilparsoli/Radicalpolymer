@@ -1,0 +1,90 @@
+---
+// One template for every service area. Later: getStaticPaths() pulls areas from WordPress.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import TickList from '../../components/TickList.astro';
+import SecHead from '../../components/SecHead.astro';
+import ProductsGrid from '../../components/ProductsGrid.astro';
+import FeatureCards from '../../components/FeatureCards.astro';
+import Journey from '../../components/Journey.astro';
+import Stats from '../../components/Stats.astro';
+import Materials from '../../components/Materials.astro';
+import AreaCard from '../../components/AreaCard.astro';
+import Testimonials from '../../components/Testimonials.astro';
+import Cta from '../../components/Cta.astro';
+import Faq from '../../components/Faq.astro';
+import Enquiry from '../../components/Enquiry.astro';
+import { AREAS, type Area, delivery, areaFaqs } from '../../data/areas';
+import { INDUSTRIES, WHY8 } from '../../data/content';
+import { SITE, img, url } from '../../data/site';
+
+export function getStaticPaths() {
+  return AREAS.map((a) => ({ params: { slug: a.slug }, props: { area: a } }));
+}
+const { area: a } = Astro.props as { area: Area };
+const d = delivery(a);
+const home = a.km === 0;
+const inds = a.industries.map((s) => INDUSTRIES.find((i) => i.slug === s)!).filter(Boolean);
+const sameRegion = AREAS.filter((x) => x.region === a.region && x.slug !== a.slug);
+const nearby = [...sameRegion, ...AREAS.filter((x) => x.featured && x.region !== a.region)].slice(0, 4);
+const kmText = home ? 'Our home base' : `~${a.km.toLocaleString('en-IN')} km by road`;
+const steps = [
+  { icon: 'fa-solid fa-paper-plane', title: 'Share Your Requirement', tag: 'Step 1', text: home ? 'Call, WhatsApp or visit our unit with your drawing or sample.' : `Send your drawing, sample or part details from ${a.name} by WhatsApp, email or courier.` },
+  { icon: 'fa-solid fa-file-invoice', title: 'Quote & Sample Approval', tag: 'Step 2', text: 'We recommend the compound and share price and lead time. Custom parts get samples first.' },
+  { icon: 'fa-solid fa-industry', title: 'Manufacture & Inspect', tag: 'Step 3', text: 'Moulded, trimmed and inspected lot-wise at our Ghaziabad facility.' },
+  { icon: d.icon, title: `Delivery to ${a.name}`, tag: 'Step 4', text: d.text },
+];
+const desc = `Rubber O-rings, seals, gaskets, washers and custom moulded parts supplier in ${a.name}, ${a.state}. Serving ${a.hubs.slice(0, 3).join(', ')} and more. Call ${SITE.phone}.`;
+---
+<BaseLayout title={`Rubber Products Supplier in ${a.name} | O-Rings, Seals & Gaskets – Radical Polymers`} description={desc} active="areas">
+ <PageHero crumbs={[{ label: 'Service Areas', href: '/service-areas/' }, { label: a.name }]} eyebrow={`${a.name}, ${a.state}`} eyebrowIcon="fa-solid fa-location-dot" title={`Rubber O-Rings, Seals &amp; Gaskets Supplier in <em>${a.name}</em>`} sub={`Direct-from-manufacturer rubber components for industries in ${a.name} — standard sizes and custom parts developed from your drawing or sample.`} image={a.img} chips={[d.mode, `${a.hubs.length} Industrial Hubs Covered`, 'Custom Parts Developed']} />
+
+ <section class="sec"><div class="wrap sa-intro">
+  <div class="rv">
+   <span class="eyebrow"><i class="fa-solid fa-handshake"></i> Overview</span>
+   <h2 class="h2">Your Rubber Parts Partner in <em>{a.name}</em></h2>
+   <p>{a.note}</p>
+   <p>Radical Polymers has manufactured rubber O-rings, seals, gaskets, washers, bushes, sheets, profiles and custom moulded parts since 2013. {home ? 'Clients in and around Ghaziabad deal with us face to face — visit the unit, bring a sample and discuss the part with our team.' : `Clients in ${a.name} buy directly from our Ghaziabad unit — so you get factory pricing, the right compound and one team responsible from development to delivery.`}</p>
+   <p>Whether you need a standard O-ring size for maintenance or a new moulded part for production, we supply small batches and regular bulk schedules.</p>
+   <TickList items={['Factory-direct pricing', 'Any size developed', 'NBR, EPDM, Silicone, Viton &amp; more', 'Lot-wise inspection', 'Samples before bulk orders', d.mode]} />
+   <div class="acts" style="margin-top:26px"><a href="#" class="btn btn-d" data-open-enquiry>Get a Quote for {a.name} <i class="fa-solid fa-arrow-right"></i></a><a href={SITE.whatsapp} target="_blank" rel="noopener" class="btn btn-l"><i class="fa-brands fa-whatsapp" style="color:#25d366"></i> WhatsApp Us</a></div>
+  </div>
+  <div class="rv d1">
+   <div class="img" style="border-radius:22px;overflow:hidden;height:260px;margin-bottom:20px"><img src={img(a.img2, 900)} alt={a.name} loading="lazy" style="width:100%;height:100%;object-fit:cover" /></div>
+   <div class="facts">
+    <div><i class="fa-solid fa-map-pin"></i><span><small>Location</small><b>{a.name}, {a.state}</b></span></div>
+    <div><i class="fa-solid fa-earth-asia"></i><span><small>Region</small><b>{a.region}</b></span></div>
+    <div><i class="fa-solid fa-route"></i><span><small>Distance from our unit</small><b>{kmText}</b></span></div>
+    <div><i class={d.icon}></i><span><small>Delivery</small><b>{d.mode}</b></span></div>
+    <div><i class="fa-solid fa-industry"></i><span><small>Industrial hubs covered</small><b>{a.hubs.length} areas</b></span></div>
+   </div>
+  </div>
+ </div></section>
+
+ <section class="sec u-soft"><div class="wrap">
+  <SecHead eyebrow="Industrial Areas" icon="fa-solid fa-map-location-dot" title={`Industrial Hubs We Serve in <em>${a.name}</em>`} lead="We supply units in these industrial areas and the localities around them." />
+  <div class="hub-g">{a.hubs.map((h, k) => <div class={`rv d${k % 4}`}><i class="fa-solid fa-industry"></i><div><b>{h}</b><span>{a.name}, {a.state}</span></div></div>)}</div>
+ </div></section>
+
+ <ProductsGrid title={`Rubber Products We Supply in <em>${a.name}</em>`} soft={false} eyebrow={`Products in ${a.name}`} />
+
+ <section class="sec ind"><div class="wrap">
+  <SecHead eyebrow="Industries" icon="fa-solid fa-city" title={`Key Industries in <em>${a.name}</em>`} lead={`The sectors we most often support in ${a.name}.`} />
+  <div class="sa-g">{inds.map((i, k) => <a href={url.industry(i.slug)} class={`ac rv d${k % 4}`} style="height:340px"><img src={img(i.img, 700)} alt={i.name} loading="lazy" /><span class="ii"><i class={i.icon}></i></span><h3>{i.name}</h3><p>{i.tagline}</p></a>)}</div>
+ </div></section>
+
+ <section class="sec u-soft"><div class="wrap"><SecHead eyebrow="How It Works" icon="fa-solid fa-truck-ramp-box" title={`Ordering From <em>${a.name}</em>`} center /><Journey items={steps} /></div></section>
+ <Stats bg={a.img2} />
+ <section class="sec"><div class="wrap"><SecHead eyebrow="Why Choose Us" icon="fa-solid fa-star" title={`Why ${a.name} Buyers <em>Choose Us</em>`} center /><FeatureCards items={WHY8} cols={4} numbered /></div></section>
+ <Materials />
+
+ <section class="sec"><div class="wrap">
+  <SecHead eyebrow="Nearby Areas" icon="fa-solid fa-location-dot" title="Other Areas <em>We Serve</em>"><a slot="side" href="/service-areas/" class="btn btn-l">View All Areas <i class="fa-solid fa-arrow-right"></i></a></SecHead>
+  <div class="sa-g">{nearby.map((x, k) => <AreaCard area={x} k={k} />)}</div>
+ </div></section>
+
+ <Testimonials />
+ <Cta title={`Need Rubber Parts in <em>${a.name}</em>?`} sub="Share your drawing, sample or part details — get a quick quotation from the manufacturer." image={a.img} />
+ <Faq items={areaFaqs(a)} image={a.img2} soft />
+ <Enquiry />
+</BaseLayout>

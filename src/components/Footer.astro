@@ -4,7 +4,7 @@ import { PRODUCTS } from '../data/content';
 import ProductOptions from './ProductOptions.astro';
 interface Props { product?: string }
 const { product = '' } = Astro.props;
-const quick = [['Home', '/'], ['About Us', '/about-us/'], ['Products', '/products/'], ['Industries', '/industries/'], ['Manufacturing', '/manufacturing/'], ['Why Choose Us', '/why-choose-us/'], ['Blog', '/blog/'], ['Contact Us', '/contact-us/']];
+const quick = [['Home', '/'], ['About Us', '/about-us/'], ['Products', '/products/'], ['Industries', '/industries/'], ['Manufacturing', '/manufacturing/'], ['Service Areas', '/service-areas/'], ['Why Choose Us', '/why-choose-us/'], ['Blog', '/blog/'], ['Contact Us', '/contact-us/']];
 const gal = ['floor', 'oring', 'operator', 'caliper', 'molded', 'warehouse'];
 const footProducts = PRODUCTS.filter((p) => ['rubber-o-rings', 'rubber-seals', 'rubber-gaskets', 'rubber-washers', 'rubber-bushes', 'rubber-diaphragms', 'custom-rubber-parts'].includes(p.slug));
 ---

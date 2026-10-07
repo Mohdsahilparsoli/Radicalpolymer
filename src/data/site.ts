@@ -1,5 +1,6 @@
 // Global site settings (later: WordPress "Site Settings" options page).
 import { IMG, PRODUCTS, INDUSTRIES } from './content';
+import { AREAS, areaUrl } from './areas';
 
 /** Staging switch: true = whole site is noindex (meta robots + robots.txt + X-Robots-Tag header). */
 export const NOINDEX = true;
@@ -32,14 +33,23 @@ export const url = {
   product: (slug: string) => `/products/${slug}/`,
   industry: (slug: string) => `/industries/${slug}/`,
   post: (slug: string) => `/blog/${slug}/`,
+  area: (slug: string) => `/service-areas/${slug}/`,
 };
 
-export type NavItem = { label: string; href: string; key: string; children?: { label: string; href: string; icon: string }[] };
+export type NavItem = {
+  label: string; href: string; key: string;
+  children?: { label: string; href: string; icon: string }[];
+  /** Optional image card shown on the right of a wide (mega) dropdown. */
+  feat?: { href: string; img: string; title: string; sub: string };
+};
 
 export const NAV: NavItem[] = [
   { label: 'Home', href: '/', key: 'home' },
   { label: 'About Us', href: '/about-us/', key: 'about' },
-  { label: 'Products', href: '/products/', key: 'products', children: PRODUCTS.map((p) => ({ label: p.name, href: url.product(p.slug), icon: p.icon })) },
+  {
+    label: 'Products', href: '/products/', key: 'products', children: PRODUCTS.map((p) => ({ label: p.name, href: url.product(p.slug), icon: p.icon })),
+    feat: { href: '/products/custom-rubber-parts/', img: 'custom', title: 'Need a Custom Part?', sub: 'Developed from your drawing or sample →' },
+  },
   { label: 'Industries', href: '/industries/', key: 'industries', children: INDUSTRIES.map((i) => ({ label: i.name, href: url.industry(i.slug), icon: i.icon })) },
   {
     label: 'Manufacturing', href: '/manufacturing/', key: 'manufacturing', children: [
@@ -47,6 +57,11 @@ export const NAV: NavItem[] = [
       { label: 'Quality & Testing', href: '/quality-testing/', icon: 'fa-solid fa-microscope' },
       { label: 'Custom Manufacturing', href: '/custom-manufacturing/', icon: 'fa-solid fa-pen-ruler' },
     ],
+  },
+  {
+    label: 'Service Areas', href: '/service-areas/', key: 'areas',
+    children: AREAS.filter((a) => a.featured).map((a) => ({ label: a.name, href: areaUrl(a.slug), icon: 'fa-solid fa-location-dot' })),
+    feat: { href: '/service-areas/', img: 'truck', title: 'Supplying Across India', sub: `View all ${AREAS.length} service areas →` },
   },
   { label: 'Why Choose Us', href: '/why-choose-us/', key: 'why' },
   { label: 'Testimonials', href: '/testimonials/', key: 'testimonials' },

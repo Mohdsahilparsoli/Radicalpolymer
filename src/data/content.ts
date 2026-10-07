@@ -65,7 +65,9 @@ export const IMG: Record<string, string> = {
  "excavator": "1580901369227-308f6f40bdeb",
  "cmach": "1642927778267-4e8b787b325a",
  "hydraulic": "1766157669300-8ade8059b379",
- "shipvalves": "1682268294196-8a8dd14c0326"
+ "shipvalves": "1682268294196-8a8dd14c0326",
+ "truck": "1635774152029-17bf0a3e1cb4",
+ "truck2": "1774013603273-03507c48a0e8"
 };
 
 export const PRODUCT_OPTIONS = [
